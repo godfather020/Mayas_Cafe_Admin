@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="Splash_title">#FFFFFFFF</color>
+    <color name="Splah_subtitle">#FFFFFFFF</color>
+    <color name="Card_back">#EDF0F5</color>
+    <color name="Screen_Background">#EDF0F5</color>
+    <color name="Main_Heading">#010313</color>
+    <color name="Get_start_subtitle">#B5B5BB</color>
+    <color name="Get_start_title">#696971</color>
+    <color name="subheading_inputField">#696971</color>
+    <color name="Category_title">#5B5D71</color>
+    <color name="Button_gradient1">#010313</color>
+    <color name="Button_gradient2">#9C1E1E29</color>
+    <color name="Button_text">#ffffff</color>
+</resources>
