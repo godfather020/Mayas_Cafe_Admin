@@ -43,7 +43,11 @@
         <item>₹ 50</item>
         <item>₹ 70</item>
     </string-array>
-    <string name="home">Home</string>
+    <string name="orders">All Orders</string>
+    <string name="payment">Payment History</string>
+    <string name="menu">Menu</string>
+    <string name="offers">Offers</string>
+    <string name="logout">Logout</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

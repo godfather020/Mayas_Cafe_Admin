@@ -28,6 +28,7 @@ public class Login extends AppCompatActivity {
     Button signIn;
     ImageButton back_img;
     CountryCodePicker cc;
+    TextView skip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,8 @@ public class Login extends AppCompatActivity {
         signIn = findViewById(R.id.sign_in);
         phoneNum = findViewById(R.id.phoneNum);
         back_img = findViewById(R.id.back_img);
-        signUp = findViewById(R.id.sign_up);
         cc = findViewById(R.id.cc);
+        skip = findViewById(R.id.skip);
 
         cc.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
@@ -78,11 +79,10 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        signUp.setOnClickListener(new View.OnClickListener() {
+        skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                startActivity(new Intent(Login.this, Register.class));
+                startActivity(new Intent(Login.this, Dashboard.class));
                 finish();
             }
         });

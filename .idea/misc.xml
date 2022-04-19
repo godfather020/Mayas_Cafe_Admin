@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../.gradle/caches/transforms-3/f6c8ca1c70cd7434e695248002247f40/transformed/jetified-ccp-2.6.0/res/drawable/ccp_ic_arrow_drop_down.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/avd_anim.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/custom_nav.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/icon_feather_user_gray.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/icon_metro_location.xml" value="0.1495" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.2864583333333333" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="16" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

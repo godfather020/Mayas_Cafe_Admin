@@ -29,6 +29,8 @@ android {
 
 dependencies {
 
+    implementation("app.futured.donut:donut:2.2.2")
+
     //Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //Country Code Picker

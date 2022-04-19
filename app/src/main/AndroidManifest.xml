@@ -14,10 +14,6 @@
             android:exported="false"
             android:screenOrientation="sensorPortrait"/>
         <activity
-            android:name=".activities.Register"
-            android:exported="false"
-            android:screenOrientation="sensorPortrait"/>
-        <activity
             android:name=".activities.OTP"
             android:exported="false"
             android:screenOrientation="sensorPortrait"/>
