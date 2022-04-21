@@ -6,9 +6,12 @@ import android.util.Log;
 import android.widget.EditText;
 
 import com.example.mayas_cafe_admin.R;
+import com.example.mayas_cafe_admin.activities.OTP;
 import com.google.android.material.navigation.NavigationView;
 
 public class Functions {
+
+    static OTP otp = new OTP();
 
     public static boolean checkData(String user_name, String user_phone, EditText userName, EditText phoneNum) {
 
@@ -81,7 +84,7 @@ public class Functions {
         }
     }
 
-    public static void otpTextChange(EditText otp1, EditText otp2){
+    public static void otpTextChange(EditText otp1, EditText otp2, EditText otp3){
 
         otp1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -102,7 +105,21 @@ public class Functions {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (!otp1.getText().toString().isEmpty()) {
-                    otp2.requestFocus();
+
+                    otp.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            otp2.requestFocus();
+                        }
+                    });
+                }
+                if (otp1.getText().toString().length() < 1){
+                    otp.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            otp3.requestFocus();
+                        }
+                    });
                 }
             }
         });

@@ -2,16 +2,21 @@ package com.example.mayas_cafe_admin.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mayas_cafe_admin.FirebaseCloudMsg;
 import com.example.mayas_cafe_admin.R;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.example.mayas_cafe_admin.utils.Functions;
@@ -43,12 +48,34 @@ public class OTP extends AppCompatActivity {
         submit = findViewById(R.id.submit);
         resend = findViewById(R.id.resend);
 
-        Functions.otpTextChange(otp1, otp2);
-        Functions.otpTextChange(otp2, otp3);
-        Functions.otpTextChange(otp3, otp4);
-        Functions.otpTextChange(otp4, otp4);
+        Functions.otpTextChange(otp1, otp2, otp1);
+        Functions.otpTextChange(otp2, otp3, otp1);
+        Functions.otpTextChange(otp3, otp4, otp2);
+        Functions.otpTextChange(otp4, otp4, otp3);
 
         countdownTimer();
+
+        otp4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if (otp4.getText().toString().length() > 0) {
+                    InputMethodManager imm =
+                            (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(otp4.getWindowToken(), 0);
+                }
+            }
+        });
 
         img_back_otp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +113,8 @@ public class OTP extends AppCompatActivity {
 
             }
         });
+
+        new FirebaseCloudMsg().setEditTextOtp(otp1,otp2,otp3,otp4);
     }
 
     private void countdownTimer(){

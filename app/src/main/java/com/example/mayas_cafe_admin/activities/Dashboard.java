@@ -12,12 +12,14 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.mayas_cafe_admin.FirebaseCloudMsg;
 import com.example.mayas_cafe_admin.R;
 import com.example.mayas_cafe_admin.utils.Functions;
 import com.google.android.material.navigation.NavigationView;
@@ -49,6 +51,10 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         setContentView(R.layout.activity_dashboard);
 
         setUpToolbar();
+
+        String deviceToken = FirebaseCloudMsg.getToken(this);
+
+        Log.d("Token", deviceToken);
 
         donutProgressView = findViewById(R.id.earning_progress);
 
