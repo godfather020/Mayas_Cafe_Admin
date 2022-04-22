@@ -19,4 +19,8 @@
     <color name="Button_gradient1">#010313</color>
     <color name="Button_gradient2">#9C1E1E29</color>
     <color name="Button_text">#ffffff</color>
+    <color name="Red">#B71C1C</color>
+    <color name="Yellow">#99F517</color>
+    <color name="barCharts">#E82A36</color>
+
 </resources>

@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Login.this, Dashboard.class));
+                startActivity(new Intent(getApplicationContext(), Dashboard.class));
                 finish();
             }
         });

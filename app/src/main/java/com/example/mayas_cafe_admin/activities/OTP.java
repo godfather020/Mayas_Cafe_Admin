@@ -2,6 +2,7 @@ package com.example.mayas_cafe_admin.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ import com.example.mayas_cafe_admin.utils.Functions;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class OTP extends AppCompatActivity {
+public class OTP extends Activity {
 
     private boolean otpData = false;
     private String otp_1, otp_2, otp_3, otp_4;
