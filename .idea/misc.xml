@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../.gradle/caches/transforms-3/f6c8ca1c70cd7434e695248002247f40/transformed/jetified-ccp-2.6.0/res/drawable/ccp_ic_arrow_drop_down.xml" value="0.178" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Admin/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/avd_anim.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/custom_nav.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/icon_feather_user_gray.xml" value="0.1495" />
@@ -17,7 +18,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="16" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

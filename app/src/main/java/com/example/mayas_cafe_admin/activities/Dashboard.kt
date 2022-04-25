@@ -1,44 +1,47 @@
 package com.example.mayas_cafe_admin.activities
 
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.navigation.NavigationView
-import androidx.drawerlayout.widget.DrawerLayout
-import android.widget.ImageButton
-import app.futured.donut.DonutProgressView
+import android.graphics.RectF
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.example.mayas_cafe_admin.R
-import com.example.mayas_cafe_admin.FirebaseCloudMsg
-import androidx.drawerlayout.widget.DrawerLayout.DrawerListener
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.compose.animation.slideInVertically
-import androidx.compose.ui.graphics.Color
 import androidx.core.view.GravityCompat
-import androidx.core.view.get
-import com.boyzdroizy.simpleandroidbarchart.SimpleBarChart
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.DrawerListener
+import com.example.mayas_cafe_admin.FirebaseCloudMsg
+import com.example.mayas_cafe_admin.R
 import com.example.mayas_cafe_admin.utils.Functions
-import org.eazegraph.lib.charts.BarChart
-import org.eazegraph.lib.models.BarModel
-import java.util.*
-import kotlin.random.Random
-import kotlin.random.Random.Default.nextInt
-import java.util.Random as JavaUtilRandom
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.YAxis.AxisDependency
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.utils.MPPointF
+import com.google.android.material.navigation.NavigationView
 
-class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    OnChartValueSelectedListener {
     private var isBackPressed = false
     var toolbar_const: Toolbar? = null
     lateinit var navigationView: NavigationView
     var drawerLayout: DrawerLayout? = null
     var close: ImageButton? = null
     var actionBarDrawerToggle: ActionBarDrawerToggle? = null
-    lateinit var simpleBarChart: BarChart
+
+    //lateinit var simpleBarChart: com.github.mikephil.charting.charts.BarChart
+    private lateinit var chart: BarChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,17 +50,86 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         val deviceToken = FirebaseCloudMsg.getToken(this)
         Log.d("Token", deviceToken)
 
-        simpleBarChart = findViewById(R.id.bar_chart)
+        //  simpleBarChart = findViewById(R.id.bar_chart)
+
+        chart = findViewById(R.id.bar_chart)
+        chart.setOnChartValueSelectedListener(this)
+
+        chart.setDrawBarShadow(false)
+        chart.setDrawValueAboveBar(true)
+
+        chart.getDescription().setEnabled(false)
+
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+        chart.setMaxVisibleValueCount(60)
+
+        // scaling can now only be done on x- and y-axis separately
+
+        // scaling can now only be done on x- and y-axis separately
+        chart.setPinchZoom(true)
+
+        chart.setDrawGridBackground(false)
 
 
-        /*val chartData = ( 7 downTo 1 ).map { nextInt(10, 100) }.toMutableList()
-        val intervalData = (0 downTo 0).map { it }.toMutableList()
+        // add a nice and smooth animation
+        chart.animateY(1500)
 
-        simpleBarChart.setChartData(chartData, intervalData)
-        simpleBarChart.setMaxValue(100)
-        simpleBarChart.setMinValue(0)*/
+        chart.legend.isEnabled = false
 
-        simpleBarChart.addBar(BarModel("Sun",2000f , 0xFFE82A36.toInt()));
+        setData()
+
+    }
+
+    private fun setData(){
+
+        val values = java.util.ArrayList<BarEntry>()
+
+        for (i in 0 until 8) {
+            val multi: Float = (100 + 1).toFloat()
+            val `val` = (Math.random() * multi).toFloat() + multi / 3
+            values.add(BarEntry(i.toFloat(),`val`))
+        }
+
+        val set1: BarDataSet
+
+        if (chart.data != null &&
+            chart.data.dataSetCount > 0
+        ) {
+            set1 = chart.data.getDataSetByIndex(0) as BarDataSet
+            set1.values = values
+            chart.data.notifyDataChanged()
+            chart.notifyDataSetChanged()
+        } else {
+            set1 = BarDataSet(values, "Data Set")
+            set1.setColors(*ColorTemplate.VORDIPLOM_COLORS)
+            set1.setDrawValues(false)
+            val dataSets = ArrayList<IBarDataSet>()
+            dataSets.add(set1)
+            val data = BarData(dataSets)
+
+            data.setValueTextSize(10f)
+            data.barWidth = 0.9f
+            chart.data = data
+            chart.setFitBars(true)
+        }
+
+        chart.invalidate()
+
+    }
+
+
+    /*val chartData = ( 7 downTo 1 ).map { nextInt(10, 100) }.toMutableList()
+    val intervalData = (0 downTo 0).map { it }.toMutableList()
+
+    simpleBarChart.setChartData(chartData, intervalData)
+    simpleBarChart.setMaxValue(100)
+    simpleBarChart.setMinValue(0)*/
+
+       /* simpleBarChart.addBar(BarModel("Sun",2000f , 0xFFE82A36.toInt()));
         simpleBarChart.addBar(BarModel("Mon",1050f , 0xFFE82A36.toInt()));
         simpleBarChart.addBar(BarModel("Tue",32000f , 0xFFE82A36.toInt()));
         simpleBarChart.addBar(BarModel("Wed",230f , 0xFFE82A36.toInt()));
@@ -66,7 +138,7 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         simpleBarChart.addBar(BarModel("Sat",130f , 0xFFE82A36.toInt()));
 
         simpleBarChart.isShowValues = true
-        simpleBarChart.isShowDecimal = true
+        simpleBarChart.isShowDecimal = true*/
 
 
         //getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, new Dashboard_frag()).commit();
@@ -101,7 +173,6 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                 return null;
             }
         });*/
-    }
 
     fun setUpToolbar() {
 
@@ -183,4 +254,30 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         drawerLayout!!.closeDrawer(GravityCompat.START)
         return true
     }
+
+    private val onValueSelectedRectF = RectF()
+
+    override fun onValueSelected(e: Entry?, h: Highlight?) {
+        if (e == null) return
+
+        val bounds: RectF = onValueSelectedRectF
+        chart.getBarBounds(e as BarEntry?, bounds)
+        val position = chart.getPosition(e, AxisDependency.LEFT)
+
+        Log.i("bounds", bounds.toString())
+        Log.i("position", position.toString())
+
+        Log.i(
+            "x-index",
+            "low: " + chart.lowestVisibleX + ", high: "
+                    + chart.highestVisibleX
+        )
+
+        MPPointF.recycleInstance(position)
+    }
+
+    override fun onNothingSelected() {
+    }
+
 }
+
