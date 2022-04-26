@@ -2,24 +2,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single" android:id="@+id/g1">
         <item
+            android:id="@+id/Profile"
+            android:title="@string/profile"
+            android:icon="@drawable/carbon_user_avatar"/>
+        <item
             android:id="@+id/AllOrders"
             android:title="@string/orders"
-            android:icon="@drawable/icon_awesome_clipboard_list"/>
-        <item
-            android:id="@+id/PayHistory"
-            android:title="@string/payment"
-            android:icon="@drawable/icon_open_credit_card"/>
+            android:icon="@drawable/icon_park_outline_transaction_order"/>
         <item
             android:id="@+id/Menu"
             android:title="@string/menu"
-            android:icon="@drawable/icon_material_restaurant_menu"/>
+            android:icon="@drawable/vector__1_"/>
+        <item
+            android:id="@+id/PayHistory"
+            android:title="@string/payment"
+            android:icon="@drawable/clarity_wallet_line__1_"/>
         <item
             android:id="@+id/Offers"
             android:title="@string/offers"
-            android:icon="@drawable/icon_material_local_offer"/>
+            android:icon="@drawable/tabler_discount_2"/>
+        <item
+            android:id="@+id/notify"
+            android:title="@string/notify"
+            android:icon="@drawable/carbon_notification"/>
         <item
             android:id="@+id/logoutNav"
             android:title="@string/logout"
-            android:icon="@drawable/icon_open_account_logout"/>
+            android:icon="@drawable/ant_design_logout_outlined"/>
     </group>
 </menu>

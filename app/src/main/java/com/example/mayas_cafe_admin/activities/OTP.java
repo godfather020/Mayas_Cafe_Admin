@@ -18,7 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mayas_cafe_admin.FirebaseCloudMsg;
+import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
+import com.example.mayas_cafe_admin.fragments.Dashboard_frag;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.example.mayas_cafe_admin.utils.Functions;
 
@@ -106,7 +108,7 @@ public class OTP extends Activity {
                 otpData = Functions.checkOtp(otp_1, otp_2, otp_3, otp_4, otp1, otp2, otp3, otp4);
 
                 if (otpData) {
-                    startActivity(new Intent(OTP.this, Dashboard.class));
+                    startActivity(new Intent(OTP.this, MainActivity.class));
                     finish();
                 } else {
                     Toast.makeText(OTP.this, "Check information", Toast.LENGTH_SHORT).show();

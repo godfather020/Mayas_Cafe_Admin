@@ -44,10 +44,16 @@
         <item>₹ 70</item>
     </string-array>
     <string name="orders">All Orders</string>
+    <string name="profile">My Profile</string>
     <string name="payment">Payment History</string>
     <string name="menu">Menu</string>
-    <string name="offers">Offers</string>
+    <string name="offers">All Offers</string>
+    <string name="notify">Notifications</string>
     <string name="logout">Logout</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ready_to_deliver">Ready to Deliver</string>
+    <string name="being_prepared">Being Prepared</string>
+    <string name="new_orders">New \nOrders</string>
+    <string name="all_orders">All \nOrders</string>
 </resources>

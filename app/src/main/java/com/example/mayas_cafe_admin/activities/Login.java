@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.example.mayas_cafe_admin.utils.Functions;
@@ -85,7 +86,7 @@ public class Login extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
         });

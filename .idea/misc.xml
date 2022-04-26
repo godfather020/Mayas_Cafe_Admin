@@ -4,21 +4,37 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../.gradle/caches/transforms-3/f6c8ca1c70cd7434e695248002247f40/transformed/jetified-ccp-2.6.0/res/drawable/ccp_ic_arrow_drop_down.xml" value="0.178" />
-        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Admin/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/avd_anim.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/clarity_wallet_line__1_.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/custom_nav.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_notifications_none_24.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/icon_awesome_clipboard_list.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/icon_feather_user_gray.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/icon_ionic_ios_notifications_outline.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/icon_metro_location.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/log_out.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/vector__1_.xml" value="0.178" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2864583333333333" />
-        <entry key="app/src/main/res/layout/header.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_all_orders_frag.xml" value="0.2609375" />
+        <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.28541666666666665" />
+        <entry key="app/src/main/res/layout/fragment_menu_frag.xml" value="0.2609375" />
+        <entry key="app/src/main/res/layout/fragment_offers_frag.xml" value="0.2609375" />
+        <entry key="app/src/main/res/layout/fragment_payment_history_frag.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.12239583333333333" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.28102564102564104" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/toolbar.xml" value="0.2609375" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="16" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
