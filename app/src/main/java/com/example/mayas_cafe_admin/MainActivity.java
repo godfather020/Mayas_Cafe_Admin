@@ -11,6 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.Notification;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.mayas_cafe_admin.activities.Login;
@@ -40,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static Boolean isBackPressed = false;
     ImageButton nav_close;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    Toolbar toolbar_const;
+    public Toolbar toolbar_const;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +54,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawer);
         toolbar_const = findViewById(R.id.toolbar_const);
-
         setUpToolbar();
 
         ConstraintLayout fragmentContainer = findViewById(R.id.fragment_container);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Dashboard_frag()).commit();
-
     }
 
     private void setUpToolbar() {
@@ -66,30 +69,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar_const);
         navigationView.setNavigationItemSelectedListener(this);
         Functions.setArrow(navigationView);
-        //navigationView.setCheckedItem(R.id.homeNav);
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
                 toolbar_const,
                 R.string.app_name,
                 R.string.app_name
-        );
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.align_left);
-        drawerLayout.ad
-        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
-
-                actionBarDrawerToggle.syncState();
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.align_left);
-            }
+        ){
 
             @Override
-            public void onDrawerOpened(@NonNull View drawerView) {
-                actionBarDrawerToggle.syncState();
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.align_left);
+            public void onDrawerOpened(View drawerView) {
+
+                super.onDrawerOpened(drawerView);
 
                 nav_close = findViewById(R.id.nav_close_img);
                 nav_close.setOnClickListener(new View.OnClickListener() {
@@ -102,21 +94,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
             }
+        };
 
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) {
-                actionBarDrawerToggle.syncState();
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.align_left);
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-                actionBarDrawerToggle.syncState();
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.align_left);
-            }
-        });
+        getSupportActionBar().setHomeButtonEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar_const.getNavigationIcon().setTint(getResources().getColor(R.color.black));
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.align_left);
+
     }
 
     @Override
@@ -166,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.Profile:
 
                 loadFragment(getSupportFragmentManager(), new Profile_frag(), R.id.fragment_container, false, "Profile", null );
-                isBackPressed = true;
                 break;
 
             case R.id.AllOrders:
@@ -186,8 +170,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.logoutNav:
-                startActivity(new Intent(this, Login.class));
-                break;
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setCancelable(false);
+                builder.setTitle("Do you want to logout");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(MainActivity.this, Login.class));
+                    }
+                });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+
+            Dialog alertDialog = builder.create();
+            alertDialog.show();
+
+            break;
         }
 
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
@@ -199,8 +204,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                     actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-                    toolbar_const.getNavigationIcon().setTint(getResources().getColor(R.color.black));
                     toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -213,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                     actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
                     actionBarDrawerToggle.syncState();
                     toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
                         @Override

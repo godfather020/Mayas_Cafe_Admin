@@ -42,10 +42,11 @@
             android:title=""
             android:backgroundTint="#F5F9FE"
             app:titleTextColor="#00FFFFFF"
+            app:navigationIconTint="@color/black"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/align_left" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

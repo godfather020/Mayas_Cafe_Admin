@@ -29,6 +29,7 @@ class Dashboard_frag : Fragment(){
     var weekSales : ArrayList<WeekSales> = ArrayList()
     private lateinit var chart: com.github.mikephil.charting.charts.BarChart
     lateinit var total_income : TextView
+    lateinit var mainActivity: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +37,10 @@ class Dashboard_frag : Fragment(){
     ): View? {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_dashboard_frag, container, false)
+        mainActivity = (activity as MainActivity)
+
+        mainActivity.toolbar_const.title = ""
+
         MainActivity.isBackPressed = false
         chart = view.findViewById(R.id.bar_chart)
         total_income = view.findViewById(R.id.target_amt)

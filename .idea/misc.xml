@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/avd_anim.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/clarity_wallet_line__1_.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/custom_nav.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_none_24.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.178" />
@@ -23,10 +24,11 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_all_orders_frag.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.28541666666666665" />
+        <entry key="app/src/main/res/layout/fragment_edit__profile_frag.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/fragment_menu_frag.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/fragment_offers_frag.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/fragment_payment_history_frag.xml" value="0.246875" />
-        <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.12239583333333333" />
+        <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/header.xml" value="0.28102564102564104" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/menu/toolbar.xml" value="0.2609375" />
