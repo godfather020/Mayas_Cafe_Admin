@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/ntailu"
-        android:text="+1 512-654-7869"
+        android:text="+1 5126547869"
         android:textSize="21sp"
         android:textStyle="normal"
         android:textColor="@color/black"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/user_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -109,16 +109,19 @@
         app:layout_constraintTop_toBottomOf="@+id/user_num" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/user_address"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="22dp"
         android:fontFamily="@font/ntailu"
         android:text="403, Fortune Ambiance, Indore"
         android:textColor="@color/black"
         android:textSize="21sp"
         android:textStyle="normal"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/user_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

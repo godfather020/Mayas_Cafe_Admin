@@ -42,7 +42,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" >
 
+        <ImageView
+            android:id="@+id/user_edit_img"
+            android:layout_width="260dp"
+            android:layout_height="200dp"/>
+
         <TextView
+            android:id="@+id/upload_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upload Image"
@@ -103,7 +109,7 @@
             android:textSize="18sp"
             android:inputType="phone"
             android:fontFamily="@font/ntailu"
-            android:maxLength="10"
+            android:maxLength="13"
             android:paddingStart="32dp"
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
