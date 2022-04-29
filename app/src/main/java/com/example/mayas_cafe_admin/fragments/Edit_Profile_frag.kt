@@ -1,8 +1,8 @@
 package com.example.mayas_cafe_admin.fragments
 
+import android.R.attr
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
-import android.content.ContentResolver
 import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
@@ -19,7 +19,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.cardview.widget.CardView
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
@@ -165,9 +164,10 @@ open class Edit_Profile_frag : Fragment() {
         builder.setTitle("Add Photo!")
         builder.setItems(options, DialogInterface.OnClickListener { dialog, item ->
             if (options[item] == "Take Photo") {
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                val f = File(Environment.getExternalStorageDirectory(), "temp.jpg")
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.parse(f.name))
+                //val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                val f = File(Environment.getExternalStorageDirectory().toString(), "temp.jpg")
+                intent.putExtra("File", f)
 
                 //context?.let { FileProvider.getUriForFile(it, requireContext().getApplicationContext().getPackageName() + ".provider", f) }
                 startActivityForResult(intent, 1)
@@ -183,19 +183,23 @@ open class Edit_Profile_frag : Fragment() {
         builder.show()
     }
 
+
+    //
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
+
+            Log.d("requestCode", requestCode.toString())
             if (requestCode == 1) {
+                user_edit_img.setImageBitmap(data!!.extras!!.get("data") as Bitmap?)
                 Log.d("requestCode", requestCode.toString())
                 var f = File(Environment.getExternalStorageDirectory().toString())
-                for (temp in f.listFiles()!!) {
-                    if (temp.name == "temp.jpg") {
-                        Log.d("cameraIN", temp.name)
-                        f = temp
-                        break
-                    }
-                }
+                //for (temp in f.listFiles()!!) {
+                    //Log.d("cameraIN", temp.name)
+                    //if (temp.name == "temp.jpg") {
+                        //Log.d("cameraIN", temp.name)
+                    //}
+              //  }
                 try {
                     val bitmap: Bitmap
                     val bitmapOptions = BitmapFactory.Options()
