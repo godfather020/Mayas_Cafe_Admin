@@ -13,31 +13,27 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.mayas_cafe_admin.activities.Login;
-import com.example.mayas_cafe_admin.fragments.AllOrders_frag;
+import com.example.mayas_cafe_admin.fragments.CurrentOrders_frag;
 import com.example.mayas_cafe_admin.fragments.Dashboard_frag;
 import com.example.mayas_cafe_admin.fragments.Menu_frag;
 import com.example.mayas_cafe_admin.fragments.Offers_frag;
+import com.example.mayas_cafe_admin.fragments.PastOrders_frag;
 import com.example.mayas_cafe_admin.fragments.PaymentHistory_frag;
 import com.example.mayas_cafe_admin.fragments.Profile_frag;
 import com.example.mayas_cafe_admin.utils.Functions;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.PropertyPermission;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -154,7 +150,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.AllOrders:
-                loadFragment(getSupportFragmentManager(), new AllOrders_frag(), R.id.fragment_container, false, "Profile", null );
+                loadFragment(getSupportFragmentManager(), new CurrentOrders_frag(), R.id.fragment_container, false, "Profile", null );
+                break;
+
+            case R.id.pastOrders:
+                loadFragment(getSupportFragmentManager(), new PastOrders_frag(), R.id.fragment_container, false, "Past Orders", null);
                 break;
 
             case R.id.Menu:

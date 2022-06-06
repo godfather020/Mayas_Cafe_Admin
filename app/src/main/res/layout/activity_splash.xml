@@ -15,33 +15,58 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="520dp"
-            android:fontFamily="@font/ntailu"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Maya's"
             android:textAlignment="center"
-            android:gravity="center"
             android:textColor="@color/Splash_title"
-            android:textSize="53sp"
-            android:textStyle="bold"
+            android:textSize="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/ntailu"
-            android:gravity="center"
-            android:text="garden &amp; juice Bar"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Garden &amp; Juice Bar"
             android:textAlignment="center"
-            android:textColor="@color/Splah_subtitle"
-            android:textSize="31sp"
+            android:textColor="@color/Splash_title"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="196dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Cooking our dishes with love for you"
+            android:textAlignment="center"
+            android:textColor="@color/Splash_title"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="App Current Version 1.0.0"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

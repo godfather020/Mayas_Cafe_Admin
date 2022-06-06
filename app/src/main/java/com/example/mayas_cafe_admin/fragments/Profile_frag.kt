@@ -37,7 +37,6 @@ class Profile_frag : Fragment() {
         mainActivity = (activity as MainActivity)
 
         mainActivity.toolbar_const.title = "Profile"
-        mainActivity.toolbar_const.titleMarginStart = 150
         mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         MainActivity.isBackPressed = true

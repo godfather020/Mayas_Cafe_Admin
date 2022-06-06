@@ -10,6 +10,10 @@
             android:title="@string/orders"
             android:icon="@drawable/icon_park_outline_transaction_order"/>
         <item
+            android:id="@+id/pastOrders"
+            android:title="@string/ordersHistory"
+            android:icon="@drawable/icon_park_outline_transaction_order"/>
+        <item
             android:id="@+id/Menu"
             android:title="@string/menu"
             android:icon="@drawable/vector__1_"/>

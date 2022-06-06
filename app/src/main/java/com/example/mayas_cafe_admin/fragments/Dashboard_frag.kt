@@ -69,7 +69,7 @@ class Dashboard_frag : Fragment(){
         val income : ArrayList<BarEntry> = ArrayList()
         val labelNames : ArrayList<String> = ArrayList()
         fillWeekSales()
-        var totalSales = 0
+        var totalSales = 0.00
 
         for (i in weekSales.indices){
 
