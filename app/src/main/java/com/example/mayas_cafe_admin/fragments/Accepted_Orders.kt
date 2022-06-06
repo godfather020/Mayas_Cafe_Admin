@@ -5,11 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mayas_cafe_admin.R
+import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
+import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_AO
+import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_NO
+import java.util.ArrayList
 
 
 class Accepted_Orders : Fragment() {
 
+    var recycleView_models = ArrayList<RecycleModel>()
+    lateinit var  recyclerView: RecyclerView
+    lateinit var recycleView_adapter_AO : RecycleView_AO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +32,30 @@ class Accepted_Orders : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_past__orders, container, false)
+        val view : View =  inflater.inflate(R.layout.fragment_accepted_orders, container, false)
+
+        recyclerView= view.findViewById(R.id.acceptedOrders_rv)
+        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = layoutManager
+
+        setUpAcceptedOrderRv()
+
+        return view
     }
+
+    private fun setUpAcceptedOrderRv() {
+
+        recycleView_models.clear()
+
+        recycleView_models.add(RecycleModel("#4545","9:40 PM", "$9", "Accepted Order", "4", "adsadsa"))
+        recycleView_models.add(RecycleModel("#4545","8:30 PM", "$4", "Accepted Order", "4", "adsadsa"))
+        recycleView_models.add(RecycleModel("#4545","7:50 PM", "$7", "Accepted Order", "4", "adsadsa"))
+
+        recycleView_adapter_AO = RecycleView_AO(activity, recycleView_models)
+        recyclerView.adapter = recycleView_adapter_AO
+        recycleView_adapter_AO.notifyDataSetChanged()
+    }
+
+
 
 }
