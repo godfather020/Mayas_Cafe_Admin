@@ -28,6 +28,7 @@ import com.example.mayas_cafe_admin.activities.Login;
 import com.example.mayas_cafe_admin.fragments.CurrentOrders_frag;
 import com.example.mayas_cafe_admin.fragments.Dashboard_frag;
 import com.example.mayas_cafe_admin.fragments.Menu_frag;
+import com.example.mayas_cafe_admin.fragments.Notification_frag;
 import com.example.mayas_cafe_admin.fragments.Offers_frag;
 import com.example.mayas_cafe_admin.fragments.PastOrders_frag;
 import com.example.mayas_cafe_admin.fragments.PaymentHistory_frag;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Menu menu = navigationView.getMenu();
         setSupportActionBar(toolbar_const);
         navigationView.setNavigationItemSelectedListener(this);
-        Functions.setArrow(navigationView);
+        //Functions.setArrow(navigationView);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -147,7 +148,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.notify) {
-            Toast.makeText(getApplicationContext(), "Notifications", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Notifications", Toast.LENGTH_SHORT).show();
+
+            loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.fragment_container, false, "Notifications", null);
+
         } else if (id == R.id.setting) {
             Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.scanner) {

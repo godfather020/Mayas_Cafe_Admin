@@ -33,5 +33,10 @@
             android:id="@+id/logoutNav"
             android:title="@string/logout"
             android:icon="@drawable/ant_design_logout_outlined"/>
+        <item
+            android:id="@+id/invisible"
+            android:title="@string/logout"
+            android:visible="false"
+            android:icon="@drawable/ant_design_logout_outlined"/>
     </group>
 </menu>

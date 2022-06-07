@@ -4,6 +4,7 @@ public class RecycleModel {
 
     String orderId, pickUpTime, orderAmt, orderStatus, orderItems, orderImg;
     String orderName, orderSize, orderQty;
+    String notifyTitle, notifyBody, notifyDate, notifyTime;
 
     public RecycleModel(String orderId, String pickUpTime, String orderAmt, String orderStatus, String orderItems, String orderImg) {
         this.orderId = orderId;
@@ -20,6 +21,45 @@ public class RecycleModel {
         this.orderName = orderName;
         this.orderSize = orderSize;
         this.orderQty = orderQty;
+    }
+
+    public RecycleModel(String notifyTitle, String notifyBody, String notifyDate, String notifyTime) {
+        this.notifyTitle = notifyTitle;
+        this.notifyBody = notifyBody;
+        this.notifyDate = notifyDate;
+        this.notifyTime = notifyTime;
+    }
+
+    public String getNotifyTitle() {
+        return notifyTitle;
+    }
+
+    public void setNotifyTitle(String notifyTitle) {
+        this.notifyTitle = notifyTitle;
+    }
+
+    public String getNotifyBody() {
+        return notifyBody;
+    }
+
+    public void setNotifyBody(String notifyBody) {
+        this.notifyBody = notifyBody;
+    }
+
+    public String getNotifyDate() {
+        return notifyDate;
+    }
+
+    public void setNotifyDate(String notifyDate) {
+        this.notifyDate = notifyDate;
+    }
+
+    public String getNotifyTime() {
+        return notifyTime;
+    }
+
+    public void setNotifyTime(String notifyTime) {
+        this.notifyTime = notifyTime;
     }
 
     public String getOrderName() {

@@ -46,6 +46,7 @@ class Dashboard_frag : Fragment(){
         mainActivity = (activity as MainActivity)
 
         mainActivity.toolbar_const.title = ""
+        mainActivity.navigationView.setCheckedItem(R.id.invisible)
 
         MainActivity.isBackPressed = false
         chart = view.findViewById(R.id.bar_chart)
