@@ -32,6 +32,7 @@ import com.example.mayas_cafe_admin.fragments.Offers_frag;
 import com.example.mayas_cafe_admin.fragments.PastOrders_frag;
 import com.example.mayas_cafe_admin.fragments.PaymentHistory_frag;
 import com.example.mayas_cafe_admin.fragments.Profile_frag;
+import com.example.mayas_cafe_admin.utils.Constants;
 import com.example.mayas_cafe_admin.utils.Functions;
 import com.google.android.material.navigation.NavigationView;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageButton nav_close;
     ActionBarDrawerToggle actionBarDrawerToggle;
     public Toolbar toolbar_const;
+    public NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setUpToolbar() {
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         Menu menu = navigationView.getMenu();
         setSupportActionBar(toolbar_const);
@@ -98,6 +100,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+
+                if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                    actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+                    toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            getSupportFragmentManager().popBackStack();
+                        }
+                    });
+
+
+                } else {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                    actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
+                    actionBarDrawerToggle.syncState();
+                    toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            drawerLayout.openDrawer(GravityCompat.START);
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override
@@ -150,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.AllOrders:
+                Constants.SET_ORDER_TAB = 0;
                 loadFragment(getSupportFragmentManager(), new CurrentOrders_frag(), R.id.fragment_container, false, "Profile", null );
                 break;
 

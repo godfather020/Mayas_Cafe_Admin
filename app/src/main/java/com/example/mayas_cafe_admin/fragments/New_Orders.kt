@@ -30,7 +30,7 @@ class New_Orders : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view : View = inflater.inflate(R.layout.fragment_current__orders, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_new_orders, container, false)
 
         recyclerView= view.findViewById(R.id.runOrder_rv)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.CurrentOrders_frag">
+
+    <!--<TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_16dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Current Orders"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/orders_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F5F9FE"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabTextAppearance="@style/Style_TabText"
+        app:tabGravity="center"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorColor="@color/Red"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/Red"
+        app:tabTextColor="#4D00004D" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orders_tab" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

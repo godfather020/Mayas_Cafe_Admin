@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ProductDetails_frag">
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Product Detail"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:layout_margin="@dimen/space_16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="28dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/avatar_7_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Ramu Kaka"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/vector__11_"
+                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="8585848785"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColors"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView10"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Order ID - "
+                    android:textColor="@color/textColors"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/detailsOrderId"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/detailsOrderId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="2434223"
+                    android:textColor="@color/textColors"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/detailsOrderStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="New Order"
+                    android:textColor="#F7BE00"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detailsOrderId" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/productDetails_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/detailsPickUp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9"
+                    tools:listitem="@layout/product_details_rv" />
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="18dp"
+                    android:background="@drawable/ellipse_34"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ellipse_35"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView12"
+                    app:layout_constraintStart_toStartOf="@+id/imageView12"
+                    app:layout_constraintTop_toTopOf="@+id/imageView12" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="18dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Pickup Order"
+                    android:textAlignment="center"
+                    android:textColor="#87000087"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView12" />
+
+                <TextView
+                    android:id="@+id/detailsPickUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="18dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="08:50 PM"
+                    android:textAlignment="center"
+                    android:textColor="#87000087"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView13" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

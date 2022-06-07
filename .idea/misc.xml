@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/icon_metro_location.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/la_phone_volume.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/log_out.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/mask_group_1.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/vector__1_.xml" value="0.178" />
         <entry key="app/src/main/res/layout/accepted_orders_rv.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
@@ -33,11 +34,14 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/being_prepared_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout/current_orders_rv.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/delivered_order_rv.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_accepted_orders.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_all_orders_frag.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/fragment_being_prepared_orders.xml" value="0.284375" />
+        <entry key="app/src/main/res/layout/fragment_cancelled_order_frag.xml" value="0.2334330910645575" />
         <entry key="app/src/main/res/layout/fragment_current__orders.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.28541666666666665" />
+        <entry key="app/src/main/res/layout/fragment_current_orders_frag.xml" value="0.2334330910645575" />
+        <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_delivered_orders_frag.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_edit__profile_frag.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/fragment_menu_frag.xml" value="0.2609375" />
@@ -45,9 +49,12 @@
         <entry key="app/src/main/res/layout/fragment_past__orders.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_past_orders_frag.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_payment_history_frag.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/fragment_product_details_frag.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/fragment_ready_to_pick_up.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/header.xml" value="0.28102564102564104" />
+        <entry key="app/src/main/res/layout/product_details_rv.xml" value="0.23047699451245252" />
+        <entry key="app/src/main/res/layout/ready_to_pickup_rv.xml" value="0.284375" />
         <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.284375" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/menu/popup_menu_change_profile.xml" value="0.28541666666666665" />

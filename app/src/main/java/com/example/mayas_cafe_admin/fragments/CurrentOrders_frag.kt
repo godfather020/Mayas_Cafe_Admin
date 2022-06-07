@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.animation.core.LinearEasing
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
+import com.example.mayas_cafe_admin.utils.Constants
 import com.google.android.material.tabs.TabLayout
 
 
@@ -25,7 +25,7 @@ class CurrentOrders_frag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_all_orders_frag, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_current_orders_frag, container, false)
         mainActivity = (activity as MainActivity)
 
         MainActivity.isBackPressed = true
@@ -47,6 +47,23 @@ class CurrentOrders_frag : Fragment() {
         viewPager.adapter = adapter
 
         tabLayout.setupWithViewPager(viewPager)
+
+        if (Constants.SET_ORDER_TAB == 0){
+
+            viewPager.setCurrentItem(0)
+        }
+        else if (Constants.SET_ORDER_TAB == 1){
+
+            viewPager.setCurrentItem(1)
+        }
+        else if (Constants.SET_ORDER_TAB == 2){
+
+            viewPager.setCurrentItem(2)
+        }
+        else{
+
+            viewPager.setCurrentItem(3)
+        }
 
         tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {

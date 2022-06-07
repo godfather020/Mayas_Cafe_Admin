@@ -8,6 +8,7 @@ import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -51,6 +52,9 @@ open class Edit_Profile_frag : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_edit__profile_frag, container, false)
 
         mainActivity = (activity as MainActivity)
+
+        mainActivity.toolbar_const.setTitle("Edit Profile")
+        mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         save_edit = view.findViewById(R.id.save_edit)
         user_edit_name = view.findViewById(R.id.user_edit_name)

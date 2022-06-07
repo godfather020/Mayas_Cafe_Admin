@@ -9,10 +9,12 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
+import com.example.mayas_cafe_admin.utils.Constants
 import com.example.mayas_cafe_admin.utils.Functions
 import com.example.mayas_cafe_admin.utils.WeekSales
 import com.github.mikephil.charting.components.XAxis
@@ -30,6 +32,10 @@ class Dashboard_frag : Fragment(){
     private lateinit var chart: com.github.mikephil.charting.charts.BarChart
     lateinit var total_income : TextView
     lateinit var mainActivity: MainActivity
+    lateinit var allOrders_card : CardView
+    lateinit var newOrders_card : CardView
+    lateinit var prepOrders_card : CardView
+    lateinit var readyToDiliver : CardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +50,40 @@ class Dashboard_frag : Fragment(){
         MainActivity.isBackPressed = false
         chart = view.findViewById(R.id.bar_chart)
         total_income = view.findViewById(R.id.target_amt)
+        allOrders_card = view.findViewById(R.id.allorders_card)
+        newOrders_card = view.findViewById(R.id.neworders_card)
+        prepOrders_card = view.findViewById(R.id.preporders_card)
+        readyToDiliver = view.findViewById(R.id.deliverorders_card)
 
         setData()
+
+        allOrders_card.setOnClickListener {
+
+            mainActivity.navigationView.setCheckedItem(R.id.AllOrders)
+            mainActivity.loadFragment(fragmentManager, CurrentOrders_frag(), R.id.fragment_container, false, "New Orders", null)
+            Constants.SET_ORDER_TAB = 0
+        }
+
+        newOrders_card.setOnClickListener {
+
+            mainActivity.navigationView.setCheckedItem(R.id.AllOrders)
+            mainActivity.loadFragment(fragmentManager, CurrentOrders_frag(), R.id.fragment_container, false, "New Orders", null)
+            Constants.SET_ORDER_TAB = 0
+        }
+
+        prepOrders_card.setOnClickListener {
+
+            mainActivity.navigationView.setCheckedItem(R.id.AllOrders)
+            mainActivity.loadFragment(fragmentManager, CurrentOrders_frag(), R.id.fragment_container, false, "New Orders", null)
+            Constants.SET_ORDER_TAB = 2
+        }
+
+        readyToDiliver.setOnClickListener {
+
+            mainActivity.navigationView.setCheckedItem(R.id.AllOrders)
+            mainActivity.loadFragment(fragmentManager, CurrentOrders_frag(), R.id.fragment_container, false, "New Orders", null)
+            Constants.SET_ORDER_TAB = 3
+        }
 
         return view
     }

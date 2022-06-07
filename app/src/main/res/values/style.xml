@@ -32,7 +32,7 @@
     </style>
     <style name="Style_TabText">
         <item name="fontFamily">@font/montserrat_medium</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">12dp</item>
     </style>
 
     <style name="EditText"  >

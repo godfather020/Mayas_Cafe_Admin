@@ -10,8 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
+import com.example.mayas_cafe_admin.fragments.ProductDetails_frag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
+import com.example.mayas_cafe_admin.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -47,6 +50,19 @@ public class RecycleView_BP extends RecyclerView.Adapter<RecycleView_BP.MyViewHo
         holder.orderItems.setText(foodModels.get(position).getOrderItems());
         holder.orderStatus.setText(foodModels.get(position).getOrderStatus());
 
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Constants.orderId = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderId();
+                Constants.orderStatus = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderStatus();
+                Constants.orderPickUp = foodModels.get(holder.getAbsoluteAdapterPosition()).getPickUpTime();
+
+                MainActivity activity = (MainActivity) view.getContext();
+
+                activity.loadFragment(activity.getSupportFragmentManager(), new ProductDetails_frag(), R.id.fragment_container, false, "Product Details", null);
+            }
+        });
     }
 
     @Override
