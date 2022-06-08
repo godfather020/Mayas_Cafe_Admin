@@ -5,8 +5,10 @@
       <map>
         <entry key="../../../../.gradle/caches/transforms-3/f6c8ca1c70cd7434e695248002247f40/transformed/jetified-ccp-2.6.0/res/drawable/ccp_ic_arrow_drop_down.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/avatar_1_1.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/avatar_7_1__1_.xml" value="0.144" />
         <entry key="app/src/main/res/drawable/avd_anim.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/backarrow.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/bell.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/clarity_wallet_line__1_.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/custom_edit_txt.xml" value="0.2065" />
@@ -16,6 +18,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_none_24.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/icon_awesome_clipboard_list.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/icon_feather_user_gray.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/icon_ionic_ios_notifications_outline.xml" value="0.178" />
@@ -23,6 +26,7 @@
         <entry key="app/src/main/res/drawable/la_phone_volume.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/log_out.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/mask_group_1.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/scanner.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/vector__1_.xml" value="0.178" />
         <entry key="app/src/main/res/layout/accepted_orders_rv.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
@@ -33,18 +37,21 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/being_prepared_rv.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/category_items_rv.xml" value="0.23257802479692177" />
         <entry key="app/src/main/res/layout/current_orders_rv.xml" value="0.33" />
         <entry key="app/src/main/res/layout/delivered_order_rv.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_accepted_orders.xml" value="0.284375" />
+        <entry key="app/src/main/res/layout/fragment_add_items_frag.xml" value="0.2334330910645575" />
         <entry key="app/src/main/res/layout/fragment_all_orders_frag.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/fragment_being_prepared_orders.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_cancelled_order_frag.xml" value="0.2334330910645575" />
+        <entry key="app/src/main/res/layout/fragment_category__items_frag.xml" value="0.2334330910645575" />
         <entry key="app/src/main/res/layout/fragment_current__orders.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_current_orders_frag.xml" value="0.2334330910645575" />
-        <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_delivered_orders_frag.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_edit__profile_frag.xml" value="0.28541666666666665" />
-        <entry key="app/src/main/res/layout/fragment_menu_frag.xml" value="0.2609375" />
+        <entry key="app/src/main/res/layout/fragment_menu_frag.xml" value="0.2334330910645575" />
         <entry key="app/src/main/res/layout/fragment_notification_frag.xml" value="0.2334330910645575" />
         <entry key="app/src/main/res/layout/fragment_offers_frag.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/fragment_past__orders.xml" value="0.284375" />
@@ -54,7 +61,9 @@
         <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/fragment_ready_to_pick_up.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/header.xml" value="0.2334330910645575" />
-        <entry key="app/src/main/res/layout/order_accept_reject_dialog.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_remove_dialog.xml" value="0.23257802479692177" />
+        <entry key="app/src/main/res/layout/menu_category_rv.xml" value="0.23257802479692177" />
+        <entry key="app/src/main/res/layout/order_accept_reject_dialog.xml" value="0.23047699451245252" />
         <entry key="app/src/main/res/layout/previous_notify_rv.xml" value="0.33" />
         <entry key="app/src/main/res/layout/product_details_rv.xml" value="0.23047699451245252" />
         <entry key="app/src/main/res/layout/ready_to_pickup_rv.xml" value="0.284375" />
@@ -69,5 +78,12 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="16" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

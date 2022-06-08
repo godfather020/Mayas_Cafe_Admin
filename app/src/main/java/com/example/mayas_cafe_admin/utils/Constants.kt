@@ -19,4 +19,6 @@ object Constants {
     var orderStatus = ""
     @JvmField
     var orderPickUp = ""
+    @JvmField
+    var categoryName = ""
 }

@@ -210,6 +210,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 loadFragment(getSupportFragmentManager(), new Offers_frag(), R.id.fragment_container, false, "Profile", null );
                 break;
 
+            case R.id.notify:
+                loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.fragment_container, false, "Notifications", null);
+                break;
+
             case R.id.logoutNav:
 
                 drawerLayout.closeDrawer(GravityCompat.START);

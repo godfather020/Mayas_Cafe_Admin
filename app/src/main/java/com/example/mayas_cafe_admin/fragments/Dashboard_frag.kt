@@ -36,6 +36,8 @@ class Dashboard_frag : Fragment(){
     lateinit var newOrders_card : CardView
     lateinit var prepOrders_card : CardView
     lateinit var readyToDiliver : CardView
+    lateinit var totalCategories : CardView
+    lateinit var totalProducts : CardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +57,8 @@ class Dashboard_frag : Fragment(){
         newOrders_card = view.findViewById(R.id.neworders_card)
         prepOrders_card = view.findViewById(R.id.preporders_card)
         readyToDiliver = view.findViewById(R.id.deliverorders_card)
+        totalCategories = view.findViewById(R.id.category_card)
+        totalProducts = view.findViewById(R.id.product_card)
 
         setData()
 
@@ -69,7 +73,7 @@ class Dashboard_frag : Fragment(){
 
             mainActivity.navigationView.setCheckedItem(R.id.AllOrders)
             mainActivity.loadFragment(fragmentManager, CurrentOrders_frag(), R.id.fragment_container, false, "New Orders", null)
-            Constants.SET_ORDER_TAB = 0
+            Constants.SET_ORDER_TAB = 1
         }
 
         prepOrders_card.setOnClickListener {
@@ -85,6 +89,20 @@ class Dashboard_frag : Fragment(){
             mainActivity.loadFragment(fragmentManager, CurrentOrders_frag(), R.id.fragment_container, false, "New Orders", null)
             Constants.SET_ORDER_TAB = 3
         }
+
+        totalCategories.setOnClickListener {
+
+            mainActivity.navigationView.setCheckedItem(R.id.Menu)
+            mainActivity.loadFragment(fragmentManager, Menu_frag(), R.id.fragment_container, false, "New Orders", null)
+
+        }
+
+        totalProducts.setOnClickListener {
+
+
+        }
+
+
 
         return view
     }

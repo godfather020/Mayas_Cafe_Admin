@@ -1,10 +1,8 @@
 package com.example.mayas_cafe_admin.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayas_cafe_admin.R
@@ -18,6 +16,7 @@ class ReadyToPickUp : Fragment() {
     var recycleView_models = ArrayList<RecycleModel>()
     lateinit var  recyclerView: RecyclerView
     lateinit var recycleView_adapter_RTP : RecycleView_RTP
+    lateinit var search : MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +38,8 @@ class ReadyToPickUp : Fragment() {
 
         setPickUpRv()
 
+        setHasOptionsMenu(true)
+
         return view
     }
 
@@ -56,5 +57,22 @@ class ReadyToPickUp : Fragment() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
 
+        search = menu.findItem(R.id.search)
+        val searchView : androidx.appcompat.widget.SearchView = search.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                recycleView_adapter_RTP.filter.filter(newText)
+                return false
+            }
+        })
+    }
 }

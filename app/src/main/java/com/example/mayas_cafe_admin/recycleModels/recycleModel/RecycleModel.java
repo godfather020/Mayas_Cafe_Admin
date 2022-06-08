@@ -5,6 +5,7 @@ public class RecycleModel {
     String orderId, pickUpTime, orderAmt, orderStatus, orderItems, orderImg;
     String orderName, orderSize, orderQty;
     String notifyTitle, notifyBody, notifyDate, notifyTime;
+    String menuName, menuImg;
 
     public RecycleModel(String orderId, String pickUpTime, String orderAmt, String orderStatus, String orderItems, String orderImg) {
         this.orderId = orderId;
@@ -28,6 +29,27 @@ public class RecycleModel {
         this.notifyBody = notifyBody;
         this.notifyDate = notifyDate;
         this.notifyTime = notifyTime;
+    }
+
+    public RecycleModel(String menuName, String menuImg) {
+        this.menuName = menuName;
+        this.menuImg = menuImg;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
+
+    public String getMenuImg() {
+        return menuImg;
+    }
+
+    public void setMenuImg(String menuImg) {
+        this.menuImg = menuImg;
     }
 
     public String getNotifyTitle() {
