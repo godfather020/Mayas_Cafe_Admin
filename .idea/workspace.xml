@@ -17,51 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2312ce34-4453-43a8-9d95-c1fa94c7e1c5" name="Default Changelist" comment="commit">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/AddItems_frag.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/CategoryItems_frag.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_M.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_MI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_down_anim.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_up_anim.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_search_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rectangle_98.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/vector__12_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/vector__13_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/category_items_rv.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_items_frag.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_category__items_frag.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_remove_dialog.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/menu_category_rv.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/Accepted_Orders.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/Accepted_Orders.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/BeingPrepared_orders.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/BeingPrepared_orders.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/Dashboard_frag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/Dashboard_frag.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/Menu_frag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/Menu_frag.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/New_Orders.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/New_Orders.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/PastOrders_frag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/PastOrders_frag.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ReadyToPickUp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ReadyToPickUp.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleModel/RecycleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleModel/RecycleModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_AO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_AO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_BP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_BP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_NO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_NO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_RTP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_RTP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/utils/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/utils/Constants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/avatar_7_1__1_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/avatar_7_1__1_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/custom_edit_txt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/custom_edit_txt.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard_frag.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_menu_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_menu_frag.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/order_accept_reject_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/order_accept_reject_dialog.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/toolbar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/style.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/style.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_items_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_items_frag.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654608915448</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="commit">
+      <created>1654692316064</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1654692316064</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
