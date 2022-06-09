@@ -13,7 +13,7 @@
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:itemIconSize="36dp"
+        app:itemIconSize="28dp"
         app:itemTextAppearance="@style/Style_TextView"
         android:background="@drawable/custom_nav"
         app:headerLayout="@layout/header"

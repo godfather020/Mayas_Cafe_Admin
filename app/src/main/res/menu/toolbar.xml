@@ -17,11 +17,12 @@
         android:title=""
         android:id="@+id/notify"
         android:icon="@drawable/bell"
-        android:visible="false"
+        android:visible="true"
         app:showAsAction="always"/>
     <item
         android:title=""
         android:id="@+id/setting"
+        android:visible="false"
         android:icon="@drawable/log_out"
         app:showAsAction="always"/>
 </menu>

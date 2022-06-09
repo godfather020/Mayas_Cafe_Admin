@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.compose.ui.unit.Constraints
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ class CategoryItems_frag : Fragment() {
     lateinit var  recyclerView: RecyclerView
     lateinit var recycleView_adapter_MI : RecycleView_MI
     lateinit var mainActivity: MainActivity
+    lateinit var addItems : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +46,17 @@ class CategoryItems_frag : Fragment() {
         mainActivity.toolbar_const.title = Constants.categoryName
         mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
+        addItems = view.findViewById(R.id.items_add)
         recyclerView= view.findViewById(R.id.category_items_rv)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
 
         setUpMenuItemsRv()
+
+        addItems.setOnClickListener {
+
+            mainActivity.loadFragment(fragmentManager, AddItems_frag(), R.id.fragment_container, false, "AddItems", null)
+        }
 
         return view
     }

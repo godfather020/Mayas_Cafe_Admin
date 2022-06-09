@@ -12,8 +12,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
+import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
+import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_AO
+import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_RO
 import com.example.mayas_cafe_admin.utils.Constants
 import com.example.mayas_cafe_admin.utils.Functions
 import com.example.mayas_cafe_admin.utils.WeekSales
@@ -29,6 +34,7 @@ import org.eazegraph.lib.charts.BarChart
 class Dashboard_frag : Fragment(){
 
     var weekSales : ArrayList<WeekSales> = ArrayList()
+    var recycleView_models = java.util.ArrayList<RecycleModel>()
     private lateinit var chart: com.github.mikephil.charting.charts.BarChart
     lateinit var total_income : TextView
     lateinit var mainActivity: MainActivity
@@ -38,6 +44,8 @@ class Dashboard_frag : Fragment(){
     lateinit var readyToDiliver : CardView
     lateinit var totalCategories : CardView
     lateinit var totalProducts : CardView
+    lateinit var recyclerView : RecyclerView
+    lateinit var recycleView_adapter_RO : RecycleView_RO
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,8 +67,13 @@ class Dashboard_frag : Fragment(){
         readyToDiliver = view.findViewById(R.id.deliverorders_card)
         totalCategories = view.findViewById(R.id.category_card)
         totalProducts = view.findViewById(R.id.product_card)
+        recyclerView = view.findViewById(R.id.recent_order_rv)
+
+        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = layoutManager
 
         setData()
+        setUpRecentOrdersRV()
 
         allOrders_card.setOnClickListener {
 
@@ -105,6 +118,19 @@ class Dashboard_frag : Fragment(){
 
 
         return view
+    }
+
+    private fun setUpRecentOrdersRV() {
+
+        recycleView_models.clear()
+
+        recycleView_models.add(RecycleModel("OrderId : #4545","Ramu kaka", "$9", "adasda"))
+        recycleView_models.add(RecycleModel("OrderId : #4545","Ramu kaka", "$4", "asda"))
+        recycleView_models.add(RecycleModel("OrderId : #4545","Ramu kaka", "$7", "asda"))
+
+        recycleView_adapter_RO = RecycleView_RO(activity, recycleView_models)
+        recyclerView.adapter = recycleView_adapter_RO
+        recycleView_adapter_RO.notifyDataSetChanged()
     }
 
     private fun fillWeekSales() {

@@ -2,10 +2,8 @@ package com.example.mayas_cafe_admin.fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -130,6 +128,7 @@ class Notification_frag : Fragment() {
         val itemTouchHelper1 = ItemTouchHelper(simpleItemTouchCallback1)
         itemTouchHelper1.attachToRecyclerView(recyclerView)
 
+        setHasOptionsMenu(true)
 
         return view
     }
@@ -155,5 +154,10 @@ class Notification_frag : Fragment() {
         recycleView_adapter_N2.notifyDataSetChanged()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
 
+        menu.getItem(0).setVisible(false)
+        menu.getItem(2).setVisible(false)
+    }
 }

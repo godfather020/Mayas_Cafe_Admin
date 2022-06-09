@@ -6,6 +6,7 @@ public class RecycleModel {
     String orderName, orderSize, orderQty;
     String notifyTitle, notifyBody, notifyDate, notifyTime;
     String menuName, menuImg;
+    String userName, userImage;
 
     public RecycleModel(String orderId, String pickUpTime, String orderAmt, String orderStatus, String orderItems, String orderImg) {
         this.orderId = orderId;
@@ -35,6 +36,7 @@ public class RecycleModel {
         this.menuName = menuName;
         this.menuImg = menuImg;
     }
+
 
     public String getMenuName() {
         return menuName;
