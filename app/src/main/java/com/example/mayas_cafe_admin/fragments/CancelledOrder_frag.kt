@@ -1,10 +1,8 @@
 package com.example.mayas_cafe_admin.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayas_cafe_admin.R
@@ -18,6 +16,7 @@ class CancelledOrder_frag : Fragment() {
     var recycleView_models = ArrayList<RecycleModel>()
     lateinit var  recyclerView: RecyclerView
     lateinit var recycleView_adapter_DO : RecycleView_DO
+    lateinit var search : MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +38,8 @@ class CancelledOrder_frag : Fragment() {
 
         setUpCancelledOrderRv()
 
+        setHasOptionsMenu(true)
+
         return view
     }
 
@@ -53,6 +54,25 @@ class CancelledOrder_frag : Fragment() {
         recycleView_adapter_DO = RecycleView_DO(activity, recycleView_models)
         recyclerView.adapter = recycleView_adapter_DO
         recycleView_adapter_DO.notifyDataSetChanged()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        search = menu.findItem(R.id.search)
+        val searchView : androidx.appcompat.widget.SearchView = search.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                recycleView_adapter_DO.filter.filter(newText)
+                return false
+            }
+        })
     }
 
 }

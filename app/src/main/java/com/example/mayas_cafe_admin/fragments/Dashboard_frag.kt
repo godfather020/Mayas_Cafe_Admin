@@ -69,6 +69,8 @@ class Dashboard_frag : Fragment(){
         totalProducts = view.findViewById(R.id.product_card)
         recyclerView = view.findViewById(R.id.recent_order_rv)
 
+        setHasOptionsMenu(true)
+
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
 
@@ -191,5 +193,11 @@ class Dashboard_frag : Fragment(){
         chart.animateY(2000)
         chart.invalidate()
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        menu.getItem(0).setVisible(false)
     }
 }

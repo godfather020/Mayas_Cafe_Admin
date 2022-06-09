@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/imageView16"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/custom_card_border"
@@ -61,5 +62,16 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/line_19"
+        android:layout_marginTop="8dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
