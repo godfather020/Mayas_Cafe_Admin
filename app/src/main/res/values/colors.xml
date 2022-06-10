@@ -23,5 +23,6 @@
     <color name="Yellow">#99F517</color>
     <color name="barCharts">#E82A36</color>
     <color name="textColors">#363853</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

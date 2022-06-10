@@ -101,6 +101,7 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
         Dialog acceptOrReject = new Dialog(context);
 
         acceptOrReject.setCancelable(false);
+        acceptOrReject.setCanceledOnTouchOutside(true);
 
         AppCompatActivity activity = (AppCompatActivity) context;
 
