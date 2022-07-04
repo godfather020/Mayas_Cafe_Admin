@@ -1,6 +1,10 @@
 package com.example.mayas_cafe_admin.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,8 +23,10 @@ import android.widget.Toast;
 
 import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
+import com.example.mayas_cafe_admin.activities.ViewModel.Login_ViewModel;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.example.mayas_cafe_admin.utils.Functions;
+import com.example.mayasfood.Retrofite.response.Response_Common;
 import com.hbb20.CountryCodePicker;
 
 public class Login extends AppCompatActivity {
@@ -31,6 +37,8 @@ public class Login extends AppCompatActivity {
     EditText phoneNum;
     Button signIn;
     ImageButton back_img;
+    ViewModelProvider viewModelProvider;
+    Login_ViewModel login_viewModel;
     CountryCodePicker cc;
     TextView skip;
 
@@ -44,6 +52,9 @@ public class Login extends AppCompatActivity {
         back_img = findViewById(R.id.back_img);
         cc = findViewById(R.id.cc);
         skip = findViewById(R.id.skip);
+
+        viewModelProvider = new ViewModelProvider(this);
+        login_viewModel = viewModelProvider.get(Login_ViewModel.class);
 
         cc.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
@@ -67,14 +78,31 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                phoneNumber = Constants.cc + phoneNum.getText().toString();
+                phoneNumber = phoneNum.getText().toString();
                 Log.d("phone", phoneNumber);
                 phoneCheck = Functions.checkData(phoneNumber, phoneNum);
 
                 if (phoneCheck) {
 
-                    startActivity(new Intent(Login.this, OTP.class));
-                    finish();
+                    login_viewModel.get_otp(Login.this, phoneNumber).observe(Login.this, new Observer<Response_Common>() {
+                        @Override
+                        public void onChanged(Response_Common response_common) {
+
+                            if (response_common != null){
+
+                                if (response_common.getData().getOtp() != null){
+
+                                    getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, phoneNumber).apply();
+                                    getSharedPreferences(Constants.sharedPrefrencesConstant.OTP, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.OTP, response_common.getData().getOtp()).apply();
+
+                                    Log.d("OTP", response_common.getData().getOtp());
+                                    startActivity(new Intent(Login.this, OTP.class));
+                                    finish();
+                                }
+                            }
+                        }
+                    });
+
                 }
                 else{
                     Toast.makeText(Login.this, "Check Information", Toast.LENGTH_SHORT).show();

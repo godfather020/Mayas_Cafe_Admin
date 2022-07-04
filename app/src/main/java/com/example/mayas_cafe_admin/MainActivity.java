@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mayas_cafe_admin.activities.Login;
@@ -36,15 +37,22 @@ import com.example.mayas_cafe_admin.fragments.Profile_frag;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.example.mayas_cafe_admin.utils.Functions;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     public static Boolean isBackPressed = false;
     ImageButton nav_close;
+    TextView nav_userName;
+    CircleImageView adminPic;
     ActionBarDrawerToggle actionBarDrawerToggle;
     public Toolbar toolbar_const;
     public NavigationView navigationView;
+    Boolean isLogin = false;
+    String userPic = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawer);
         toolbar_const = findViewById(R.id.toolbar_const);
+
+        isLogin = getSharedPreferences(Constants.sharedPrefrencesConstant.LOGIN, MODE_PRIVATE).getBoolean(Constants.sharedPrefrencesConstant.LOGIN, false);
+
         setUpToolbar();
 
         ConstraintLayout fragmentContainer = findViewById(R.id.fragment_container);
@@ -69,6 +80,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         //Functions.setArrow(navigationView);
 
+        if (isLogin){
+
+            navigationView.getMenu().getItem(7).setTitle("Logout");
+        }
+        else {
+
+            navigationView.getMenu().getItem(7).setTitle("Login");
+        }
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -83,6 +103,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 super.onDrawerOpened(drawerView);
 
                 nav_close = findViewById(R.id.nav_close_img);
+                nav_userName = findViewById(R.id.nav_userName);
+                adminPic = findViewById(R.id.adminPic);
+
+                String userName = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_N, "");
+                userPic = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_I, "");
+
+                if (isLogin) {
+
+                    if (userName.isEmpty()) {
+
+                        nav_userName.setText("Stranger");
+                    } else {
+
+                        nav_userName.setText(userName);
+                    }
+
+                    if (!userPic.isEmpty()){
+
+                        Picasso.get()
+                                .load(Constants.AdminProfile_Path+userPic)
+                                .into(adminPic);
+                    }
+                }
+                else {
+
+                    nav_userName.setText("Stranger");
+                }
+
+
                 nav_close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -165,6 +214,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (isBackPressed) {
             super.onBackPressed();
+            finish();
             return;
         }
 
@@ -216,28 +266,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.logoutNav:
 
-                drawerLayout.closeDrawer(GravityCompat.START);
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setCancelable(false);
-                builder.setTitle("Do you want to logout");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(MainActivity.this, Login.class));
-                    }
-                });
+                if (isLogin) {
 
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("Do you want to logout");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            getSharedPreferences(Constants.sharedPrefrencesConstant.LOGIN, MODE_PRIVATE).edit().putBoolean(Constants.sharedPrefrencesConstant.LOGIN, false).apply();
+                            startActivity(new Intent(MainActivity.this, Login.class));
+                            finish();
+                        }
+                    });
+
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+
+                    Dialog alertDialog = builder.create();
+                    alertDialog.show();
+
+
                 }
-            });
+                else {
 
-            Dialog alertDialog = builder.create();
-            alertDialog.show();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setCancelable(false);
+                    builder.setTitle("Do you want to login");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            startActivity(new Intent(MainActivity.this, Login.class));
+                            finish();
+                        }
+                    });
 
-            break;
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+
+                    Dialog alertDialog = builder.create();
+                    alertDialog.show();
+
+                }
+
+                break;
         }
 
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {

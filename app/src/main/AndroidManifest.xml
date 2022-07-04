@@ -18,11 +18,12 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/mayas512__1_"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".activities.Dashboard"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <!--<activity
+            android:name=".activities.Das"
             android:exported="false"
-            android:screenOrientation="sensorPortrait"/>
+            android:screenOrientation="sensorPortrait"/>-->
         <activity
             android:name=".activities.OTP"
             android:exported="false"

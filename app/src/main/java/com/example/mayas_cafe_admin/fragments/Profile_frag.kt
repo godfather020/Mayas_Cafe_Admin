@@ -6,13 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Constraints
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
+import com.example.mayas_cafe_admin.fragments.ViewModel.Profile_ViewModel
+import com.example.mayas_cafe_admin.utils.Constants
 import kotlin.concurrent.fixedRateTimer
 
 
@@ -26,6 +29,8 @@ class Profile_frag : Fragment() {
     lateinit var userEmail : TextView
     lateinit var userAddress : TextView
     lateinit var args : String
+    lateinit var profileViewModel: Profile_ViewModel
+    lateinit var loading_profile: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +40,8 @@ class Profile_frag : Fragment() {
         val view : View =  inflater.inflate(R.layout.fragment_profile_frag, container, false)
 
         mainActivity = (activity as MainActivity)
+
+        profileViewModel = ViewModelProvider(this).get(Profile_ViewModel::class.java)
 
         mainActivity.toolbar_const.title = "Profile"
         mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
@@ -47,6 +54,9 @@ class Profile_frag : Fragment() {
         userNum = view.findViewById(R.id.user_num)
         userEmail = view.findViewById(R.id.user_email)
         userAddress = view.findViewById(R.id.user_address)
+        loading_profile = view.findViewById(R.id.profile_loading)
+
+        getAdminProfile()
 
         if (arguments != null){
 
@@ -85,6 +95,26 @@ class Profile_frag : Fragment() {
         }
 
         return view
+    }
+
+    private fun getAdminProfile() {
+
+        val token = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "")
+
+        if (token!!.isNotEmpty()) {
+
+            profileViewModel.getAdminProfile(this, token).observe(viewLifecycleOwner, Observer {
+
+                if (it != null){
+
+                    if (it.getSuccess() == true){
+
+                        Toast.makeText(context, "Admin Profile Fetched", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+        }
+
     }
 
 }

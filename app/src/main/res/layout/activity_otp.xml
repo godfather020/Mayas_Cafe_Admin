@@ -51,10 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/sail"
+        android:fontFamily="@font/montserrat_medium"
         android:text="We have sent the verification code"
         android:textColor="@color/subheading_inputField"
-        android:textSize="22sp"
+        android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
@@ -155,33 +155,43 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/resend_txt"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/ntailu"
-        android:text="Resend code in"
-        android:textColor="@color/Get_start_subtitle"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="38dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otps" />
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/otps">
 
-    <TextView
-        android:id="@+id/timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/ntailu"
-        android:text=" 00:60"
-        android:textColor="@color/Get_start_subtitle"
-        android:textSize="18sp"
-        android:visibility="visible"
-        app:layout_constraintStart_toEndOf="@+id/resend_txt"
-        app:layout_constraintTop_toBottomOf="@+id/otps" />
+        <TextView
+            android:id="@+id/resend_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Resend code in "
+            android:textColor="@color/Get_start_subtitle"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:gravity="center"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/otps" />
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:text=" 00:60"
+            android:textColor="@color/Get_start_subtitle"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/resend_txt"
+            app:layout_constraintTop_toBottomOf="@+id/otps" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/submit"
@@ -191,7 +201,7 @@
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="76dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/mtcorsva"
+        android:fontFamily="@font/montserrat_medium"
         android:text="Submit"
         android:gravity="center"
         android:elevation="8dp"
@@ -212,7 +222,7 @@
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/mtcorsva"
+        android:fontFamily="@font/montserrat_medium"
         android:text="Resend"
         android:textAllCaps="false"
         android:textColor="@color/Button_text"
@@ -224,5 +234,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/loading_otp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

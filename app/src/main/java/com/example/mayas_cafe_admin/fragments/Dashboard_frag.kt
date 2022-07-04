@@ -14,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Visibility
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
@@ -29,6 +30,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
 import org.eazegraph.lib.charts.BarChart
 
 class Dashboard_frag : Fragment(){
@@ -46,6 +48,7 @@ class Dashboard_frag : Fragment(){
     lateinit var totalProducts : CardView
     lateinit var recyclerView : RecyclerView
     lateinit var recycleView_adapter_RO : RecycleView_RO
+    lateinit var userName : TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +71,28 @@ class Dashboard_frag : Fragment(){
         totalCategories = view.findViewById(R.id.category_card)
         totalProducts = view.findViewById(R.id.product_card)
         recyclerView = view.findViewById(R.id.recent_order_rv)
+        userName = view.findViewById(R.id.user_name);
+
+        val uName = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, 0).getString(Constants.sharedPrefrencesConstant.USER_N, "")
+        val isLogin = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.LOGIN, 0).getBoolean(Constants.sharedPrefrencesConstant.LOGIN, false)
+
+        if (isLogin){
+
+            if (uName!!.isNotEmpty()){
+
+                userName.text = uName
+            }
+            else {
+
+                userName.text = "Stranger"
+            }
+        }
+        else{
+
+            userName.text = "Stranger"
+        }
+
+
 
         setHasOptionsMenu(true)
 
@@ -200,4 +225,5 @@ class Dashboard_frag : Fragment(){
 
         menu.getItem(0).setVisible(false)
     }
+
 }

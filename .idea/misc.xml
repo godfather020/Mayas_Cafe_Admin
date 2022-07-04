@@ -56,7 +56,7 @@
         <entry key="app/src/main/res/layout/drop_down_item.xml" value="0.2334330910645575" />
         <entry key="app/src/main/res/layout/fragment_accepted_orders.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/fragment_active_offers.xml" value="0.23428815733219324" />
-        <entry key="app/src/main/res/layout/fragment_add_items_frag.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_add_items_frag.xml" value="0.23428815733219324" />
         <entry key="app/src/main/res/layout/fragment_add_new_offer.xml" value="0.23428815733219324" />
         <entry key="app/src/main/res/layout/fragment_all_orders_frag.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/fragment_all_transactions_frag.xml" value="0.25" />
