@@ -16,6 +16,8 @@ import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
 import com.example.mayas_cafe_admin.fragments.ViewModel.Profile_ViewModel
 import com.example.mayas_cafe_admin.utils.Constants
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlin.concurrent.fixedRateTimer
 
 
@@ -31,6 +33,7 @@ class Profile_frag : Fragment() {
     lateinit var args : String
     lateinit var profileViewModel: Profile_ViewModel
     lateinit var loading_profile: ProgressBar
+    lateinit var user_img: CircleImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +58,9 @@ class Profile_frag : Fragment() {
         userEmail = view.findViewById(R.id.user_email)
         userAddress = view.findViewById(R.id.user_address)
         loading_profile = view.findViewById(R.id.profile_loading)
+        user_img = view.findViewById(R.id.user_img);
+
+        loading_profile.visibility = View.VISIBLE
 
         getAdminProfile()
 
@@ -77,19 +83,24 @@ class Profile_frag : Fragment() {
             Log.d("userAddressP", args)
         }
 
-        val bundle = Bundle()
-        bundle.putString("userName", userName.text.toString())
-        bundle.putString("userPhone", userNum.text.toString())
-        bundle.putString("userEmail", userEmail.text.toString())
-        bundle.putString("userAddress", userAddress.text.toString())
-
         edit_user_info.setOnClickListener {
 
+            val bundle = Bundle()
+            bundle.putString("userName", userName.text.toString())
+            bundle.putString("userPhone", userNum.text.toString())
+            bundle.putString("userEmail", userEmail.text.toString())
+            bundle.putString("userAddress", userAddress.text.toString())
 
             mainActivity.loadFragment(fragmentManager, Edit_Profile_frag(), R.id.fragment_container, false, "Edit Profile", bundle)
         }
 
         edit_btn.setOnClickListener {
+
+            val bundle = Bundle()
+            bundle.putString("userName", userName.text.toString())
+            bundle.putString("userPhone", userNum.text.toString())
+            bundle.putString("userEmail", userEmail.text.toString())
+            bundle.putString("userAddress", userAddress.text.toString())
 
             mainActivity.loadFragment(fragmentManager, Edit_Profile_frag(), R.id.fragment_container, false, "Edit Profile", bundle)
         }
@@ -109,7 +120,24 @@ class Profile_frag : Fragment() {
 
                     if (it.getSuccess() == true){
 
-                        Toast.makeText(context, "Admin Profile Fetched", Toast.LENGTH_SHORT).show()
+                        val user_Email = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_E, 0).getString(Constants.sharedPrefrencesConstant.USER_E, "")
+
+                        userName.text = it.getData()!!.user!!.userName
+                        userNum.text = it.getData()!!.user!!.phoneNumber
+                        if (user_Email != null) {
+                            userEmail.text = user_Email
+                        }
+                        userAddress.text = it.getData()!!.user!!.address
+
+                        Picasso.get()
+                            .load(Constants.AdminProfile_Path+it.getData()!!.user!!.profilePic)
+                            .into(user_img)
+
+                        mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, 0).edit().putString(Constants.sharedPrefrencesConstant.USER_I, it.getData()!!.user!!.profilePic).apply()
+
+                        loading_profile.visibility = View.GONE
+
+                        //Toast.makeText(context, "Admin Profile Fetched", Toast.LENGTH_SHORT).show()
                     }
                 }
             })

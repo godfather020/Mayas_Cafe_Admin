@@ -25,6 +25,8 @@ object Constants {
     var orderPickUp = ""
     @JvmField
     var categoryName = ""
+    @JvmField
+    var DEVICE_TOKEN = ""
 
     const val AdminProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val AdminCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"
@@ -39,7 +41,7 @@ object Constants {
         internal const val REGISTER = "public/register"
         internal const val DEVICE_INFO = "public/deviceInfo"
         internal const val USER_PROFILE = "staff/getstaffprofile"
-        internal const val UPDATE_PROFILE = "customer/Updatecustomerprofile"
+        internal const val UPDATE_PROFILE = "staff/Updatestaffprofile"
         internal const val MY_COUPONS = "public/Listcoupon"
         internal const val POPULAR_FOOD = "public/Listpopularproduct"
         internal const val RESTAURANT_CHOICES = "public/Listrestaurentproduct"
@@ -49,7 +51,7 @@ object Constants {
         internal const val FAVORITE_LIST = "customer/Listfavoriteproduct"
         internal const val CREATE_ORDER = "customer/Createorder"
         internal const val GET_ORDERS = "customer/Listorder"
-        internal const val SET_PROFILE_IMAGE = "customer/uploadProfilePic"
+        internal const val SET_PROFILE_IMAGE = "staff/uploadstaffProfilePic"
         internal const val GET_PRODUCT_DETAILS = "public/Detailsproduct"
         internal const val REMOVE_NOTIFICATION = "customer/readNotification"
         internal const val REMOVE_ALL_NOTIFICATION = "customer/readAllNotification"
@@ -69,6 +71,7 @@ object Constants {
         internal const val USER_N = "userName"
         internal const val USER_P = "userPhone"
         internal const val USER_I = "userProfile"
+        internal const val USER_E = "userEmail"
         internal const val OTP = "OTP"
         internal const val CATEGORYID = "categoryID"
 

@@ -64,6 +64,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         isLogin = getSharedPreferences(Constants.sharedPrefrencesConstant.LOGIN, MODE_PRIVATE).getBoolean(Constants.sharedPrefrencesConstant.LOGIN, false);
 
+        String token = getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "");
+
+        if (token != null){
+
+            Constants.DEVICE_TOKEN = token;
+
+        }
+
+
         setUpToolbar();
 
         ConstraintLayout fragmentContainer = findViewById(R.id.fragment_container);

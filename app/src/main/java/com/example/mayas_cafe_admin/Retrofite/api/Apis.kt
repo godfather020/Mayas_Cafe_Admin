@@ -67,7 +67,7 @@ interface Apis {
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.UPDATE_PROFILE)
-    fun updateUserProfile(
+    fun updateAdminProfile(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
         @Body body: Request_updateProfile
     ):Call<Response_Common>
