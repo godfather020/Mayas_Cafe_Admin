@@ -3,20 +3,21 @@ package com.example.mayas_cafe_admin.fragments
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
+import android.widget.*
 import androidx.fragment.app.Fragment
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Visibility
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
+import com.example.mayas_cafe_admin.fragments.ViewModel.Dashboard_ViewModel
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
 import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_AO
 import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_RO
@@ -49,6 +50,16 @@ class Dashboard_frag : Fragment(){
     lateinit var recyclerView : RecyclerView
     lateinit var recycleView_adapter_RO : RecycleView_RO
     lateinit var userName : TextView
+    lateinit var dashboard_view : Dashboard_ViewModel
+    lateinit var loading_dash : ProgressBar
+    lateinit var orderId : ArrayList<String>
+    lateinit var orderName : ArrayList<String>
+    lateinit var orderPrice : ArrayList<String>
+    lateinit var orderImg : ArrayList<String>
+    var newOrders = 0
+    var acceptedOrders = 0
+    var beingPre = 0
+    var ready = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +67,8 @@ class Dashboard_frag : Fragment(){
     ): View? {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_dashboard_frag, container, false)
+        dashboard_view = ViewModelProvider(this).get(Dashboard_ViewModel::class.java)
+
         mainActivity = (activity as MainActivity)
 
         mainActivity.toolbar_const.title = ""
@@ -71,7 +84,15 @@ class Dashboard_frag : Fragment(){
         totalCategories = view.findViewById(R.id.category_card)
         totalProducts = view.findViewById(R.id.product_card)
         recyclerView = view.findViewById(R.id.recent_order_rv)
-        userName = view.findViewById(R.id.user_name);
+        userName = view.findViewById(R.id.user_name)
+        loading_dash = view.findViewById(R.id.loading_dash)
+
+        loading_dash.visibility = View.VISIBLE
+
+        orderId = ArrayList<String>()
+        orderName = ArrayList<String>()
+        orderPrice = ArrayList<String>()
+        orderImg = ArrayList<String>()
 
         val uName = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, 0).getString(Constants.sharedPrefrencesConstant.USER_N, "")
         val isLogin = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.LOGIN, 0).getBoolean(Constants.sharedPrefrencesConstant.LOGIN, false)
@@ -92,15 +113,14 @@ class Dashboard_frag : Fragment(){
             userName.text = "Stranger"
         }
 
-
-
         setHasOptionsMenu(true)
 
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
 
         setData()
-        setUpRecentOrdersRV()
+        getRecentOrders()
+        //setUpRecentOrdersRV()
 
         allOrders_card.setOnClickListener {
 
@@ -142,18 +162,95 @@ class Dashboard_frag : Fragment(){
 
         }
 
-
-
         return view
+    }
+
+    private fun getRecentOrders() {
+
+        val token = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "")
+
+        if (token != null){
+
+            dashboard_view.getRecentOrders(this, token.toString(), loading_dash).observe(viewLifecycleOwner, Observer {
+
+                if (it != null){
+
+                    if (it.getSuccess()!!){
+
+                        //Toast.makeText(context, "Recent Orders", Toast.LENGTH_SHORT).show()
+
+                        orderImg.clear()
+                        orderId.clear()
+                        orderPrice.clear()
+                        orderName.clear()
+                        recycleView_models.clear()
+
+                        for (i in it.getData()!!.ListOrderResponce!!.indices){
+
+                            if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0")){
+
+                                newOrders++
+                            }
+                            else if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("1")){
+
+                                acceptedOrders++
+                            }
+                            else if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("2")){
+
+                                beingPre++
+                            }
+                            else if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("3")){
+
+                                ready++
+                            }
+                            else{
+
+
+                            }
+                        }
+
+                        if (it.getData()!!.ListOrderResponce!!.size > 3){
+
+                            for (i in 0..2){
+
+                                orderId.add("OrderId : #"+it.getData()!!.ListOrderResponce!![i].id.toString())
+                                orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
+                                orderPrice.add("$"+it.getData()!!.ListOrderResponce!![i].amount.toString())
+                                orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+
+                            }
+                        }
+                        else{
+
+                            for (i in it.getData()!!.ListOrderResponce!!.indices){
+
+                                orderId.add("OrderId : #"+it.getData()!!.ListOrderResponce!![i].id.toString())
+                                orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
+                                orderPrice.add("$"+it.getData()!!.ListOrderResponce!![i].amount.toString())
+                                orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                            }
+                        }
+
+                        loading_dash.visibility = View.GONE
+
+                        setUpRecentOrdersRV()
+                    }
+                }
+            })
+        }
     }
 
     private fun setUpRecentOrdersRV() {
 
-        recycleView_models.clear()
 
-        recycleView_models.add(RecycleModel("OrderId : #4545","Ramu kaka", "$9", "adasda"))
-        recycleView_models.add(RecycleModel("OrderId : #4545","Ramu kaka", "$4", "asda"))
-        recycleView_models.add(RecycleModel("OrderId : #4545","Ramu kaka", "$7", "asda"))
+        for (i in orderId.indices){
+
+            recycleView_models.add(RecycleModel(orderId[i],orderName[i], orderPrice[i], orderImg[i]))
+        }
+
+
+       // recycleView_models.add(RecycleModel("OrderId : #4545","Ramu kaka", "$4", "asda"))
+       // recycleView_models.add(RecycleModel("OrderId : #4545","Ramu kaka", "$7", "asda"))
 
         recycleView_adapter_RO = RecycleView_RO(activity, recycleView_models)
         recyclerView.adapter = recycleView_adapter_RO

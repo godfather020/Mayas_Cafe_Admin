@@ -8,10 +8,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
+import com.example.mayas_cafe_admin.fragments.CurrentOrders_frag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
+import com.example.mayas_cafe_admin.utils.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,6 +50,20 @@ public class RecycleView_RO extends RecyclerView.Adapter<RecycleView_RO.MyViewHo
         holder.orderAmt.setText(foodModels.get(position).getNotifyDate());
         holder.customer_name.setText(foodModels.get(position).getNotifyBody());
 
+        Picasso.get()
+                .load(Constants.AdminProduct_Path+foodModels.get(position).getNotifyTime())
+                .into(holder.customer_img);
+
+        holder.recentLay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                MainActivity mainActivity = (MainActivity) context;
+
+                mainActivity.loadFragment(mainActivity.getSupportFragmentManager(), new CurrentOrders_frag(), R.id.fragment_container, false, "DashBoard",null);
+                Constants.SET_ORDER_TAB = 0;
+            }
+        });
     }
 
     @Override
@@ -58,6 +77,7 @@ public class RecycleView_RO extends RecyclerView.Adapter<RecycleView_RO.MyViewHo
 
         TextView orderId, customer_name, orderAmt;
         CircleImageView customer_img;
+        ConstraintLayout recentLay;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +86,7 @@ public class RecycleView_RO extends RecyclerView.Adapter<RecycleView_RO.MyViewHo
             orderAmt = itemView.findViewById(R.id.recent_order_Amt);
             customer_name = itemView.findViewById(R.id.recent_customer_name);
             customer_img = itemView.findViewById(R.id.recent_customer_image);
+            recentLay = itemView.findViewById(R.id.recent_layout);
         }
     }
 }

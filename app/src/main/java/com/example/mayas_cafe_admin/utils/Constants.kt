@@ -50,7 +50,7 @@ object Constants {
         internal const val NOTIFICATION = "customer/notifications"
         internal const val FAVORITE_LIST = "customer/Listfavoriteproduct"
         internal const val CREATE_ORDER = "customer/Createorder"
-        internal const val GET_ORDERS = "customer/Listorder"
+        internal const val GET_ORDERS = "staff/Listbranchorder"
         internal const val SET_PROFILE_IMAGE = "staff/uploadstaffProfilePic"
         internal const val GET_PRODUCT_DETAILS = "public/Detailsproduct"
         internal const val REMOVE_NOTIFICATION = "customer/readNotification"
