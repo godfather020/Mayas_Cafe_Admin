@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class Request_UpdateOrder {
 
-    @SerializedName("orderStatus")
+    @SerializedName("status")
     var orderStatus: String = ""
 
     @SerializedName("orderId")
