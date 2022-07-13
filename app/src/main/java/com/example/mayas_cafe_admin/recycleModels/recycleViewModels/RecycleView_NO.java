@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,15 +23,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
+import com.example.mayas_cafe_admin.Retrofite.request.Request_UpdateOrder;
+import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance;
 import com.example.mayas_cafe_admin.fragments.ProductDetails_frag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
 import com.example.mayas_cafe_admin.utils.Constants;
+import com.example.mayasfood.Retrofite.response.Response_Common;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHolder> implements Filterable{
 
@@ -82,6 +89,7 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
             @Override
             public void onClick(View view) {
 
+                updateOrder(holder.getAbsoluteAdapterPosition(), "6");
                 showDialog(holder.getAbsoluteAdapterPosition(), "This order is cancelled", "Order Cancelled !");
             }
         });
@@ -90,10 +98,62 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
             @Override
             public void onClick(View view) {
 
+                updateOrder(holder.getAbsoluteAdapterPosition(), "1");
                 showDialog(holder.getAbsoluteAdapterPosition(), "New order in our list", "Order Accepted !");
+
             }
         });
 
+    }
+
+    private void updateOrder(int position, String statusCode) {
+
+        String token = context.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(
+                Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "");
+
+        Request_UpdateOrder request_updateOrder = new Request_UpdateOrder();
+        request_updateOrder.setOrderStatus(statusCode);
+        String orderId = foodModels.get(position).getOrderId();
+        Log.d("Id", orderId.substring(1));
+        request_updateOrder.setOrderId(orderId.substring(1));
+        request_updateOrder.setBranchId("1");
+
+        RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+        if (token != null) {
+
+            Call<Response_Common> retrofitInstance1 = retrofitInstance.getRetrofit().updateOrder(token, request_updateOrder);
+
+            retrofitInstance1.enqueue(new Callback<Response_Common>() {
+                @Override
+                public void onResponse(Call<Response_Common> call, Response<Response_Common> response) {
+
+                    if (response.isSuccessful()){
+
+                        foodModels.remove(position);
+
+                        notifyItemRemoved(position);
+
+                        notifyDataSetChanged();
+
+                        Log.d("error1",response.message());
+
+
+                    }
+                    else {
+
+                        Log.d("error",response.message());
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Response_Common> call, Throwable t) {
+
+                    Log.d("error", t.toString());
+                }
+            });
+        }
     }
 
     private void showDialog(int absoluteAdapterPosition, String order_msg, String order_status) {

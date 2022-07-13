@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20008550662676358" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_accepted_orders.xml" value="0.20008550662676358" />
         <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_edit__profile_frag.xml" value="0.20081595648232095" />
         <entry key="app/src/main/res/layout/fragment_new_orders.xml" value="0.20008550662676358" />

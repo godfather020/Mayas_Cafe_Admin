@@ -3,6 +3,7 @@ package com.example.mayas_cafe_admin.Retrofite.api
 import com.example.lottry.data.remote.retrofit.request.*
 import com.example.mayas_cafe_admin.Retrofite.request.Request_DeviceInfo
 import com.example.mayas_cafe_admin.Retrofite.request.Request_OTP
+import com.example.mayas_cafe_admin.Retrofite.request.Request_UpdateOrder
 import com.example.mayas_cafe_admin.Retrofite.request.Request_Verify
 import com.example.mayas_cafe_admin.utils.Constants
 import com.example.mayasfood.Retrofite.request.*
@@ -139,6 +140,13 @@ interface Apis {
     fun getAllOrders(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
         @Body body: Request_Branch
+    ):Call<Response_Common>
+
+    @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.UPDATE_ORDER)
+    fun updateOrder(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_UpdateOrder
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")

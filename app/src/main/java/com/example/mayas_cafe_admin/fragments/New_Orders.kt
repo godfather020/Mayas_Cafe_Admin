@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
 import com.example.mayas_cafe_admin.fragments.ViewModel.NewOrders_ViewModel
@@ -35,6 +36,7 @@ class New_Orders : Fragment() {
     lateinit var orderQuantity : ArrayList<String>
     lateinit var orderPickTime : ArrayList<String>
     lateinit var orderImg : ArrayList<String>
+    lateinit var refresh_new : SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,12 +55,33 @@ class New_Orders : Fragment() {
         mainActivity = (activity as MainActivity)
 
         newOrders_view = ViewModelProvider(this).get(NewOrders_ViewModel::class.java)
-        token =
-            mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(
-                Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "")
 
         recyclerView= view.findViewById(R.id.runOrder_rv)
         loading_new = view.findViewById(R.id.loading_new)
+        refresh_new = view.findViewById(R.id.refresh_new)
+
+        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = layoutManager
+
+        setHasOptionsMenu(true)
+
+        init()
+
+        refresh_new.setOnRefreshListener {
+
+            init()
+
+            refresh_new.isRefreshing = false
+        }
+
+        return view
+    }
+
+    private fun init(){
+
+        token =
+            mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(
+                Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "")
 
         loading_new.visibility = View.VISIBLE
 
@@ -68,16 +91,10 @@ class New_Orders : Fragment() {
         orderPickTime = ArrayList<String>()
         orderImg = ArrayList<String>()
 
-        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager = layoutManager
-
         //setUpRunOrderRv()
 
         getNewOrders()
 
-        setHasOptionsMenu(true)
-
-        return view
     }
 
     private fun getNewOrders() {
@@ -102,8 +119,8 @@ class New_Orders : Fragment() {
 
                                 if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0")) {
 
-                                    orderId.add(it.getData()!!.ListOrderResponce!![i].id.toString())
-                                    orderAmt.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
+                                    orderId.add("#"+it.getData()!!.ListOrderResponce!![i].id.toString())
+                                    orderAmt.add("$"+it.getData()!!.ListOrderResponce!![i].amount.toString())
                                     orderQuantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
 
                                     val pickTime = it.getData()!!.ListOrderResponce!![i].pickupAt.toString()
@@ -121,11 +138,18 @@ class New_Orders : Fragment() {
                                     Log.d("DATE", "" + formatted)
 
                                     orderPickTime.add(formatted)
-                                    orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
 
+                                    if(it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty()) {
+
+                                        orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                                    }
+                                    else{
+
+                                        orderImg.add("default.png")
+                                    }
                                 }
                             }
-
+                            loading_new.visibility = View.GONE
                             setUpRunOrderRv()
                         }
                     }
@@ -137,12 +161,8 @@ class New_Orders : Fragment() {
 
         for (i in orderId.indices){
 
-            recycleView_models.add(RecycleModel(orderId[i],"9:40 PM", "$9", "New Order", "4", "adsadsa"))
+            recycleView_models.add(RecycleModel(orderId[i],orderPickTime[i], orderAmt[i], "New Order", orderQuantity[i], orderImg[i]))
         }
-
-
-        recycleView_models.add(RecycleModel("#4585","8:30 PM", "$4", "New Order", "4", "adsadsa"))
-        recycleView_models.add(RecycleModel("#45325","7:50 PM", "$7", "New Order", "4", "adsadsa"))
 
         recycleView_adapter_NO = RecycleView_NO(activity, recycleView_models)
         recyclerView.adapter = recycleView_adapter_NO
