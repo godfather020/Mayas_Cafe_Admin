@@ -147,6 +147,8 @@ open class Edit_Profile_frag : Fragment() {
                         Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show()
 
                         mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_E, 0).edit().putString(Constants.sharedPrefrencesConstant.USER_E, userEmail).apply()
+                        mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, 0).edit().putString(Constants.sharedPrefrencesConstant.USER_N, user_edit_name.text.toString()).apply()
+                        mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, 0).edit().putString(Constants.sharedPrefrencesConstant.USER_P, user_edit_phone.text.toString()).apply()
 
                         edit_loading.visibility = View.GONE
 
@@ -161,10 +163,10 @@ open class Edit_Profile_frag : Fragment() {
 
     private fun validateFields(): Boolean {
 
-        var userName = user_edit_name.text.toString()
-        var userPhone = user_edit_phone.text.toString()
-        var userEmail = user_edit_email.text.toString()
-        var userAddress = user_edit_address.text.toString()
+        val userName = user_edit_name.text.toString()
+        val userPhone = user_edit_phone.text.toString()
+        val userEmail = user_edit_email.text.toString()
+        val userAddress = user_edit_address.text.toString()
 
         if (userName.isEmpty()) {
 
@@ -269,55 +271,13 @@ open class Edit_Profile_frag : Fragment() {
 
             Log.d("requestCode", requestCode.toString())
             if (requestCode == 1) {
-                /*user_edit_img.setImageBitmap(data!!.extras!!.get("data") as Bitmap?)
-                Log.d("requestCode", requestCode.toString())
-                var f = File(Environment.getExternalStorageDirectory().toString())
-                //for (temp in f.listFiles()!!) {
-                    //Log.d("cameraIN", temp.name)
-                    //if (temp.name == "temp.jpg") {
-                        //Log.d("cameraIN", temp.name)
-                    //}
-              //  }
-                try {
-                    val bitmap: Bitmap
-                    val bitmapOptions = BitmapFactory.Options()
-                    bitmap = BitmapFactory.decodeFile(
-                        f.absolutePath,
-                        bitmapOptions
-                    )
-                    user_edit_img.setImageBitmap(bitmap)
-                    val path = (Environment
-                        .getExternalStorageDirectory()
-                        .toString() + File.separator
-                            + "Phoenix" + File.separator + "default")
-                    f.delete()
-                    var outFile: OutputStream? = null
-                    val file = File(path, System.currentTimeMillis().toString() + ".jpg")
-                    try {
-                        outFile = FileOutputStream(file)
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile)
-                        outFile.flush()
-                        outFile.close()
-                    } catch (e: FileNotFoundException) {
-                        e.printStackTrace()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }*/
 
                 Log.d("requestCode", requestCode.toString())
 
                     val bitmap: Bitmap? = rotateImageIfRequired(photoFile!!.absolutePath)
                     Log.d("camerPath", photoFile!!.absolutePath)
 
-                    /*Picasso.get()
-                        .load(File(photoFile!!.absoluteFile.toString()))
-                        .centerCrop()
-                        .into(userPro)*/
+
                     loadBitmapByPicasso(requireContext(), bitmap!!, user_edit_img)
                     //userPro.setImageBitmap(bitmap)
                     sendProfileImg(photoFile!!.absolutePath)

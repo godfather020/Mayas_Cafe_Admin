@@ -36,6 +36,7 @@ object Constants {
 
         //API END POINTS
         internal const val DASHBOARD = "public/Listhomedetails"
+        internal const val CATEGORY = "public/Listcategory"
         internal const val VERIFY = "public/staffverify"
         internal const val GET_OTP = "public/stafflogin"
         internal const val REGISTER = "public/register"

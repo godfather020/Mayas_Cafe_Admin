@@ -1,14 +1,24 @@
 package com.example.mayas_cafe_admin.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
+import com.example.mayas_cafe_admin.fragments.ViewModel.NewOrders_ViewModel
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
 import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_NO
-import java.util.ArrayList
+import com.example.mayas_cafe_admin.utils.Constants
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class New_Orders : Fragment() {
 
@@ -16,6 +26,15 @@ class New_Orders : Fragment() {
     lateinit var  recyclerView: RecyclerView
     lateinit var recycleView_adapter_NO : RecycleView_NO
     lateinit var search : MenuItem
+    lateinit var newOrders_view : NewOrders_ViewModel
+    lateinit var mainActivity : MainActivity
+    var token : String? = ""
+    lateinit var loading_new : ProgressBar
+    lateinit var orderId : ArrayList<String>
+    lateinit var orderAmt : ArrayList<String>
+    lateinit var orderQuantity : ArrayList<String>
+    lateinit var orderPickTime : ArrayList<String>
+    lateinit var orderImg : ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,22 +50,97 @@ class New_Orders : Fragment() {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_new_orders, container, false)
 
+        mainActivity = (activity as MainActivity)
+
+        newOrders_view = ViewModelProvider(this).get(NewOrders_ViewModel::class.java)
+        token =
+            mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(
+                Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "")
+
         recyclerView= view.findViewById(R.id.runOrder_rv)
+        loading_new = view.findViewById(R.id.loading_new)
+
+        loading_new.visibility = View.VISIBLE
+
+        orderId = ArrayList<String>()
+        orderAmt = ArrayList<String>()
+        orderQuantity = ArrayList<String>()
+        orderPickTime = ArrayList<String>()
+        orderImg = ArrayList<String>()
+
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
 
-        setUpRunOrderRv()
+        //setUpRunOrderRv()
+
+        getNewOrders()
 
         setHasOptionsMenu(true)
 
         return view
     }
 
+    private fun getNewOrders() {
+
+        if (token != null) {
+
+            newOrders_view.getNewOrders(this, token.toString(), loading_new)
+                .observe(viewLifecycleOwner, Observer {
+
+                    if (it != null) {
+
+                        if (it.getSuccess()!!) {
+
+                            orderImg.clear()
+                            orderAmt.clear()
+                            orderQuantity.clear()
+                            orderPickTime.clear()
+                            orderId.clear()
+                            recycleView_models.clear()
+
+                            for (i in it.getData()!!.ListOrderResponce!!.indices) {
+
+                                if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0")) {
+
+                                    orderId.add(it.getData()!!.ListOrderResponce!![i].id.toString())
+                                    orderAmt.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
+                                    orderQuantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
+
+                                    val pickTime = it.getData()!!.ListOrderResponce!![i].pickupAt.toString()
+
+                                    val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                                    val output = SimpleDateFormat("hh:mm a")
+
+                                    var d: Date? = null
+                                    try {
+                                        d = input.parse(pickTime)
+                                    } catch (e: ParseException) {
+                                        e.printStackTrace()
+                                    }
+                                    val formatted: String = output.format(d!!)
+                                    Log.d("DATE", "" + formatted)
+
+                                    orderPickTime.add(formatted)
+                                    orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+
+                                }
+                            }
+
+                            setUpRunOrderRv()
+                        }
+                    }
+                })
+        }
+    }
+
     private fun setUpRunOrderRv() {
 
-        recycleView_models.clear()
+        for (i in orderId.indices){
 
-        recycleView_models.add(RecycleModel("#4565","9:40 PM", "$9", "New Order", "4", "adsadsa"))
+            recycleView_models.add(RecycleModel(orderId[i],"9:40 PM", "$9", "New Order", "4", "adsadsa"))
+        }
+
+
         recycleView_models.add(RecycleModel("#4585","8:30 PM", "$4", "New Order", "4", "adsadsa"))
         recycleView_models.add(RecycleModel("#45325","7:50 PM", "$7", "New Order", "4", "adsadsa"))
 

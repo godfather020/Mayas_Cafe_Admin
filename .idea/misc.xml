@@ -10,10 +10,12 @@
         <entry key="app/src/main/res/drawable/icon_metro_location.xml" value="0.1495" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20008550662676358" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_edit__profile_frag.xml" value="0.20081595648232095" />
+        <entry key="app/src/main/res/layout/fragment_new_orders.xml" value="0.20008550662676358" />
         <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.1" />
         <entry key="app/src/main/res/layout/header.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/recent_orders_rv.xml" value="0.20081595648232095" />

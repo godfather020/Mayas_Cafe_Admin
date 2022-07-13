@@ -23,6 +23,14 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.CATEGORY)
+    fun getTotalCategories(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_CategoryDetails
+    ):Call<Response_Common>
+
+
+    @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.REMOVE_NOTIFICATION)
     fun removeNotification(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
@@ -94,7 +102,7 @@ interface Apis {
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.LIST_PRODUCTS)
-    fun getFoodCategory(
+    fun getTotalProducts(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
         @Body body: Request_CategoryDetails
     ):Call<Response_Common>

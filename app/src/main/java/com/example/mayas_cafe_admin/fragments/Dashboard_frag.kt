@@ -2,6 +2,7 @@ package com.example.mayas_cafe_admin.fragments
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.transition.Visibility
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
@@ -32,6 +34,8 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import org.eazegraph.lib.charts.BarChart
 
 class Dashboard_frag : Fragment(){
@@ -56,10 +60,19 @@ class Dashboard_frag : Fragment(){
     lateinit var orderName : ArrayList<String>
     lateinit var orderPrice : ArrayList<String>
     lateinit var orderImg : ArrayList<String>
+    lateinit var newOrders_txt : TextView
+    lateinit var accepted_txt : TextView
+    lateinit var beingPrep_txt : TextView
+    lateinit var readyTo_txt : TextView
+    lateinit var totalCat_txt : TextView
+    lateinit var totalPro_txt : TextView
+    lateinit var userImg : CircleImageView
     var newOrders = 0
     var acceptedOrders = 0
     var beingPre = 0
     var ready = 0
+    lateinit var refresh : SwipeRefreshLayout
+    var token : String? = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,41 +99,24 @@ class Dashboard_frag : Fragment(){
         recyclerView = view.findViewById(R.id.recent_order_rv)
         userName = view.findViewById(R.id.user_name)
         loading_dash = view.findViewById(R.id.loading_dash)
+        newOrders_txt = view.findViewById(R.id.newOrder_txt)
+        accepted_txt = view.findViewById(R.id.accOrders_txt)
+        beingPrep_txt = view.findViewById(R.id.beingPrep_txt)
+        readyTo_txt = view.findViewById(R.id.readyTo_txt)
+        refresh = view.findViewById(R.id.refresh_dash)
+        totalCat_txt = view.findViewById(R.id.totalCat_txt)
+        totalPro_txt = view.findViewById(R.id.totalPro_txt)
+        userImg = view.findViewById(R.id.user_img)
 
-        loading_dash.visibility = View.VISIBLE
+        init()
 
-        orderId = ArrayList<String>()
-        orderName = ArrayList<String>()
-        orderPrice = ArrayList<String>()
-        orderImg = ArrayList<String>()
+        refresh.setOnRefreshListener {
 
-        val uName = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, 0).getString(Constants.sharedPrefrencesConstant.USER_N, "")
-        val isLogin = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.LOGIN, 0).getBoolean(Constants.sharedPrefrencesConstant.LOGIN, false)
+            init()
 
-        if (isLogin){
+            refresh.isRefreshing = false
 
-            if (uName!!.isNotEmpty()){
-
-                userName.text = uName
-            }
-            else {
-
-                userName.text = "Stranger"
-            }
         }
-        else{
-
-            userName.text = "Stranger"
-        }
-
-        setHasOptionsMenu(true)
-
-        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager = layoutManager
-
-        setData()
-        getRecentOrders()
-        //setUpRecentOrdersRV()
 
         allOrders_card.setOnClickListener {
 
@@ -165,9 +161,97 @@ class Dashboard_frag : Fragment(){
         return view
     }
 
-    private fun getRecentOrders() {
+    private fun init() {
 
-        val token = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "")
+        loading_dash.visibility = View.VISIBLE
+
+        orderId = ArrayList<String>()
+        orderName = ArrayList<String>()
+        orderPrice = ArrayList<String>()
+        orderImg = ArrayList<String>()
+
+        val userPic = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, 0).getString(Constants.sharedPrefrencesConstant.USER_I, "")
+        val uName = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, 0).getString(Constants.sharedPrefrencesConstant.USER_N, "")
+        val isLogin = mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.LOGIN, 0).getBoolean(Constants.sharedPrefrencesConstant.LOGIN, false)
+        token =
+            mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "")
+
+        if (userPic != null){
+
+            Picasso.get()
+                .load(Constants.AdminProfile_Path+userPic)
+                .into(userImg)
+        }
+
+        if (isLogin){
+
+            if (uName!!.isNotEmpty()){
+
+                userName.text = uName
+            }
+            else {
+
+                userName.text = "Stranger"
+            }
+        }
+        else{
+
+            userName.text = "Stranger"
+        }
+
+        setHasOptionsMenu(true)
+
+        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = layoutManager
+
+        setData()
+        getRecentOrders()
+        getTotalCategories()
+        getTotalProducts()
+        //setUpRecentOrdersRV()
+
+    }
+
+    private fun getTotalProducts() {
+
+        if (token != null){
+
+            dashboard_view.getTotalProducts(this, "x-token", loading_dash).observe(viewLifecycleOwner, Observer {
+
+                if (it != null){
+
+                    if (it.getSuccess()!!){
+
+                        val totalProducts = it.getData()!!.ListproductResponce!!.size
+                        Log.d("catSize", totalProducts.toString())
+                        totalPro_txt.text = totalProducts.toString()
+                    }
+                }
+            })
+        }
+    }
+
+    private fun getTotalCategories() {
+
+        if (token != null){
+
+            dashboard_view.getTotalCategories(this, token.toString(), loading_dash).observe(viewLifecycleOwner, Observer {
+
+                if (it != null){
+
+                    if (it.getSuccess()!!){
+
+                        val totalCategory = it.getData()!!.ListcategoryResponce!!.size
+                        Log.d("catSize", totalCategory.toString())
+                        totalCat_txt.text = totalCategory.toString()
+                    }
+                }
+
+            })
+        }
+    }
+
+    private fun getRecentOrders() {
 
         if (token != null){
 
@@ -184,6 +268,10 @@ class Dashboard_frag : Fragment(){
                         orderPrice.clear()
                         orderName.clear()
                         recycleView_models.clear()
+                        newOrders = 0
+                        acceptedOrders = 0
+                        beingPre = 0
+                        ready = 0
 
                         for (i in it.getData()!!.ListOrderResponce!!.indices){
 
@@ -204,8 +292,7 @@ class Dashboard_frag : Fragment(){
                                 ready++
                             }
                             else{
-
-
+                                
                             }
                         }
 
@@ -242,6 +329,16 @@ class Dashboard_frag : Fragment(){
 
     private fun setUpRecentOrdersRV() {
 
+
+        Log.d("orders", newOrders.toString())
+        Log.d("orders", acceptedOrders.toString())
+        Log.d("orders", beingPre.toString())
+        Log.d("orders", ready.toString())
+
+        newOrders_txt.text = newOrders.toString()
+        accepted_txt.text = acceptedOrders.toString()
+        beingPrep_txt.text = beingPre.toString()
+        readyTo_txt.text = ready.toString()
 
         for (i in orderId.indices){
 

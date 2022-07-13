@@ -1,5 +1,6 @@
-package com.example.mayasfood.Retrofite.response
+package com.example.mayas_cafe_admin.Retrofite.response
 
+import com.example.mayasfood.Retrofite.response.Subcategories
 import com.google.gson.annotations.SerializedName
 
 class ListcategoryResponce {

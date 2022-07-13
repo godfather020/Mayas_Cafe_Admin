@@ -1,6 +1,7 @@
 package com.example.mayasfood.Retrofite.response
 
 import com.example.lottry.data.remote.retrofit.response.*
+import com.example.mayas_cafe_admin.Retrofite.response.ListcategoryResponce
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose
 
