@@ -24,6 +24,8 @@ object Constants {
     @JvmField
     var orderPickUp = ""
     @JvmField
+    var userPic = ""
+    @JvmField
     var categoryName = ""
     @JvmField
     var DEVICE_TOKEN = ""

@@ -88,6 +88,7 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
                 Constants.orderId = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderId();
                 Constants.orderStatus = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderStatus();
                 Constants.orderPickUp = foodModels.get(holder.getAbsoluteAdapterPosition()).getPickUpTime();
+                Constants.userPic = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderImg();
 
                 MainActivity activity = (MainActivity) view.getContext();
 

@@ -71,6 +71,13 @@ class ReadyToPickUp : Fragment() {
 
         init()
 
+        refreshReady.setOnRefreshListener {
+
+            init()
+
+            refreshReady.isRefreshing = false
+        }
+
         return view
     }
 
@@ -124,7 +131,7 @@ class ReadyToPickUp : Fragment() {
                                         it.getData()!!.ListOrderResponce!![i].pickupAt.toString()
 
                                     val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                                    val output = SimpleDateFormat("hh:mm a")
+                                    val output = SimpleDateFormat("dd-MM-yy hh:mm a")
 
                                     var d: Date? = null
                                     try {

@@ -78,7 +78,7 @@
                 android:id="@+id/beingPreOrderPickTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="@dimen/space_5dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="11:00 AM"
