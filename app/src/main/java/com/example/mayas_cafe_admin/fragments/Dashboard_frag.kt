@@ -275,19 +275,19 @@ class Dashboard_frag : Fragment(){
 
                         for (i in it.getData()!!.ListOrderResponce!!.indices){
 
-                            if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0")){
+                            if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0") && it.getData()!!.ListOrderResponce!![i].cancelStatus == false){
 
                                 newOrders++
                             }
-                            else if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("1")){
+                            else if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("1") && it.getData()!!.ListOrderResponce!![i].cancelStatus == false){
 
                                 acceptedOrders++
                             }
-                            else if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("2")){
+                            else if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("2") && it.getData()!!.ListOrderResponce!![i].cancelStatus == false){
 
                                 beingPre++
                             }
-                            else if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("3")){
+                            else if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("3") && it.getData()!!.ListOrderResponce!![i].cancelStatus == false){
 
                                 ready++
                             }

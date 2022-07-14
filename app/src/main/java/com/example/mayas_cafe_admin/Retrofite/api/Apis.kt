@@ -5,6 +5,7 @@ import com.example.mayas_cafe_admin.Retrofite.request.Request_DeviceInfo
 import com.example.mayas_cafe_admin.Retrofite.request.Request_OTP
 import com.example.mayas_cafe_admin.Retrofite.request.Request_UpdateOrder
 import com.example.mayas_cafe_admin.Retrofite.request.Request_Verify
+import com.example.mayas_cafe_admin.Retrofite.response.Response_Update_Status
 import com.example.mayas_cafe_admin.utils.Constants
 import com.example.mayasfood.Retrofite.request.*
 import com.example.mayasfood.Retrofite.response.Response_Common
@@ -147,7 +148,7 @@ interface Apis {
     fun updateOrder(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
         @Body body: Request_UpdateOrder
-    ):Call<Response_Common>
+    ):Call<Response_Update_Status>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.CANCEL_ORDER)

@@ -11,24 +11,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lottry.data.remote.retrofit.request.Request_cancelOrder;
 import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
 import com.example.mayas_cafe_admin.Retrofite.request.Request_UpdateOrder;
+import com.example.mayas_cafe_admin.Retrofite.response.Response_Update_Status;
 import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance;
 import com.example.mayas_cafe_admin.fragments.ProductDetails_frag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.example.mayasfood.Retrofite.response.Response_Common;
+import com.example.mayasfood.Retrofite.response.Response_cancelOrder;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,13 +45,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHolder> implements Filterable{
+public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHolder> implements Filterable {
 
     Context context;
     ArrayList<RecycleModel> foodModels;
     List<RecycleModel> foodModelAll;
 
-    public RecycleView_NO(Context context, ArrayList<RecycleModel> foodModels){
+    public RecycleView_NO(Context context, ArrayList<RecycleModel> foodModels) {
         this.context = context;
         this.foodModels = foodModels;
         this.foodModelAll = new ArrayList<>(foodModels);
@@ -71,6 +77,10 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
         holder.orderItems.setText(foodModels.get(position).getOrderItems());
         holder.orderStatus.setText(foodModels.get(position).getOrderStatus());
 
+        Picasso.get()
+                .load(Constants.AdminProduct_Path + foodModels.get(position).getOrderImg())
+                .into(holder.orderImg);
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,8 +99,8 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
             @Override
             public void onClick(View view) {
 
-                updateOrder(holder.getAbsoluteAdapterPosition(), "6");
-                showDialog(holder.getAbsoluteAdapterPosition(), "This order is cancelled", "Order Cancelled !");
+                //updateOrder(holder.getAbsoluteAdapterPosition(), "6");
+                showCancelDialog(holder.getAbsoluteAdapterPosition());
             }
         });
 
@@ -104,6 +114,55 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
             }
         });
 
+    }
+
+    private void cancelOrder(int position, String cancelReason) {
+
+        String token = context.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(
+                Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "");
+
+        Request_cancelOrder request_cancelOrder = new Request_cancelOrder();
+        request_cancelOrder.setOrderId(foodModels.get(position).getOrderId().substring(1));
+        request_cancelOrder.setBranchId("1");
+        request_cancelOrder.setCancelReason(cancelReason);
+
+        RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+        if (token != null) {
+
+            Call<Response_cancelOrder> retrofitInstance1 = retrofitInstance.getRetrofit().cancelOrder(token, request_cancelOrder);
+
+            retrofitInstance1.enqueue(new Callback<Response_cancelOrder>() {
+                @Override
+                public void onResponse(Call<Response_cancelOrder> call, Response<Response_cancelOrder> response) {
+
+                    if (response.isSuccessful()) {
+
+                        foodModels.remove(position);
+
+                        notifyItemRemoved(position);
+
+                        notifyDataSetChanged();
+
+                        Log.d("error1", response.message());
+
+                        Toast.makeText(context, "Order Cancelled", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        Log.d("error", response.message());
+
+                        Toast.makeText(context, "SomeThing Wrong Try Again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Response_cancelOrder> call, Throwable t) {
+
+
+                    Log.d("error", t.toString());
+                }
+            });
+        }
     }
 
     private void updateOrder(int position, String statusCode) {
@@ -122,13 +181,13 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
 
         if (token != null) {
 
-            Call<Response_Common> retrofitInstance1 = retrofitInstance.getRetrofit().updateOrder(token, request_updateOrder);
+            Call<Response_Update_Status> retrofitInstance1 = retrofitInstance.getRetrofit().updateOrder(token, request_updateOrder);
 
-            retrofitInstance1.enqueue(new Callback<Response_Common>() {
+            retrofitInstance1.enqueue(new Callback<Response_Update_Status>() {
                 @Override
-                public void onResponse(Call<Response_Common> call, Response<Response_Common> response) {
+                public void onResponse(Call<Response_Update_Status> call, Response<Response_Update_Status> response) {
 
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
 
                         foodModels.remove(position);
 
@@ -136,24 +195,81 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
 
                         notifyDataSetChanged();
 
-                        Log.d("error1",response.message());
+                        Log.d("error1", response.message());
 
 
-                    }
-                    else {
+                    } else {
 
-                        Log.d("error",response.message());
+                        Log.d("error", response.message());
                     }
 
                 }
 
                 @Override
-                public void onFailure(Call<Response_Common> call, Throwable t) {
+                public void onFailure(Call<Response_Update_Status> call, Throwable t) {
 
                     Log.d("error", t.toString());
                 }
             });
         }
+    }
+
+    private void showCancelDialog(int position) {
+
+        Dialog acceptOrReject = new Dialog(context);
+
+        acceptOrReject.setCancelable(true);
+        acceptOrReject.setCanceledOnTouchOutside(true);
+
+        AppCompatActivity activity = (AppCompatActivity) context;
+
+        View view = activity.getLayoutInflater().inflate(R.layout.order_cancel_dialog, null);
+
+        acceptOrReject.setContentView(view);
+
+        acceptOrReject.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        if (acceptOrReject.getWindow() != null) {
+            acceptOrReject.getWindow().setLayout(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+            );
+        }
+        acceptOrReject.getWindow().setGravity(Gravity.CENTER);
+        acceptOrReject.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView orderId = view.findViewById(R.id.dialog_orderId);
+        //TextView orderMsg = view.findViewById(R.id.dialog_order_msg);
+        //TextView orderStatus = view.findViewById(R.id.dialog_order_status);
+        EditText cancelReason = view.findViewById(R.id.cancel_reason);
+        CircleImageView orderImg = view.findViewById(R.id.dialog_img);
+        Button orderOkay = view.findViewById(R.id.dialog_okay_btn);
+
+        Picasso.get()
+                .load(Constants.AdminProduct_Path + foodModels.get(position).getOrderImg())
+                .into(orderImg);
+
+        orderId.setText(foodModels.get(position).getOrderId());
+        //orderMsg.setText(order_msg);
+        //orderStatus.setText(order_status);
+
+        orderOkay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (!cancelReason.getText().toString().isEmpty()) {
+
+                    cancelOrder(position, cancelReason.getText().toString());
+
+                    acceptOrReject.cancel();
+                }
+
+
+            }
+        });
+
+
+        acceptOrReject.show();
     }
 
     private void showDialog(int absoluteAdapterPosition, String order_msg, String order_status) {
@@ -179,12 +295,16 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
         }
         acceptOrReject.getWindow().setGravity(Gravity.CENTER);
         acceptOrReject.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        
+
         TextView orderId = view.findViewById(R.id.dialog_orderId);
         TextView orderMsg = view.findViewById(R.id.dialog_order_msg);
         TextView orderStatus = view.findViewById(R.id.dialog_order_status);
         CircleImageView orderImg = view.findViewById(R.id.dialog_img);
         Button orderOkay = view.findViewById(R.id.dialog_okay_btn);
+
+        Picasso.get()
+                .load(Constants.AdminProduct_Path + foodModels.get(absoluteAdapterPosition).getOrderImg())
+                .into(orderImg);
 
         orderId.setText(foodModels.get(absoluteAdapterPosition).getOrderId());
         orderMsg.setText(order_msg);
@@ -219,11 +339,10 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
 
             ArrayList<RecycleModel> filteredList = new ArrayList<>();
 
-            if (charSequence.toString().isEmpty()){
+            if (charSequence.toString().isEmpty()) {
 
                 filteredList.addAll(foodModelAll);
-            }
-            else {
+            } else {
 
                 for (RecycleModel filterData : foodModelAll) {
 

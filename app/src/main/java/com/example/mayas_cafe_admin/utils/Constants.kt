@@ -57,7 +57,7 @@ object Constants {
         internal const val GET_PRODUCT_DETAILS = "public/Detailsproduct"
         internal const val REMOVE_NOTIFICATION = "customer/readNotification"
         internal const val REMOVE_ALL_NOTIFICATION = "customer/readAllNotification"
-        internal const val CANCEL_ORDER = "customer/Cancelorder"
+        internal const val CANCEL_ORDER = "staff/Cancelorder"
         internal var DEVICE_TOKEN = ""
 
     }

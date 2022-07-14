@@ -117,7 +117,7 @@ class New_Orders : Fragment() {
 
                             for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
-                                if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0")) {
+                                if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0") && it.getData()!!.ListOrderResponce!![i].cancelStatus == false) {
 
                                     orderId.add("#"+it.getData()!!.ListOrderResponce!![i].id.toString())
                                     orderAmt.add("$"+it.getData()!!.ListOrderResponce!![i].amount.toString())

@@ -28,7 +28,7 @@ class CurrentOrders_frag : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_current_orders_frag, container, false)
         mainActivity = (activity as MainActivity)
 
-        MainActivity.isBackPressed = true
+        //MainActivity.isBackPressed = true
 
         mainActivity.toolbar_const.title = "Current Orders"
         mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
