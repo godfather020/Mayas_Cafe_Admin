@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
-import com.example.mayas_cafe_admin.fragments.ProductDetails_frag;
+import com.example.mayas_cafe_admin.fragments.ProductDetailsFrag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
 import com.example.mayas_cafe_admin.utils.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,7 +31,7 @@ public class RecycleView_DO extends RecyclerView.Adapter<RecycleView_DO.MyViewHo
     ArrayList<RecycleModel> foodModels;
     List<RecycleModel> foodModelAll;
 
-    public RecycleView_DO(Context context, ArrayList<RecycleModel> foodModels){
+    public RecycleView_DO(Context context, ArrayList<RecycleModel> foodModels) {
         this.context = context;
         this.foodModels = foodModels;
         this.foodModelAll = new ArrayList<>(foodModels);
@@ -56,6 +57,10 @@ public class RecycleView_DO extends RecyclerView.Adapter<RecycleView_DO.MyViewHo
         holder.orderItems.setText(foodModels.get(position).getOrderItems());
         holder.orderStatus.setText(foodModels.get(position).getOrderStatus());
 
+        Picasso.get()
+                .load(Constants.AdminProduct_Path + foodModels.get(position).getOrderImg())
+                .into(holder.orderImg);
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,10 +68,11 @@ public class RecycleView_DO extends RecyclerView.Adapter<RecycleView_DO.MyViewHo
                 Constants.orderId = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderId();
                 Constants.orderStatus = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderStatus();
                 Constants.orderPickUp = foodModels.get(holder.getAbsoluteAdapterPosition()).getPickUpTime();
+                Constants.userPic = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderImg();
 
                 MainActivity activity = (MainActivity) view.getContext();
 
-                activity.loadFragment(activity.getSupportFragmentManager(), new ProductDetails_frag(), R.id.fragment_container, false, "Product Details", null);
+                activity.loadFragment(activity.getSupportFragmentManager(), new ProductDetailsFrag(), R.id.fragment_container, false, "Product Details", null);
             }
         });
     }
@@ -88,11 +94,10 @@ public class RecycleView_DO extends RecyclerView.Adapter<RecycleView_DO.MyViewHo
 
             ArrayList<RecycleModel> filteredList = new ArrayList<>();
 
-            if (charSequence.toString().isEmpty()){
+            if (charSequence.toString().isEmpty()) {
 
                 filteredList.addAll(foodModelAll);
-            }
-            else {
+            } else {
 
                 for (RecycleModel filterData : foodModelAll) {
 

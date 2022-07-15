@@ -6,7 +6,7 @@
     android:id="@+id/drawer"
     android:background="#F5F9FE"
     android:layout_height="match_parent"
-    tools:context=".fragments.Dashboard_frag">
+    tools:context=".fragments.DashboardFrag">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"

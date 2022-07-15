@@ -5,18 +5,14 @@ import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
-import com.example.mayas_cafe_admin.fragments.ViewModel.BeingPrepared_ViewModel
 import com.example.mayas_cafe_admin.fragments.ViewModel.ReadyToPickUp_ViewModel
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
-import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_BP
 import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_RTP
 import com.example.mayas_cafe_admin.utils.Constants
 import java.text.ParseException
@@ -25,20 +21,20 @@ import java.util.*
 
 class ReadyToPickUp : Fragment() {
 
-    var recycleView_models = ArrayList<RecycleModel>()
-    lateinit var recyclerView: RecyclerView
-    lateinit var recycleView_adapter_RTP: RecycleView_RTP
-    lateinit var search: MenuItem
-    lateinit var mainActivity: MainActivity
-    lateinit var readyToPickUp_view: ReadyToPickUp_ViewModel
-    lateinit var orderId: ArrayList<String>
-    lateinit var orderAmt: ArrayList<String>
-    lateinit var orderQuantity: ArrayList<String>
-    lateinit var orderPickTime: ArrayList<String>
-    lateinit var orderImg: ArrayList<String>
-    lateinit var loading_ready: ProgressBar
-    lateinit var refreshReady: SwipeRefreshLayout
-    var token: String? = ""
+    private var recycleViewModels = ArrayList<RecycleModel>()
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var recycleViewAdapterRTP: RecycleView_RTP
+    private lateinit var search: MenuItem
+    private lateinit var mainActivity: MainActivity
+    private lateinit var readyToPickUpView: ReadyToPickUp_ViewModel
+    private lateinit var orderId: ArrayList<String>
+    private lateinit var orderAmt: ArrayList<String>
+    private lateinit var orderQuantity: ArrayList<String>
+    private lateinit var orderPickTime: ArrayList<String>
+    private lateinit var orderImg: ArrayList<String>
+    private lateinit var loadingReady: ProgressBar
+    private lateinit var refreshReady: SwipeRefreshLayout
+    private var token: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,16 +46,16 @@ class ReadyToPickUp : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_ready_to_pick_up, container, false)
 
-        readyToPickUp_view = ViewModelProvider(this).get(ReadyToPickUp_ViewModel::class.java)
+        readyToPickUpView = ViewModelProvider(this).get(ReadyToPickUp_ViewModel::class.java)
 
         mainActivity = activity as MainActivity
 
         recyclerView = view.findViewById(R.id.pickUp_rv)
-        loading_ready = view.findViewById(R.id.loading_ready)
+        loadingReady = view.findViewById(R.id.loading_ready)
         refreshReady = view.findViewById(R.id.refresh_ready)
 
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -83,7 +79,7 @@ class ReadyToPickUp : Fragment() {
 
     private fun init() {
 
-        loading_ready.visibility = View.VISIBLE
+        loadingReady.visibility = View.VISIBLE
 
         token =
             mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0)
@@ -105,8 +101,8 @@ class ReadyToPickUp : Fragment() {
 
         if (token != null) {
 
-            readyToPickUp_view.getReadyToPickUp(this, token.toString(), loading_ready)
-                .observe(viewLifecycleOwner, Observer {
+            readyToPickUpView.getReadyToPickUp(this, token.toString(), loadingReady)
+                .observe(viewLifecycleOwner) {
 
                     if (it != null) {
 
@@ -117,7 +113,7 @@ class ReadyToPickUp : Fragment() {
                             orderQuantity.clear()
                             orderPickTime.clear()
                             orderId.clear()
-                            recycleView_models.clear()
+                            recycleViewModels.clear()
 
                             for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
@@ -130,8 +126,8 @@ class ReadyToPickUp : Fragment() {
                                     val pickTime =
                                         it.getData()!!.ListOrderResponce!![i].pickupAt.toString()
 
-                                    val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                                    val output = SimpleDateFormat("dd-MM-yy hh:mm a")
+                                    val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+                                    val output = SimpleDateFormat("dd-MM-yy hh:mm a", Locale.getDefault())
 
                                     var d: Date? = null
                                     try {
@@ -153,13 +149,12 @@ class ReadyToPickUp : Fragment() {
                                     }
                                 }
                             }
-                            loading_ready.visibility = View.GONE
+                            loadingReady.visibility = View.GONE
                             setPickUpRv()
                         }
                     }
 
-                })
-
+                }
         }
     }
 
@@ -167,7 +162,7 @@ class ReadyToPickUp : Fragment() {
 
         for (i in orderId.indices) {
 
-            recycleView_models.add(
+            recycleViewModels.add(
                 RecycleModel(
                     orderId[i],
                     orderPickTime[i],
@@ -177,12 +172,11 @@ class ReadyToPickUp : Fragment() {
                     orderImg[i]
                 )
             )
+
+            recycleViewAdapterRTP = RecycleView_RTP(activity, recycleViewModels)
+            recyclerView.adapter = recycleViewAdapterRTP
+            recycleViewAdapterRTP.notifyItemInserted(i)
         }
-
-        recycleView_adapter_RTP = RecycleView_RTP(activity, recycleView_models)
-        recyclerView.adapter = recycleView_adapter_RTP
-        recycleView_adapter_RTP.notifyDataSetChanged()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -199,7 +193,7 @@ class ReadyToPickUp : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                recycleView_adapter_RTP.filter.filter(newText)
+                recycleViewAdapterRTP.filter.filter(newText)
                 return false
             }
         })

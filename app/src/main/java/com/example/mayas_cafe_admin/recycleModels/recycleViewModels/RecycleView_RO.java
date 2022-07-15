@@ -7,13 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
-import com.example.mayas_cafe_admin.fragments.CurrentOrders_frag;
+import com.example.mayas_cafe_admin.fragments.CurrentOrdersFrag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.squareup.picasso.Picasso;
@@ -60,7 +59,7 @@ public class RecycleView_RO extends RecyclerView.Adapter<RecycleView_RO.MyViewHo
 
                 MainActivity mainActivity = (MainActivity) context;
 
-                mainActivity.loadFragment(mainActivity.getSupportFragmentManager(), new CurrentOrders_frag(), R.id.fragment_container, false, "DashBoard",null);
+                mainActivity.loadFragment(mainActivity.getSupportFragmentManager(), new CurrentOrdersFrag(), R.id.fragment_container, false, "DashBoard",null);
                 Constants.SET_ORDER_TAB = 0;
             }
         });

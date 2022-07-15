@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F9FE"
-    tools:context=".fragments.Profile_frag">
+    tools:context=".fragments.ProfileFrag">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_img"

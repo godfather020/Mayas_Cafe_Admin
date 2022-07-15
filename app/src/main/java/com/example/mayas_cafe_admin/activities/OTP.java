@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -27,7 +26,6 @@ import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
 import com.example.mayas_cafe_admin.activities.ViewModel.Login_ViewModel;
 import com.example.mayas_cafe_admin.activities.ViewModel.OTP_ViewModel;
-import com.example.mayas_cafe_admin.fragments.Dashboard_frag;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.example.mayas_cafe_admin.utils.Functions;
 import com.example.mayasfood.Retrofite.response.Response_Common;

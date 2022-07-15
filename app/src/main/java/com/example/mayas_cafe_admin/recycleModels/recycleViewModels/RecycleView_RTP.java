@@ -25,7 +25,7 @@ import com.example.mayas_cafe_admin.R;
 import com.example.mayas_cafe_admin.Retrofite.request.Request_UpdateOrder;
 import com.example.mayas_cafe_admin.Retrofite.response.Response_Update_Status;
 import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance;
-import com.example.mayas_cafe_admin.fragments.ProductDetails_frag;
+import com.example.mayas_cafe_admin.fragments.ProductDetailsFrag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.squareup.picasso.Picasso;
@@ -96,7 +96,7 @@ public class RecycleView_RTP extends RecyclerView.Adapter<RecycleView_RTP.MyView
 
                 MainActivity activity = (MainActivity) view.getContext();
 
-                activity.loadFragment(activity.getSupportFragmentManager(), new ProductDetails_frag(), R.id.fragment_container, false, "Product Details", null);
+                activity.loadFragment(activity.getSupportFragmentManager(), new ProductDetailsFrag(), R.id.fragment_container, false, "Product Details", null);
             }
         });
     }
@@ -107,7 +107,7 @@ public class RecycleView_RTP extends RecyclerView.Adapter<RecycleView_RTP.MyView
                 Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "");
 
         Request_UpdateOrder request_updateOrder = new Request_UpdateOrder();
-        request_updateOrder.setOrderStatus("4");
+        request_updateOrder.setOrderStatus("5");
         String orderId = foodModels.get(position).getOrderId();
         Log.d("Id", orderId.substring(1));
         request_updateOrder.setOrderId(orderId.substring(1));

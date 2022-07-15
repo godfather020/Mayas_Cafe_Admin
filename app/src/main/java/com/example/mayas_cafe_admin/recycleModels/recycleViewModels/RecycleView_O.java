@@ -8,7 +8,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -18,11 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
-import com.example.mayas_cafe_admin.fragments.ProductDetails_frag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
-import com.example.mayas_cafe_admin.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -12,11 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
-import com.example.mayas_cafe_admin.fragments.ProductDetails_frag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
-import com.example.mayas_cafe_admin.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Collection;

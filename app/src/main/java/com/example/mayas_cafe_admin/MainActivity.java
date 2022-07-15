@@ -10,7 +10,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -27,16 +26,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mayas_cafe_admin.activities.Login;
-import com.example.mayas_cafe_admin.fragments.CurrentOrders_frag;
-import com.example.mayas_cafe_admin.fragments.Dashboard_frag;
+import com.example.mayas_cafe_admin.fragments.CurrentOrdersFrag;
+import com.example.mayas_cafe_admin.fragments.DashboardFrag;
 import com.example.mayas_cafe_admin.fragments.Menu_frag;
 import com.example.mayas_cafe_admin.fragments.Notification_frag;
 import com.example.mayas_cafe_admin.fragments.Offers_frag;
-import com.example.mayas_cafe_admin.fragments.PastOrders_frag;
+import com.example.mayas_cafe_admin.fragments.PastOrdersFrag;
 import com.example.mayas_cafe_admin.fragments.PaymentHistory_frag;
-import com.example.mayas_cafe_admin.fragments.Profile_frag;
+import com.example.mayas_cafe_admin.fragments.ProfileFrag;
 import com.example.mayas_cafe_admin.utils.Constants;
-import com.example.mayas_cafe_admin.utils.Functions;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -77,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ConstraintLayout fragmentContainer = findViewById(R.id.fragment_container);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Dashboard_frag()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFrag()).commit();
     }
 
     private void setUpToolbar() {
@@ -245,16 +243,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.Profile:
 
-                loadFragment(getSupportFragmentManager(), new Profile_frag(), R.id.fragment_container, false, "Profile", null );
+                loadFragment(getSupportFragmentManager(), new ProfileFrag(), R.id.fragment_container, false, "Profile", null );
                 break;
 
             case R.id.AllOrders:
                 Constants.SET_ORDER_TAB = 0;
-                loadFragment(getSupportFragmentManager(), new CurrentOrders_frag(), R.id.fragment_container, false, "Profile", null );
+                loadFragment(getSupportFragmentManager(), new CurrentOrdersFrag(), R.id.fragment_container, false, "Profile", null );
                 break;
 
             case R.id.pastOrders:
-                loadFragment(getSupportFragmentManager(), new PastOrders_frag(), R.id.fragment_container, false, "Past Orders", null);
+                loadFragment(getSupportFragmentManager(), new PastOrdersFrag(), R.id.fragment_container, false, "Past Orders", null);
                 break;
 
             case R.id.Menu:

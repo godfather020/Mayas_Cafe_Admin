@@ -41,7 +41,7 @@ class Offers_frag : Fragment() {
 
         addNewOffer = view.findViewById(R.id.add_new_offer)
 
-        val adapter = CurrentOrders_frag.CustomViewAdapter(childFragmentManager)
+        val adapter = CurrentOrdersFrag.CustomViewAdapter(childFragmentManager)
 
         adapter.addFragment(ActiveOffers(), "Active Offers")
         adapter.addFragment(InactiveOffers_frag(), "Inactive Offers")

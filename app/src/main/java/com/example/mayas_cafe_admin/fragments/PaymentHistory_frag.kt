@@ -36,7 +36,7 @@ class PaymentHistory_frag : Fragment() {
 
         tabLayout = view.findViewById(R.id.payments_tab)
 
-        val adapter = CurrentOrders_frag.CustomViewAdapter(childFragmentManager)
+        val adapter = CurrentOrdersFrag.CustomViewAdapter(childFragmentManager)
 
         adapter.addFragment(AllTransactions_frag(), "All Transactions")
         adapter.addFragment(CurrentTransactions_frag(), "Current Transactions")
