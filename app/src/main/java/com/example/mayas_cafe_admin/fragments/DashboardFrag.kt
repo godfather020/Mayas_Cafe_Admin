@@ -80,7 +80,7 @@ class DashboardFrag : Fragment() {
         mainActivity.navigationView.setCheckedItem(R.id.invisible)
 
         mHandler = Handler()
-        mHandler.postDelayed(m_Runnable,5000);
+        mHandler.postDelayed(m_Runnable, 5000);
 
         MainActivity.isBackPressed = false
         chart = view.findViewById(R.id.bar_chart)

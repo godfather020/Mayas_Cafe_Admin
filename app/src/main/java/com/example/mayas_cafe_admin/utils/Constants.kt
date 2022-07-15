@@ -58,7 +58,7 @@ object Constants {
         internal const val ADD_REMOVE_FAV = "customer/Createproductfavorite"
         internal const val NOTIFICATION = "customer/notifications"
         internal const val FAVORITE_LIST = "customer/Listfavoriteproduct"
-        internal const val CREATE_ORDER = "customer/Createorder"
+        internal const val CREATE_PRODUCT = "staff/Createproduct"
         internal const val GET_ORDERS = "staff/Listbranchorder"
         internal const val UPDATE_ORDER = "staff/Statusorder"
         internal const val UPDATE_PRODUCT = "staff/Updateproduct"

@@ -1,25 +1,19 @@
 package com.example.mayas_cafe_admin.fragments.ViewModel
 
-import android.net.DnsResolver
-import android.os.Handler
-import android.view.InputQueue
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lottry.data.remote.retrofit.request.Request_ProductDetails
 import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance
 import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.Retrofite.request.Request_CategoryDetails
-import com.example.mayasfood.Retrofite.request.Request_OrderDetails
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class Dashboard_ViewModel : ViewModel() {
 

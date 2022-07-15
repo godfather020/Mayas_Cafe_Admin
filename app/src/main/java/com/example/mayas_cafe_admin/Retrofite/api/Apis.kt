@@ -127,10 +127,10 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.CREATE_ORDER)
-    fun sendOrderDetails(
+    @POST(Constants.ApiConstant.CREATE_PRODUCT)
+    fun createProduct(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body: Request_OrderDetails
+        @Body body: Request_AddItem
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")

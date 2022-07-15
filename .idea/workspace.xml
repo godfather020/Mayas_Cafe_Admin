@@ -8,7 +8,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="errr" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="cat" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -17,6 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2312ce34-4453-43a8-9d95-c1fa94c7e1c5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ViewModel/AddItemViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -24,11 +25,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/AddItems_frag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/AddItemsFrag.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/CategoryItemsFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/CategoryItemsFrag.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/api/Apis.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/api/Apis.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/request/OrderItems.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/request/ProductPrice.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/request/Request_OrderDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/request/Request_AddItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/AddItemsFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/AddItemsFrag.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/DashboardFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/DashboardFrag.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/MenuFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/MenuFrag.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_MI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_MI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ViewModel/Dashboard_ViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ViewModel/Dashboard_ViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/utils/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/utils/Constants.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_items_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_items_frag.xml" afterDir="false" />
     </list>
@@ -401,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657882317049</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="added auto refresh every 5 sec in dashboard">
+      <created>1657883866290</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1657883866290</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -428,7 +437,8 @@
     <MESSAGE value="added constant Token var" />
     <MESSAGE value="added constant global isLogin variable" />
     <MESSAGE value="added list category API&#10;added category item API&#10;added delete item API" />
-    <option name="LAST_COMMIT_MESSAGE" value="added list category API&#10;added category item API&#10;added delete item API" />
+    <MESSAGE value="added auto refresh every 5 sec in dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="added auto refresh every 5 sec in dashboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
