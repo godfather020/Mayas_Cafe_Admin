@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.compose.ui.unit.Constraints
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
+import com.example.mayas_cafe_admin.utils.Constants
 
 
-class AddItems_frag : Fragment() {
+class AddItemsFrag : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -35,13 +37,13 @@ class AddItems_frag : Fragment() {
         mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         // get reference to the string array that we just created
-        val languages = ArrayList<String>()
+        /*val languages = ArrayList<String>()
         languages.add("Breakfast")
         languages.add("Porridge")
-        languages.add("Dinner")
+        languages.add("Dinner")*/
         // create an array adapter and pass the required parameter
         // in our case pass the context, drop down layout , and array.
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item, languages)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item, Constants.totalCategories)
         // get reference to the autocomplete text view
         val autocompleteTV = view.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
         // set adapter to the autocomplete tv to the arrayAdapter

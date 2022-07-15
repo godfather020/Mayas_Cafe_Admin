@@ -82,6 +82,15 @@ public class RecycleView_MI extends RecyclerView.Adapter<RecycleView_MI.MyViewHo
                 showDialog(holder.getAbsoluteAdapterPosition());
             }
         });
+
+        holder.item_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+
     }
 
     private void deleteProduct(int position) {
@@ -184,7 +193,7 @@ public class RecycleView_MI extends RecyclerView.Adapter<RecycleView_MI.MyViewHo
         TextView item_name;
         CircleImageView item_img;
         CardView itemCard;
-        ImageView item_delete;
+        ImageView item_delete, item_edit;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -193,6 +202,7 @@ public class RecycleView_MI extends RecyclerView.Adapter<RecycleView_MI.MyViewHo
             item_img = itemView.findViewById(R.id.item_img);
             itemCard = itemView.findViewById(R.id.item_card);
             item_delete = itemView.findViewById(R.id.item_delete);
+            item_edit = itemView.findViewById(R.id.item_edit);
 
         }
     }

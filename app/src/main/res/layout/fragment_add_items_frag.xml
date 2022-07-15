@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Screen_Background"
-    tools:context=".fragments.AddItems_frag">
+    tools:context=".fragments.AddItemsFrag">
 
     <ScrollView
         android:layout_width="match_parent"

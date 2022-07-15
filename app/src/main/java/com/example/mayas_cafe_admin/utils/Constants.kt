@@ -33,6 +33,8 @@ object Constants {
     var DEVICE_TOKEN = ""
     @JvmField
     var isLogin = false
+    @JvmField
+    var totalCategories = ArrayList<String>()
 
     const val AdminProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val AdminCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"

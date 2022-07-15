@@ -90,6 +90,7 @@ class MenuFrag : Fragment() {
                             for (i in it.getData()!!.ListcategoryResponce!!.indices) {
 
                                 categoryName.add(it.getData()!!.ListcategoryResponce!![i].categoryName.toString())
+                                Constants.totalCategories.add(it.getData()!!.ListcategoryResponce!![i].categoryName.toString())
                                 categoryImg.add("default.png")
                                 categoryId.add(it.getData()!!.ListcategoryResponce!![i].id.toString())
                             }

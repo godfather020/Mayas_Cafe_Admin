@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
-import androidx.compose.ui.unit.Constraints
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -81,7 +80,7 @@ class CategoryItemsFrag : Fragment() {
 
             mainActivity.loadFragment(
                 fragmentManager,
-                AddItems_frag(),
+                AddItemsFrag(),
                 R.id.fragment_container,
                 false,
                 "AddItems",

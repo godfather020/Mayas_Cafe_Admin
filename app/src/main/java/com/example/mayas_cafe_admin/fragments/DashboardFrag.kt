@@ -1,11 +1,12 @@
 package com.example.mayas_cafe_admin.fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.*
 import android.widget.*
-import androidx.fragment.app.Fragment
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +27,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+
 
 class DashboardFrag : Fragment() {
 
@@ -62,6 +64,7 @@ class DashboardFrag : Fragment() {
     private var ready = 0
     private lateinit var refresh: SwipeRefreshLayout
     private var token: String? = ""
+    private lateinit var mHandler: Handler
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,6 +78,9 @@ class DashboardFrag : Fragment() {
 
         mainActivity.toolbar_const.title = ""
         mainActivity.navigationView.setCheckedItem(R.id.invisible)
+
+        mHandler = Handler()
+        mHandler.postDelayed(m_Runnable,5000);
 
         MainActivity.isBackPressed = false
         chart = view.findViewById(R.id.bar_chart)
@@ -183,6 +189,22 @@ class DashboardFrag : Fragment() {
         }
 
         return view
+    }
+
+    private val m_Runnable: Runnable = object : Runnable {
+        override fun run() {
+
+            //Toast.makeText(context, "in runnable", Toast.LENGTH_SHORT).show()
+
+            init()
+
+            mHandler.postDelayed(this, 5000)
+        }
+    } //runnable
+
+    override fun onPause() {
+        super.onPause()
+        mHandler.removeCallbacks(m_Runnable)
     }
 
     private fun init() {
