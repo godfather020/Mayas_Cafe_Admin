@@ -205,6 +205,10 @@ class DashboardFrag : Fragment() {
             mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0)
                 .getString(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "")
 
+        if (token != null) {
+            Constants.DEVICE_TOKEN = token.toString()
+        }
+
         if (userPic != null) {
 
             Picasso.get()
