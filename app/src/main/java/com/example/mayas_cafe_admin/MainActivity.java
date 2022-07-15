@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         isLogin = getSharedPreferences(Constants.sharedPrefrencesConstant.LOGIN, MODE_PRIVATE).getBoolean(Constants.sharedPrefrencesConstant.LOGIN, false);
 
+        Constants.isLogin = isLogin;
+
         String token = getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "");
 
         if (token != null){
