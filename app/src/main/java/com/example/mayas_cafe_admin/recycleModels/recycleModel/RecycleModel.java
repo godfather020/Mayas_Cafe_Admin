@@ -5,8 +5,9 @@ public class RecycleModel {
     String orderId, pickUpTime, orderAmt, orderStatus, orderItems, orderImg;
     String orderName, orderSize, orderQty;
     String notifyTitle, notifyBody, notifyDate, notifyTime;
-    String menuName, menuImg;
+    String menuName, menuImg, menuId;
     String userName, userImage;
+    String itemName, itemImg, itemId;
 
     public RecycleModel(String orderId, String pickUpTime, String orderAmt, String orderStatus, String orderItems, String orderImg) {
         this.orderId = orderId;
@@ -32,11 +33,40 @@ public class RecycleModel {
         this.notifyTime = notifyTime;
     }
 
-    public RecycleModel(String menuName, String menuImg) {
+    public RecycleModel(String menuName, String menuImg, String menuId) {
         this.menuName = menuName;
         this.menuImg = menuImg;
+        this.menuId = menuId;
     }
 
+    public RecycleModel(String itemName, String itemImg) {
+        this.itemName = itemName;
+        this.itemImg = itemImg;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getItemImg() {
+        return itemImg;
+    }
+
+    public void setItemImg(String itemImg) {
+        this.itemImg = itemImg;
+    }
+
+    public String getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(String menuId) {
+        this.menuId = menuId;
+    }
 
     public String getMenuName() {
         return menuName;

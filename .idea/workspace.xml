@@ -8,7 +8,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="id" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="errr" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -17,9 +17,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2312ce34-4453-43a8-9d95-c1fa94c7e1c5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/request/RequestDeleteProduct.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/MenuFrag.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ViewModel/CategoryItemsViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ViewModel/MenuViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_edit_24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/api/Apis.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/api/Apis.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/CategoryItems_frag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/CategoryItemsFrag.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/DashboardFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/DashboardFrag.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/Menu_frag.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleModel/RecycleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleModel/RecycleModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_M.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_M.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_MI.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_MI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/utils/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/utils/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/category_items_rv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/category_items_rv.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_category__items_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_category__items_frag.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_menu_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_menu_frag.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +111,8 @@
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-view/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.4.1/f9e48179ea0c6ac0080a277b9383f74523f56aa2/appcompat-1.4.1-sources.jar!/androidx/appcompat/widget/SearchView.java_SELECTED" value="SearchView" />
+    <property name="android-custom-view/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.1/f0f93e67af3f7417bdd560d5142f6dec4fe629c3/recyclerview-1.2.1-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_RecyclerView_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-view/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.1/f0f93e67af3f7417bdd560d5142f6dec4fe629c3/recyclerview-1.2.1-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="android-custom-view/Users/mac/.gradle/caches/modules-2/files-2.1/com.github.BoyzDroizy/SimpleAndroidBarChart/1.0.1/e0db7f6ba89649cead4fc4ff5a03da8f9d309c50/SimpleAndroidBarChart-1.0.1-sources.jar!/com/boyzdroizy/simpleandroidbarchart/SimpleBarChart.kt_SELECTED" value="SimpleBarChart" />
     <property name="android-custom-view/Users/mac/.gradle/caches/modules-2/files-2.1/com.github.blackfizz/eazegraph/1.2.2/f2030f485ba1ed34eb6f698cecb9ba5192551062/eazegraph-1.2.2-sources.jar!/org/eazegraph/lib/charts/BarChart.java_SELECTED" value="BarChart" />
     <property name="android-custom-viewC:/Users/91881/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.1.0/45d3ce505f744a595313d5eb84efd3ca3c8d2d04/MPAndroidChart-v3.1.0-sources.jar!/com/github/mikephil/charting/charts/BarLineChartBase.java_SELECTED" value="BarLineChartBase" />
@@ -374,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657866931433</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="added constant global isLogin variable">
+      <created>1657871983984</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1657871983984</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -399,7 +431,8 @@
     <MESSAGE value="added per item details" />
     <MESSAGE value="added delivered Orders API&#10;added Cancelled Orders API&#10;&#10;clean Code" />
     <MESSAGE value="added constant Token var" />
-    <option name="LAST_COMMIT_MESSAGE" value="added constant Token var" />
+    <MESSAGE value="added constant global isLogin variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="added constant global isLogin variable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

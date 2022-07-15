@@ -7,26 +7,26 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
-import com.example.mayas_cafe_admin.fragments.CategoryItems_frag;
+import com.example.mayas_cafe_admin.fragments.CategoryItemsFrag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
 import com.example.mayas_cafe_admin.utils.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecycleView_M extends RecyclerView.Adapter<RecycleView_M.MyViewHolder>{
+public class RecycleView_M extends RecyclerView.Adapter<RecycleView_M.MyViewHolder> {
 
     Context context;
     ArrayList<RecycleModel> foodModels4;
 
-    public RecycleView_M(Context context, ArrayList<RecycleModel> foodModels4){
+    public RecycleView_M(Context context, ArrayList<RecycleModel> foodModels4) {
         this.context = context;
         this.foodModels4 = foodModels4;
     }
@@ -48,15 +48,20 @@ public class RecycleView_M extends RecyclerView.Adapter<RecycleView_M.MyViewHold
 
         holder.menu_name.setText(foodModels4.get(position).getMenuName());
 
+        Picasso.get()
+                .load(Constants.AdminProduct_Path + foodModels4.get(position).getMenuImg())
+                .into(holder.menu_img);
+
         holder.menuCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 MainActivity activity = (MainActivity) context;
 
-                activity.loadFragment(activity.getSupportFragmentManager(), new CategoryItems_frag(), R.id.fragment_container, false, "Items", null);
+                activity.loadFragment(activity.getSupportFragmentManager(), new CategoryItemsFrag(), R.id.fragment_container, false, "Items", null);
 
                 Constants.categoryName = foodModels4.get(holder.getAbsoluteAdapterPosition()).getMenuName();
+                Constants.categoryId = foodModels4.get(holder.getAbsoluteAdapterPosition()).getMenuId();
             }
         });
 

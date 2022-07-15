@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,18 +20,28 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayas_cafe_admin.R;
+import com.example.mayas_cafe_admin.Retrofite.request.RequestDeleteProduct;
+import com.example.mayas_cafe_admin.Retrofite.response.Response_Update_Status;
+import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
+import com.example.mayas_cafe_admin.utils.Constants;
+import com.example.mayasfood.Retrofite.response.Response_Common;
+import com.example.mayasfood.Retrofite.response.Response_cancelOrder;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class RecycleView_MI extends RecyclerView.Adapter<RecycleView_MI.MyViewHolder>{
+public class RecycleView_MI extends RecyclerView.Adapter<RecycleView_MI.MyViewHolder> {
 
     Context context;
     ArrayList<RecycleModel> foodModels4;
 
-    public RecycleView_MI(Context context, ArrayList<RecycleModel> foodModels4){
+    public RecycleView_MI(Context context, ArrayList<RecycleModel> foodModels4) {
         this.context = context;
         this.foodModels4 = foodModels4;
     }
@@ -49,15 +61,77 @@ public class RecycleView_MI extends RecyclerView.Adapter<RecycleView_MI.MyViewHo
 
         final RecycleModel temp = foodModels4.get(position);
 
-        holder.item_name.setText(foodModels4.get(position).getMenuName());
+        if (foodModels4.get(position).getMenuName().length() > 15){
+
+            holder.item_name.setText(foodModels4.get(position).getMenuName().substring(0,15) + "...");
+        }
+        else {
+
+            holder.item_name.setText(foodModels4.get(position).getMenuName());
+        }
+
+        Picasso.get()
+                .load(Constants.AdminProduct_Path + foodModels4.get(position).getMenuImg())
+                .into(holder.item_img);
 
         holder.item_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                deleteProduct(holder.getAbsoluteAdapterPosition());
                 showDialog(holder.getAbsoluteAdapterPosition());
             }
         });
+    }
+
+    private void deleteProduct(int position) {
+
+        String token = context.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0).getString(
+                Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "");
+
+        RequestDeleteProduct requestDeleteProduct = new RequestDeleteProduct();
+        requestDeleteProduct.setBranchId("1");
+        requestDeleteProduct.setStatus("0");
+        requestDeleteProduct.setProductId(foodModels4.get(position).getMenuId());
+
+        RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+        if (token != null) {
+
+            Call<Response_Update_Status> retrofitInstance1 = retrofitInstance.getRetrofit().deleteProduct(token, requestDeleteProduct);
+
+            retrofitInstance1.enqueue(new Callback<Response_Update_Status>() {
+                @Override
+                public void onResponse(Call<Response_Update_Status> call, Response<Response_Update_Status> response) {
+
+                    if (response.isSuccessful()) {
+
+                        foodModels4.remove(position);
+
+                        notifyItemRemoved(position);
+
+                        notifyDataSetChanged();
+
+                        Log.d("error1", response.message());
+
+                        Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        Log.d("error", response.message());
+
+                        Toast.makeText(context, "SomeThing Wrong Try Again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Response_Update_Status> call, Throwable t) {
+
+
+                    Log.d("error", t.toString());
+                }
+            });
+        }
+
     }
 
     private void showDialog(int absoluteAdapterPosition) {

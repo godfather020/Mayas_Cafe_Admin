@@ -168,7 +168,7 @@ class DashboardFrag : Fragment() {
             mainActivity.navigationView.setCheckedItem(R.id.Menu)
             mainActivity.loadFragment(
                 fragmentManager,
-                Menu_frag(),
+                MenuFrag(),
                 R.id.fragment_container,
                 false,
                 "New Orders",

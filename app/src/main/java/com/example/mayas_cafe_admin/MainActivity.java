@@ -28,7 +28,7 @@ import android.widget.Toast;
 import com.example.mayas_cafe_admin.activities.Login;
 import com.example.mayas_cafe_admin.fragments.CurrentOrdersFrag;
 import com.example.mayas_cafe_admin.fragments.DashboardFrag;
-import com.example.mayas_cafe_admin.fragments.Menu_frag;
+import com.example.mayas_cafe_admin.fragments.MenuFrag;
 import com.example.mayas_cafe_admin.fragments.Notification_frag;
 import com.example.mayas_cafe_admin.fragments.Offers_frag;
 import com.example.mayas_cafe_admin.fragments.PastOrdersFrag;
@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.Menu:
-                loadFragment(getSupportFragmentManager(), new Menu_frag(), R.id.fragment_container, false, "Profile", null );
+                loadFragment(getSupportFragmentManager(), new MenuFrag(), R.id.fragment_container, false, "Profile", null );
                 break;
 
             case R.id.PayHistory:
