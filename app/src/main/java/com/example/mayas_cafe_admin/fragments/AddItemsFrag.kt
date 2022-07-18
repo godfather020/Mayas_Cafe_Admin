@@ -15,13 +15,12 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.compose.ui.unit.Constraints
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
@@ -31,6 +30,7 @@ import com.squareup.picasso.Picasso
 import java.io.File
 import java.io.IOException
 import java.io.OutputStream
+import java.util.*
 
 
 class AddItemsFrag : Fragment() {
@@ -53,10 +53,14 @@ class AddItemsFrag : Fragment() {
     private lateinit var itemFeaturedNo: RadioButton
     private lateinit var itemFeaturedYes: RadioButton
     private lateinit var addItem: Button
+    private lateinit var arg: String
+    private lateinit var itemNameEdit: String
+    private lateinit var itemId: String
     private var uploadImgPath: String? = null
     private lateinit var addItemViewModel: AddItemViewModel
     private var token: String? = ""
     lateinit var loadingAddItem: ProgressBar
+    lateinit var reverseArray: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,14 +101,53 @@ class AddItemsFrag : Fragment() {
         mainActivity.toolbar_const.title = "Add Item"
         mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
-        // get reference to the string array that we just created
-        // create an array adapter and pass the required parameter
-        // in our case pass the context, drop down layout , and array.
-        val arrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.drop_down_item, Constants.totalCategories)
-        // get reference to the autocomplete text view
-        // set adapter to the autocomplete tv to the arrayAdapter
-        itemCategory.setAdapter(arrayAdapter)
+        reverseArray = ArrayList<String>()
+
+        if (arguments != null) {
+
+            arg = arguments?.getString("edit").toString()
+            itemNameEdit = arguments?.getString("itemName").toString()
+            itemId = arguments?.getString("itemId").toString()
+
+            Log.d("edit", arg)
+        }
+        reverseArray.clear()
+
+        val size: Int = Constants.totalCategories.size - 1
+
+        for (i in size downTo 0) {
+            reverseArray.add(Constants.totalCategories[i])
+        }
+
+        for (i in reverseArray.indices) {
+
+            Log.d("categoriesR", reverseArray[i])
+        }
+
+        Log.d("size", reverseArray.size.toString())
+
+        Log.d("size", Constants.totalCategories.size.toString())
+
+        if (arg == "yes") {
+
+            itemCategory.setText(Constants.categoryName)
+
+            val arrayAdapter =
+                ArrayAdapter(requireContext(), R.layout.drop_down_item, Constants.totalCategories)
+            // get reference to the autocomplete text view
+            // set adapter to the autocomplete tv to the arrayAdapter
+            itemCategory.setAdapter(arrayAdapter)
+
+            itemName.setText(itemNameEdit)
+            addItem.text = "Update"
+
+        } else {
+
+            itemCategory.setText(Constants.categoryName)
+            itemCategory.isEnabled = false
+            itemName.isEnabled = true
+            addItem.text = "Add Item"
+        }
 
         addItemImg.setOnClickListener {
 
@@ -152,39 +195,70 @@ class AddItemsFrag : Fragment() {
 
         addItem.setOnClickListener {
 
-            if (uploadImgPath != null) {
+            if (arg == "yes") {
 
-                val isValidate = validateFields()
-
-                if (isValidate) {
-
-                    token =
-                        mainActivity.getSharedPreferences(
-                            Constants.sharedPrefrencesConstant.DEVICE_TOKEN,
-                            0
+                token =
+                    mainActivity.getSharedPreferences(
+                        Constants.sharedPrefrencesConstant.DEVICE_TOKEN,
+                        0
+                    )
+                        .getString(
+                            Constants.sharedPrefrencesConstant.DEVICE_TOKEN, ""
                         )
-                            .getString(
-                                Constants.sharedPrefrencesConstant.DEVICE_TOKEN, ""
-                            )
 
-                    createProduct()
+                createProduct()
 
-
-                }
             } else {
 
-                Toast.makeText(context, "Select a pic for item", Toast.LENGTH_SHORT).show()
+                if (uploadImgPath != null) {
+
+                    val isValidate = validateFields()
+
+                    if (isValidate) {
+
+                        token =
+                            mainActivity.getSharedPreferences(
+                                Constants.sharedPrefrencesConstant.DEVICE_TOKEN,
+                                0
+                            )
+                                .getString(
+                                    Constants.sharedPrefrencesConstant.DEVICE_TOKEN, ""
+                                )
+
+                        createProduct()
+
+                    }
+                } else {
+
+                    Toast.makeText(context, "Select a pic for item", Toast.LENGTH_SHORT).show()
+                }
             }
         }
+
 
         return view
     }
 
     private fun createProduct() {
 
-        val productName = itemName.text.toString()
+        var productCategory = ""
+        var productName = ""
+        if (arg == "yes") {
+            productName = itemNameEdit
+        } else {
+
+            productName = itemName.text.toString()
+        }
         val productDes = itemDes.text.toString()
-        val productCategory = Constants.categoryId
+        if (arg == "yes") {
+
+            //Constants.totalCategories.reverse()
+            productCategory = (reverseArray.indexOf(itemCategory.text.toString()) + 1).toString()
+            Log.d("cate1213", productCategory)
+        } else {
+
+            productCategory = Constants.categoryId
+        }
         val productSize = ArrayList<String>()
         val productPrice = ArrayList<String>()
         val productOffer = ArrayList<String>()
@@ -233,30 +307,88 @@ class AddItemsFrag : Fragment() {
             }
         }
 
-        addItemViewModel.createProduct(
-            this,
-            token.toString(),
-            loadingAddItem,
-            productName,
-            productDes,
-            productCategory,
-            productSize,
-            productPrice,
-            productOffer
-        ).observe(viewLifecycleOwner){
+        if (arg == "yes") {
 
-            if (it != null){
+            var file: File? = null
 
-                if (it.getSuccess()!!){
+            if (uploadImgPath != null) {
 
-                    Toast.makeText(context, "Item Added", Toast.LENGTH_SHORT).show()
+                file = File(uploadImgPath!!)
+            } else {
 
-                    mainActivity.loadFragment(fragmentManager, MenuFrag(), R.id.fragment_container, true, "Add Item", null)
+                file = File.createTempFile("temp", "temp")
+            }
+
+            addItemViewModel.editProduct(
+                this,
+                token.toString(),
+                loadingAddItem,
+                productName,
+                productDes,
+                productCategory,
+                productSize,
+                productPrice,
+                productOffer,
+                file!!,
+                itemId,
+                "yes"
+            ).observe(viewLifecycleOwner) {
+
+                if (it != null) {
+
+                    if (it.success!!) {
+
+                        Toast.makeText(context, "Item Updated", Toast.LENGTH_SHORT).show()
+
+                        mainActivity.loadFragment(
+                            fragmentManager,
+                            MenuFrag(),
+                            R.id.fragment_container,
+                            true,
+                            "Add Item",
+                            null
+                        )
+                    }
+                }
+
+            }
+
+        } else {
+
+            val file: File = File(uploadImgPath)
+
+            addItemViewModel.createProduct(
+                this,
+                token.toString(),
+                loadingAddItem,
+                productName,
+                productDes,
+                productCategory,
+                productSize,
+                productPrice,
+                productOffer,
+                file
+            ).observe(viewLifecycleOwner) {
+
+                if (it != null) {
+
+                    if (it.success == true) {
+
+                        Toast.makeText(context, "Item Added", Toast.LENGTH_SHORT).show()
+
+                        mainActivity.loadFragment(
+                            fragmentManager,
+                            MenuFrag(),
+                            R.id.fragment_container,
+                            true,
+                            "Add Item",
+                            null
+                        )
+                    }
                 }
             }
+
         }
-
-
     }
 
     private fun getCategory(cat: String): String {

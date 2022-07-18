@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,10 +20,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mayas_cafe_admin.MainActivity;
 import com.example.mayas_cafe_admin.R;
 import com.example.mayas_cafe_admin.Retrofite.request.RequestDeleteProduct;
 import com.example.mayas_cafe_admin.Retrofite.response.Response_Update_Status;
 import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance;
+import com.example.mayas_cafe_admin.fragments.AddItemsFrag;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.example.mayasfood.Retrofite.response.Response_Common;
@@ -87,7 +90,14 @@ public class RecycleView_MI extends RecyclerView.Adapter<RecycleView_MI.MyViewHo
             @Override
             public void onClick(View view) {
 
+                MainActivity mainActivity = (MainActivity) context;
 
+                Bundle bundle = new Bundle();
+                bundle.putString("edit", "yes");
+                bundle.putString("itemName", foodModels4.get(holder.getAbsoluteAdapterPosition()).getMenuName());
+                bundle.putString("itemId", foodModels4.get(holder.getAbsoluteAdapterPosition()).getMenuId());
+
+                mainActivity.loadFragment(mainActivity.getSupportFragmentManager(), new AddItemsFrag(), R.id.fragment_container, false, "Menu Items",bundle);
             }
         });
 

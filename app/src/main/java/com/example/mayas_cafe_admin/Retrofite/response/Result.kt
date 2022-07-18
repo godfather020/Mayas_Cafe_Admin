@@ -25,6 +25,10 @@ class Result {
     @Expose
     var profilePic: String = ""
 
+    @SerializedName("productImage")
+    @Expose
+    var productImage: String = ""
+
     @SerializedName("wallet")
     @Expose
     var wallet: Int = 0

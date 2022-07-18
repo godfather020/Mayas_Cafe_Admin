@@ -86,6 +86,7 @@ class MenuFrag : Fragment() {
                             categoryImg.clear()
                             categoryName.clear()
                             recycleView_models.clear()
+                            Constants.totalCategories.clear()
 
                             for (i in it.getData()!!.ListcategoryResponce!!.indices) {
 

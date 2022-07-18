@@ -9,6 +9,7 @@ import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.Retrofite.response.Response_Notification
 import com.example.mayasfood.Retrofite.response.Response_cancelOrder
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -151,8 +152,15 @@ interface Apis {
     @POST(Constants.ApiConstant.UPDATE_PRODUCT)
     fun updateProduct(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body: Request_UpdateOrder
-    ):Call<Response_Common>
+        @Body body: RequestUpdateProduct
+    ):Call<Response_Update_Status>
+
+    @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.UPDATE_PRODUCT_SIZE)
+    fun updateProductSize(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: RequestUpdateProductSize
+    ):Call<Response_Update_Status>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.UPDATE_PRODUCT)
@@ -172,6 +180,13 @@ interface Apis {
     @POST(Constants.ApiConstant.SET_PROFILE_IMAGE)
     fun setProfileImg(@Header (Constants.sharedPrefrencesConstant.X_TOKEN) x_tocken:String,
                       @Part  image: MultipartBody.Part
+    ): Call<Response_Common>?
+
+    @Multipart
+    @POST(Constants.ApiConstant.UPLOAD_ITEM_IMG)
+    fun uploadItemImg(@Header (Constants.sharedPrefrencesConstant.X_TOKEN) x_tocken:String,
+                      @Part image: MultipartBody.Part,
+                      @Part("productId") productId: RequestBody
     ): Call<Response_Common>?
 
     @Headers("Content-Type:application/json", "Accept:application/json")

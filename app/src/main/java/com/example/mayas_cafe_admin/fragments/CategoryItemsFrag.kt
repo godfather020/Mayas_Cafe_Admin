@@ -78,13 +78,16 @@ class CategoryItemsFrag : Fragment() {
 
         addItems.setOnClickListener {
 
+            val bundle = Bundle()
+            bundle.putString("edit", "no")
+
             mainActivity.loadFragment(
                 fragmentManager,
                 AddItemsFrag(),
                 R.id.fragment_container,
                 false,
                 "AddItems",
-                null
+                bundle
             )
         }
 
