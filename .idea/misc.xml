@@ -28,6 +28,8 @@
         <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_delivered_orders_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_edit__profile_frag.xml" value="0.20081595648232095" />
+        <entry key="app/src/main/res/layout/fragment_expired_offers_frag.xml" value="0.19923044035912782" />
+        <entry key="app/src/main/res/layout/fragment_inactive_offers_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_menu_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_new_orders.xml" value="0.20008550662676358" />
         <entry key="app/src/main/res/layout/fragment_product_details_frag.xml" value="0.19923044035912782" />

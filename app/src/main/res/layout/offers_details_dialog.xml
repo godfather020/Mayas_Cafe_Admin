@@ -183,7 +183,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Calculation Type -"
+                android:text="Calc Type -"
                 android:textColor="#82838B"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/couponCode"
