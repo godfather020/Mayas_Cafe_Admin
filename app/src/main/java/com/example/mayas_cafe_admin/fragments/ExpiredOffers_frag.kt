@@ -39,7 +39,7 @@ class ExpiredOffers_frag : Fragment() {
 
         setHasOptionsMenu(true)
 
-        setUpExpiredOffersRv()
+        //setUpExpiredOffersRv()
 
         return view
     }

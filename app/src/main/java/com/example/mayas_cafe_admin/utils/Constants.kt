@@ -60,6 +60,7 @@ object Constants {
         internal const val FAVORITE_LIST = "customer/Listfavoriteproduct"
         internal const val CREATE_PRODUCT = "staff/Createproduct"
         internal const val GET_ORDERS = "staff/Listbranchorder"
+        internal const val GET_OFFERS = "staff/Listcoupon"
         internal const val UPDATE_ORDER = "staff/Statusorder"
         internal const val UPDATE_PRODUCT = "staff/Updateproduct"
         internal const val UPDATE_PRODUCT_SIZE = "staff/Createproductdetails"

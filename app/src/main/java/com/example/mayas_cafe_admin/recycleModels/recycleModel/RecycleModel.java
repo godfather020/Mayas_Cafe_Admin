@@ -8,6 +8,7 @@ public class RecycleModel {
     String menuName, menuImg, menuId;
     String userName, userImage;
     String itemName, itemImg, itemId;
+    String offersId, offersName, offersTitle, offersCode, offersDes, offersCal, offersUpTo, offersMin, offersStartAt, offersStopAt, offersImg;
 
     public RecycleModel(String orderId, String pickUpTime, String orderAmt, String orderStatus, String orderItems, String orderImg) {
         this.orderId = orderId;
@@ -42,6 +43,108 @@ public class RecycleModel {
     public RecycleModel(String itemName, String itemImg) {
         this.itemName = itemName;
         this.itemImg = itemImg;
+    }
+
+    public RecycleModel(String offersId, String offersName, String offersTitle, String offersCode, String offersDes, String offersCal, String offersUpTo, String offersMin, String offersStartAt, String offersStopAt, String offersImg) {
+        this.offersId = offersId;
+        this.offersName = offersName;
+        this.offersTitle = offersTitle;
+        this.offersCode = offersCode;
+        this.offersDes = offersDes;
+        this.offersCal = offersCal;
+        this.offersUpTo = offersUpTo;
+        this.offersMin = offersMin;
+        this.offersStartAt = offersStartAt;
+        this.offersStopAt = offersStopAt;
+        this.offersImg = offersImg;
+    }
+
+    public String getOffersId() {
+        return offersId;
+    }
+
+    public void setOffersId(String offersId) {
+        this.offersId = offersId;
+    }
+
+    public String getOffersName() {
+        return offersName;
+    }
+
+    public void setOffersName(String offersName) {
+        this.offersName = offersName;
+    }
+
+    public String getOffersTitle() {
+        return offersTitle;
+    }
+
+    public void setOffersTitle(String offersTitle) {
+        this.offersTitle = offersTitle;
+    }
+
+    public String getOffersCode() {
+        return offersCode;
+    }
+
+    public void setOffersCode(String offersCode) {
+        this.offersCode = offersCode;
+    }
+
+    public String getOffersDes() {
+        return offersDes;
+    }
+
+    public void setOffersDes(String offersDes) {
+        this.offersDes = offersDes;
+    }
+
+    public String getOffersCal() {
+        return offersCal;
+    }
+
+    public void setOffersCal(String offersCal) {
+        this.offersCal = offersCal;
+    }
+
+    public String getOffersUpTo() {
+        return offersUpTo;
+    }
+
+    public void setOffersUpTo(String offersUpTo) {
+        this.offersUpTo = offersUpTo;
+    }
+
+    public String getOffersMin() {
+        return offersMin;
+    }
+
+    public void setOffersMin(String offersMin) {
+        this.offersMin = offersMin;
+    }
+
+    public String getOffersStartAt() {
+        return offersStartAt;
+    }
+
+    public void setOffersStartAt(String offersStartAt) {
+        this.offersStartAt = offersStartAt;
+    }
+
+    public String getOffersStopAt() {
+        return offersStopAt;
+    }
+
+    public void setOffersStopAt(String offersStopAt) {
+        this.offersStopAt = offersStopAt;
+    }
+
+    public String getOffersImg() {
+        return offersImg;
+    }
+
+    public void setOffersImg(String offersImg) {
+        this.offersImg = offersImg;
     }
 
     public String getItemName() {

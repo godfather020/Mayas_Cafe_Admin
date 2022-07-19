@@ -142,6 +142,13 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.GET_OFFERS)
+    fun getOffers(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_Branch
+    ):Call<Response_Common>
+
+    @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.UPDATE_ORDER)
     fun updateOrder(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,

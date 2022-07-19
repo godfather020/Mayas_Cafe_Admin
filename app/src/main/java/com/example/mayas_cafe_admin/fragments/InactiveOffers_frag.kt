@@ -38,7 +38,7 @@ class InactiveOffers_frag : Fragment() {
 
         setHasOptionsMenu(true)
 
-        setUpActiveOffersRv()
+        //setUpActiveOffersRv()
 
         return view
     }
