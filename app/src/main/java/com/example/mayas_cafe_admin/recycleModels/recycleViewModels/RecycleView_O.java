@@ -41,7 +41,7 @@ public class RecycleView_O extends RecyclerView.Adapter<RecycleView_O.MyViewHold
     String offerDecs = "";
     String offerValidity = "";
 
-    public RecycleView_O(Context context, ArrayList<RecycleModel> foodModels){
+    public RecycleView_O(Context context, ArrayList<RecycleModel> foodModels) {
         this.context = context;
         this.foodModels = foodModels;
         this.foodModelAll = new ArrayList<>(foodModels);
@@ -61,22 +61,21 @@ public class RecycleView_O extends RecyclerView.Adapter<RecycleView_O.MyViewHold
         //Assigning values to the views we created
         final RecycleModel temp = foodModels.get(position);
 
-        if (foodModels.get(position).getOffersDes().length() > 35){
+        if (foodModels.get(position).getOffersDes().length() > 35) {
 
             offerDecs = foodModels.get(position).getOffersDes().substring(0, 35) + "...";
-        }
-        else {
+        } else {
 
             offerDecs = foodModels.get(position).getOffersDes();
         }
 
         Picasso.get()
-                .load(Constants.AdminCoupon_Path+foodModels.get(position).getOffersImg())
+                .load(Constants.AdminCoupon_Path + foodModels.get(position).getOffersImg())
                 .into(holder.offersImg);
 
         DateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
         DateFormat outputFormat = new SimpleDateFormat("dd MMM");
-        String inputDateStr=foodModels.get(position).getOffersStartAt();
+        String inputDateStr = foodModels.get(position).getOffersStartAt();
         String inputDateStr2 = foodModels.get(position).getOffersStopAt();
         Date date = null;
         Date date1 = null;
@@ -92,15 +91,25 @@ public class RecycleView_O extends RecyclerView.Adapter<RecycleView_O.MyViewHold
         Log.d("validi", outputDateStr);
         Log.d("validi", outputDateStr1);
 
-        offerValidity = "Offer available only "+outputDateStr+" to "+outputDateStr1;
+        offerValidity = "Offer available only " + outputDateStr + " to " + outputDateStr1;
 
-        String[] discount = foodModels.get(position).getOffersDes().split("%");
+        String[] discount = foodModels.get(position).getOffersDes().split(" ");
 
-        Log.d("dis", discount[0]);
+        String dis = "";
+
+        for (String s : discount){
+
+            if (s.contains("%")){
+
+                dis = s;
+            }
+        }
+
+        Log.d("dis", dis);
 
         holder.offersName.setText(foodModels.get(position).getOffersTitle());
         holder.offersDesc.setText(offerDecs);
-        holder.offersDiscount.setText(discount[0]+"%");
+        holder.offersDiscount.setText(dis);
         holder.offersValidity.setText(offerValidity);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -152,14 +161,14 @@ public class RecycleView_O extends RecyclerView.Adapter<RecycleView_O.MyViewHold
         //Button orderOkay = view.findViewById(R.id.dialog_okay_btn);
 
         Picasso.get()
-                .load(Constants.AdminCoupon_Path+foodModels.get(absoluteAdapterPosition).getOffersImg())
+                .load(Constants.AdminCoupon_Path + foodModels.get(absoluteAdapterPosition).getOffersImg())
                 .into(offerImg);
 
         offerName.setText(foodModels.get(absoluteAdapterPosition).getOffersTitle());
         offerDes.setText(foodModels.get(absoluteAdapterPosition).getOffersDes());
         offerValidity1.setText(offerValidity);
 
-        String dis = foodModels.get(absoluteAdapterPosition).getOffersDes().substring(0,foodModels.get(absoluteAdapterPosition).getOffersDes().indexOf("%")+1);
+        String dis = foodModels.get(absoluteAdapterPosition).getOffersDes().substring(0, foodModels.get(absoluteAdapterPosition).getOffersDes().indexOf("%") + 1);
 
         String[] disArr = dis.split(" ");
 
@@ -201,11 +210,10 @@ public class RecycleView_O extends RecyclerView.Adapter<RecycleView_O.MyViewHold
 
             ArrayList<RecycleModel> filteredList = new ArrayList<>();
 
-            if (charSequence.toString().isEmpty()){
+            if (charSequence.toString().isEmpty()) {
 
                 filteredList.addAll(foodModelAll);
-            }
-            else {
+            } else {
 
                 for (RecycleModel filterData : foodModelAll) {
 

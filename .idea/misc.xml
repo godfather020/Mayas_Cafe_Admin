@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/layout/fragment_accepted_orders.xml" value="0.20008550662676358" />
         <entry key="app/src/main/res/layout/fragment_active_offers.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_add_items_frag.xml" value="0.19923044035912782" />
+        <entry key="app/src/main/res/layout/fragment_add_new_offer.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_being_prepared_orders.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_cancelled_order_frag.xml" value="0.17135086128739802" />
         <entry key="app/src/main/res/layout/fragment_category__items_frag.xml" value="0.19923044035912782" />

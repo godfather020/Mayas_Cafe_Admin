@@ -24,13 +24,13 @@ import java.util.*
 class InactiveOffers_frag : Fragment() {
 
     var recycleView_models = ArrayList<RecycleModel>()
-    lateinit var  recyclerView: RecyclerView
-    lateinit var recycleView_adapter_O : RecycleView_O
-    lateinit var search : MenuItem
+    lateinit var recyclerView: RecyclerView
+    lateinit var recycleView_adapter_O: RecycleView_O
+    lateinit var search: MenuItem
     lateinit var activeOffersViewModel: ActiveOffers_ViewModel
     lateinit var mainActivity: MainActivity
-    lateinit var loadingInactive : ProgressBar
-    var token : String? = ""
+    lateinit var loadingInactive: ProgressBar
+    var token: String? = ""
     lateinit var offersId: ArrayList<String>
     lateinit var offersName: ArrayList<String>
     lateinit var offersTitle: ArrayList<String>
@@ -55,12 +55,12 @@ class InactiveOffers_frag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view : View = inflater.inflate(R.layout.fragment_inactive_offers_frag, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_inactive_offers_frag, container, false)
 
         activeOffersViewModel = ViewModelProvider(this).get(ActiveOffers_ViewModel::class.java)
         mainActivity = activity as MainActivity
 
-        recyclerView= view.findViewById(R.id.inactive_offers_rv)
+        recyclerView = view.findViewById(R.id.inactive_offers_rv)
         loadingInactive = view.findViewById(R.id.loading_inactive)
 
         loadingInactive.visibility = View.VISIBLE
@@ -100,76 +100,77 @@ class InactiveOffers_frag : Fragment() {
 
     private fun getInactiveOffers() {
 
-        if(token != null){
+        if (token != null) {
 
-            activeOffersViewModel.getActiveOffers(this, token.toString(), loadingInactive).observe(viewLifecycleOwner){
+            activeOffersViewModel.getActiveOffers(this, token.toString(), loadingInactive)
+                .observe(viewLifecycleOwner) {
 
-                if (it != null){
+                    if (it != null) {
 
-                    if (it.getSuccess()!!){
+                        if (it.getSuccess()!!) {
 
-                        clearArrayLists()
+                            clearArrayLists()
 
-                        for (i in it.getData()!!.ListcouponResponce!!.indices) {
+                            for (i in it.getData()!!.ListcouponResponce!!.indices) {
 
-                            val dateFormat: DateFormat =
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                    SimpleDateFormat(
-                                        "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
-                                        Locale.getDefault()
-                                    )
-                                } else {
-                                    TODO("VERSION.SDK_INT < N")
+                                val dateFormat: DateFormat =
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                        SimpleDateFormat(
+                                            "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
+                                            Locale.getDefault()
+                                        )
+                                    } else {
+                                        TODO("VERSION.SDK_INT < N")
+                                    }
+                                val date =
+                                    dateFormat.parse(it.getData()!!.ListcouponResponce!![i].stopAt.toString()) //You will get date object relative to server/client timezone wherever it is parsed
+
+                                val date1 =
+                                    dateFormat.parse(it.getData()!!.ListcouponResponce!![i].startAt.toString())
+
+                                val formatter: DateFormat =
+                                    SimpleDateFormat("dd-MM-yyyy") //If you need time just put specific format for time like 'HH:mm:ss'
+
+                                val dateStr = formatter.format(date)
+
+                                val startDate = formatter.format(date1)
+
+                                val valid_until = dateStr
+                                val sdf = SimpleDateFormat("dd-MM-yyyy")
+                                var strDate: Date? = null
+                                try {
+                                    strDate = sdf.parse(valid_until)
+                                } catch (e: ParseException) {
+                                    e.printStackTrace()
                                 }
-                            val date =
-                                dateFormat.parse(it.getData()!!.ListcouponResponce!![i].stopAt.toString()) //You will get date object relative to server/client timezone wherever it is parsed
 
-                            val date1 =
-                                dateFormat.parse(it.getData()!!.ListcouponResponce!![i].startAt.toString())
+                                if (it.getData()!!.ListcouponResponce!![i].status == false) {
 
-                            val formatter: DateFormat =
-                                SimpleDateFormat("dd-MM-yyyy") //If you need time just put specific format for time like 'HH:mm:ss'
+                                    Log.d("time", "stopgreater")
 
-                            val dateStr = formatter.format(date)
+                                    offersId.add(it.getData()!!.ListcouponResponce!![i].id.toString())
+                                    offersName.add(it.getData()!!.ListcouponResponce!![i].name.toString())
+                                    offersDes.add(it.getData()!!.ListcouponResponce!![i].desc.toString())
+                                    offersCode.add(it.getData()!!.ListcouponResponce!![i].code.toString())
+                                    offersTitle.add(it.getData()!!.ListcouponResponce!![i].title.toString())
+                                    offersCalcType.add(it.getData()!!.ListcouponResponce!![i].calculateType.toString())
+                                    offersImg.add(it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
+                                    offersMin.add(it.getData()!!.ListcouponResponce!![i].minimumAmount.toString())
+                                    offersUpTo.add(it.getData()!!.ListcouponResponce!![i].uptoDiscount.toString())
+                                    offersStartAt.add(startDate)
+                                    offersStopAt.add(dateStr)
 
-                            val startDate = formatter.format(date1)
+                                } else {
 
-                            val valid_until = dateStr
-                            val sdf = SimpleDateFormat("dd-MM-yyyy")
-                            var strDate: Date? = null
-                            try {
-                                strDate = sdf.parse(valid_until)
-                            } catch (e: ParseException) {
-                                e.printStackTrace()
+                                    Log.d("time121", "todaygreater")
+                                }
                             }
 
-                            if (it.getData()!!.ListcouponResponce!![i].status == false) {
-
-                                Log.d("time", "stopgreater")
-
-                                offersId.add(it.getData()!!.ListcouponResponce!![i].id.toString())
-                                offersName.add(it.getData()!!.ListcouponResponce!![i].name.toString())
-                                offersDes.add(it.getData()!!.ListcouponResponce!![i].desc.toString())
-                                offersCode.add(it.getData()!!.ListcouponResponce!![i].code.toString())
-                                offersTitle.add(it.getData()!!.ListcouponResponce!![i].title.toString())
-                                offersCalcType.add(it.getData()!!.ListcouponResponce!![i].calculateType.toString())
-                                offersImg.add(it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
-                                offersMin.add(it.getData()!!.ListcouponResponce!![i].minimumAmount.toString())
-                                offersUpTo.add(it.getData()!!.ListcouponResponce!![i].uptoDiscount.toString())
-                                offersStartAt.add(startDate)
-                                offersStopAt.add(dateStr)
-
-                            } else {
-
-                                Log.d("time121", "todaygreater")
-                            }
+                            loadingInactive.visibility = View.GONE
+                            setUpInActiveOffersRv()
                         }
-
-                        loadingInactive.visibility = View.GONE
-                        setUpInActiveOffersRv()
                     }
                 }
-            }
         }
 
     }
@@ -220,7 +221,8 @@ class InactiveOffers_frag : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
 
         search = menu.findItem(R.id.search)
-        val searchView : androidx.appcompat.widget.SearchView = search.actionView as androidx.appcompat.widget.SearchView
+        val searchView: androidx.appcompat.widget.SearchView =
+            search.actionView as androidx.appcompat.widget.SearchView
 
         searchView.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {

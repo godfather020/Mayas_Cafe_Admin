@@ -16,7 +16,7 @@
             android:paddingBottom="16dp">
 
         <ImageView
-            android:id="@+id/imageView18"
+            android:id="@+id/offer_img"
             android:layout_width="250dp"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
@@ -34,13 +34,13 @@
             android:textAlignment="center"
             android:textColor="#338E8E33"
             android:textSize="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView18"
-            app:layout_constraintEnd_toEndOf="@+id/imageView18"
-            app:layout_constraintStart_toStartOf="@+id/imageView18"
-            app:layout_constraintTop_toTopOf="@+id/imageView18" />
+            app:layout_constraintBottom_toBottomOf="@+id/offer_img"
+            app:layout_constraintEnd_toEndOf="@+id/offer_img"
+            app:layout_constraintStart_toStartOf="@+id/offer_img"
+            app:layout_constraintTop_toTopOf="@+id/offer_img" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/offer_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -54,10 +54,10 @@
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+            app:layout_constraintTop_toBottomOf="@+id/offer_img" />
 
         <EditText
-            android:id="@+id/editText9"
+            android:id="@+id/offer_title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="16dp"
@@ -69,10 +69,10 @@
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText8" />
+            app:layout_constraintTop_toBottomOf="@+id/offer_name" />
 
         <EditText
-            android:id="@+id/editText10"
+            android:id="@+id/offer_code"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="16dp"
@@ -84,10 +84,10 @@
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText9" />
+            app:layout_constraintTop_toBottomOf="@+id/offer_title" />
 
         <EditText
-            android:id="@+id/editText11"
+            android:id="@+id/upto_discount"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="16dp"
@@ -99,10 +99,10 @@
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText10" />
+            app:layout_constraintTop_toBottomOf="@+id/offer_code" />
 
         <EditText
-            android:id="@+id/editText12"
+            android:id="@+id/offer_minAmt"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="16dp"
@@ -114,7 +114,7 @@
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText11" />
+            app:layout_constraintTop_toBottomOf="@+id/upto_discount" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -123,7 +123,7 @@
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText12">
+            app:layout_constraintTop_toBottomOf="@+id/offer_minAmt">
 
             <EditText
                 android:id="@+id/offer_startDate"
@@ -143,7 +143,7 @@
                 android:textColor="@color/textColors"
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText12" />
+                app:layout_constraintTop_toBottomOf="@+id/offer_minAmt" />
 
             <EditText
                 android:id="@+id/offer_endDate"
@@ -163,12 +163,12 @@
                 android:textColor="@color/textColors"
                 android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText12" />
+                app:layout_constraintTop_toBottomOf="@+id/offer_minAmt" />
 
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editText15"
+            android:id="@+id/offer_des"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="16dp"
@@ -194,7 +194,7 @@
         android:textColor="@color/textColors"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText15" />
+        app:layout_constraintTop_toBottomOf="@+id/offer_des" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -284,6 +284,7 @@
             </RadioGroup>
 
             <Button
+                android:id="@+id/addOffer_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_button"
@@ -301,5 +302,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/loading_offers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

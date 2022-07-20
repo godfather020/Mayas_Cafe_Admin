@@ -30,7 +30,7 @@ class Offers_frag : Fragment() {
 
         mainActivity = (activity as MainActivity)
 
-        MainActivity.isBackPressed = true
+        //MainActivity.isBackPressed = true
 
         mainActivity.toolbar_const.title = "My Offers"
         mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))

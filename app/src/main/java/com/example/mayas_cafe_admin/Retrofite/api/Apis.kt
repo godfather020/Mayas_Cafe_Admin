@@ -170,6 +170,13 @@ interface Apis {
     ):Call<Response_Update_Status>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.UPDATE_COUPON_STATUS)
+    fun updateCoupon(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_updateCoupon
+    ):Call<Response_Common>
+
+    @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.UPDATE_PRODUCT)
     fun deleteProduct(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
@@ -195,6 +202,23 @@ interface Apis {
                       @Part image: MultipartBody.Part,
                       @Part("productId") productId: RequestBody
     ): Call<Response_Common>?
+
+    @Multipart
+    @POST(Constants.ApiConstant.CREATE_COUPON)
+    fun createOffer(@Header (Constants.sharedPrefrencesConstant.X_TOKEN) x_tocken:String,
+                    @Part image: MultipartBody.Part,
+                    @Part("name") name: RequestBody,
+                    @Part("code") code: RequestBody,
+                    @Part("title") title: RequestBody,
+                    @Part("desc") desc: RequestBody,
+                    @Part("calculateType") calculateType: RequestBody,
+                    @Part("uptoDiscount") uptoDiscount: RequestBody,
+                    @Part("minimumAmount") minimumAmount: RequestBody,
+                    @Part("startAt") startAt: RequestBody,
+                    @Part("stopAt") stopAt: RequestBody,
+                    @Part("branchId") branchId: RequestBody
+    ): Call<Response_Common>?
+
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.GET_PRODUCT_DETAILS)

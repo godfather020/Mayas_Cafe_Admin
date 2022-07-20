@@ -362,20 +362,26 @@ class DashboardFrag : Fragment() {
 
                                 for (i in 0..2) {
 
-                                    orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())
-                                    orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
-                                    orderPrice.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
-                                    orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty()) {
 
+                                        orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())
+                                        orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
+                                        orderPrice.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
+                                        orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+
+                                    }
                                 }
                             } else {
 
                                 for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
-                                    orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())
-                                    orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
-                                    orderPrice.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
-                                    orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty()) {
+
+                                        orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())
+                                        orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
+                                        orderPrice.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
+                                        orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                                    }
                                 }
                             }
 

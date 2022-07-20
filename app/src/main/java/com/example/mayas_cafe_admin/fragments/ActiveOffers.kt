@@ -148,7 +148,10 @@ class ActiveOffers : Fragment() {
                                     e.printStackTrace()
                                 }
 
-                                if (it.getData()!!.ListcouponResponce!![i].status == true && !Date().after(strDate)) {
+                                if (it.getData()!!.ListcouponResponce!![i].status == true && !Date().after(
+                                        strDate
+                                    )
+                                ) {
 
                                     Log.d("time", "stopgreater")
 

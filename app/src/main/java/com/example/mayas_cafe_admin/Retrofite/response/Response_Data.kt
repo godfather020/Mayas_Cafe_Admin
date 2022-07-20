@@ -1,6 +1,7 @@
 package com.example.mayasfood.Retrofite.response
 
 import com.example.lottry.data.remote.retrofit.response.*
+import com.example.mayas_cafe_admin.Retrofite.response.CouponDetails
 import com.example.mayas_cafe_admin.Retrofite.response.ListcategoryResponce
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose
@@ -18,6 +19,9 @@ class Response_Data {
 
  @SerializedName("ProductId"  )
  var ProductId1  : Int? = null
+
+    @SerializedName("CouponDetails" )
+    var CouponDetails : CouponDetails? = CouponDetails()
 
  @SerializedName("customerId" )
  var customerId : Int?    = null
