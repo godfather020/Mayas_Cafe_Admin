@@ -33,6 +33,7 @@
         <entry key="app/src/main/res/layout/fragment_inactive_offers_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_menu_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_new_orders.xml" value="0.20008550662676358" />
+        <entry key="app/src/main/res/layout/fragment_notification_frag.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_product_details_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_ready_to_pick_up.xml" value="0.19923044035912782" />
@@ -40,8 +41,10 @@
         <entry key="app/src/main/res/layout/offers_details_dialog.xml" value="0.5" />
         <entry key="app/src/main/res/layout/order_accept_reject_dialog.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/order_cancel_dialog.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/previous_notify_rv.xml" value="0.19837537409149208" />
         <entry key="app/src/main/res/layout/ready_to_pickup_rv.xml" value="0.543884892086331" />
         <entry key="app/src/main/res/layout/recent_orders_rv.xml" value="0.20081595648232095" />
+        <entry key="app/src/main/res/layout/today_notify_rv.xml" value="0.19837537409149208" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.2864583333333333" />
       </map>
     </option>

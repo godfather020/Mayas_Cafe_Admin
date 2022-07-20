@@ -39,10 +39,10 @@ public class RecycleView_NT extends RecyclerView.Adapter<RecycleView_NT.MyViewHo
 
         final RecycleModel temp = foodModels4.get(position);
 
-        holder.noti_time.setText(foodModels4.get(position).getNotifyTime());
-        holder.noti_body.setText(foodModels4.get(position).getNotifyBody());
-        holder.notyTitle.setText(foodModels4.get(position).getNotifyTitle());
-        holder.createdDate.setText(foodModels4.get(position).getNotifyDate());
+        holder.noti_time.setText(foodModels4.get(position).getOrderQty());
+        holder.noti_body.setText(foodModels4.get(position).getOrderName());
+        holder.notyTitle.setText(foodModels4.get(position).getOrderImg());
+        holder.createdDate.setText(foodModels4.get(position).getOrderSize());
 
         /*holder.copy_offer.setOnClickListener(new View.OnClickListener() {
             @Override

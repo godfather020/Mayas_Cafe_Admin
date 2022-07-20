@@ -18,6 +18,8 @@ object Constants {
     const val SPLASH_DELAY = 2000
     const val duration = 60
     @JvmField
+    var notificationCount = 0
+    @JvmField
     var orderId = ""
     @JvmField
     var orderStatus = ""
@@ -56,7 +58,7 @@ object Constants {
         internal const val RESTAURANT_CHOICES = "public/Listrestaurentproduct"
         internal const val LIST_PRODUCTS = "public/Listproduct"
         internal const val ADD_REMOVE_FAV = "customer/Createproductfavorite"
-        internal const val NOTIFICATION = "customer/notifications"
+        internal const val NOTIFICATION = "staff/notifications"
         internal const val FAVORITE_LIST = "customer/Listfavoriteproduct"
         internal const val CREATE_PRODUCT = "staff/Createproduct"
         internal const val GET_ORDERS = "staff/Listbranchorder"
@@ -69,8 +71,8 @@ object Constants {
         internal const val UPLOAD_ITEM_IMG = "staff/uploadproductpic"
         internal const val CREATE_COUPON = "staff/Createcoupon"
         internal const val GET_PRODUCT_DETAILS = "public/Detailsproduct"
-        internal const val REMOVE_NOTIFICATION = "customer/readNotification"
-        internal const val REMOVE_ALL_NOTIFICATION = "customer/readAllNotification"
+        internal const val REMOVE_NOTIFICATION = "staff/readNotification"
+        internal const val REMOVE_ALL_NOTIFICATION = "staff/readAllNotification"
         internal const val CANCEL_ORDER = "staff/Cancelorder"
         internal var DEVICE_TOKEN = ""
 

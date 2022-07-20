@@ -360,9 +360,9 @@ class DashboardFrag : Fragment() {
 
                             if (it.getData()!!.ListOrderResponce!!.size > 3) {
 
-                                for (i in 0..2) {
+                                for (i in 0..5) {
 
-                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty()) {
+                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty() && it.getData()!!.ListOrderResponce!![i].cancelStatus == false) {
 
                                         orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())
                                         orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
@@ -375,7 +375,7 @@ class DashboardFrag : Fragment() {
 
                                 for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
-                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty()) {
+                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty() && it.getData()!!.ListOrderResponce!![i].cancelStatus == false) {
 
                                         orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())
                                         orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())

@@ -4,7 +4,7 @@ public class RecycleModel {
 
     String orderId, pickUpTime, orderAmt, orderStatus, orderItems, orderImg;
     String orderName, orderSize, orderQty;
-    String notifyTitle, notifyBody, notifyDate, notifyTime;
+    String notifyTitle, notifyBody, notifyDate, notifyTime, notifyId;
     String menuName, menuImg, menuId;
     String userName, userImage;
     String itemName, itemImg, itemId;

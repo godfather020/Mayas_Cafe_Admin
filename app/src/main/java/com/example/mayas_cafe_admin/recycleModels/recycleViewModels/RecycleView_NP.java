@@ -29,7 +29,7 @@ public class RecycleView_NP extends RecyclerView.Adapter<RecycleView_NP.MyViewHo
     public RecycleView_NP.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //Inflate the layout (Giving look)
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.today_notify_rv, parent, false);
+        View view = inflater.inflate(R.layout.previous_notify_rv, parent, false);
         return new RecycleView_NP.MyViewHolder(view);
     }
 
@@ -39,10 +39,10 @@ public class RecycleView_NP extends RecyclerView.Adapter<RecycleView_NP.MyViewHo
 
         final RecycleModel temp = foodModels4.get(position);
 
-        holder.noti_time.setText(foodModels4.get(position).getNotifyTime());
-        holder.noti_body.setText(foodModels4.get(position).getNotifyBody());
-        holder.notyTitle.setText(foodModels4.get(position).getNotifyTitle());
-        holder.createdDate.setText(foodModels4.get(position).getNotifyDate());
+        holder.noti_time.setText(foodModels4.get(position).getOrderQty());
+        holder.noti_body.setText(foodModels4.get(position).getOrderName());
+        holder.notyTitle.setText(foodModels4.get(position).getOrderImg());
+        holder.createdDate.setText(foodModels4.get(position).getOrderSize());
 
         /*holder.copy_offer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +76,10 @@ public class RecycleView_NP extends RecyclerView.Adapter<RecycleView_NP.MyViewHo
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            noti_body = itemView.findViewById(R.id.noti_body);
-            noti_time = itemView.findViewById(R.id.noti_time);
-            notyTitle = itemView.findViewById(R.id.noty_title);
-            createdDate = itemView.findViewById(R.id.today_rv_date);
+            noti_body = itemView.findViewById(R.id.notiyes_body);
+            noti_time = itemView.findViewById(R.id.notiyes_time);
+            notyTitle = itemView.findViewById(R.id.notyes_Title);
+            createdDate = itemView.findViewById(R.id.yesterday_rv_date);
         }
     }
 }
