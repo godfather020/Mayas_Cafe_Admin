@@ -29,6 +29,13 @@ interface Apis {
         @Body body: Request_CategoryDetails
     ):Call<Response_Common>
 
+    @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.CREATE_CATEGORY)
+    fun createCategory(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_CreateCategory
+    ):Call<Response_Common>
+
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.REMOVE_NOTIFICATION)
