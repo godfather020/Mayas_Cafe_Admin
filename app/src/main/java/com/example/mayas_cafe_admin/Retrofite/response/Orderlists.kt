@@ -25,4 +25,6 @@ class Orderlists {
     @SerializedName("updatedAt"      ) var updatedAt      : String?       = null
 
     @SerializedName("Productprice"   ) var Productprice   : Productprice? = Productprice()
+
+    @SerializedName("Product"   ) var Product   : Product? = Product()
 }

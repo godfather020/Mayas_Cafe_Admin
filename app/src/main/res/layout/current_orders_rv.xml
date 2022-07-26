@@ -25,7 +25,6 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="18dp"
-                android:background="@drawable/avatar_1_1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

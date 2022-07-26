@@ -3,7 +3,7 @@ package com.example.mayas_cafe_admin.recycleModels.recycleModel;
 public class RecycleModel {
 
     String orderId, pickUpTime, orderAmt, orderStatus, orderItems, orderImg;
-    String orderName, orderSize, orderQty;
+    String orderName, orderSize, orderQty, custImg;
     String notifyTitle, notifyBody, notifyDate, notifyTime, notifyId;
     String menuName, menuImg, menuId;
     String userName, userImage;
@@ -57,6 +57,24 @@ public class RecycleModel {
         this.offersStartAt = offersStartAt;
         this.offersStopAt = offersStopAt;
         this.offersImg = offersImg;
+    }
+
+    public RecycleModel(String custImg, String orderId, String pickUpTime, String orderAmt, String orderStatus, String orderItems, String orderImg) {
+        this.orderId = orderId;
+        this.pickUpTime = pickUpTime;
+        this.orderAmt = orderAmt;
+        this.orderStatus = orderStatus;
+        this.orderItems = orderItems;
+        this.orderImg = orderImg;
+        this.custImg = custImg;
+    }
+
+    public String getCustImg() {
+        return custImg;
+    }
+
+    public void setCustImg(String custImg) {
+        this.custImg = custImg;
     }
 
     public String getOffersId() {

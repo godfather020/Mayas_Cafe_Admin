@@ -65,7 +65,7 @@ public class RecycleView_RTP extends RecyclerView.Adapter<RecycleView_RTP.MyView
         //Assigning values to the views we created
         final RecycleModel temp = foodModels.get(position);
 
-        holder.orderId.setText(foodModels.get(position).getOrderId());
+        holder.orderId.setText("Order Id - "+foodModels.get(position).getOrderId());
         holder.pickUpTime.setText(foodModels.get(position).getPickUpTime());
         holder.orderAmt.setText(foodModels.get(position).getOrderAmt());
         holder.orderItems.setText(foodModels.get(position).getOrderItems());

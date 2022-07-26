@@ -143,16 +143,16 @@ class ProductDetailsFrag : Fragment() {
 
                                             getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString())
 
-                                            orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Productprice!!.productPic.toString())
+                                            orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Product!!.productPic.toString())
                                             orderSize.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Productprice!!.productsize.toString())
                                             orderAmt.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].totalAmount.toString())
                                             orderQuantity.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].noItems.toString())
-                                            orderName.add("Butter Paneer")
+                                            orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Product!!.productName.toString())
                                         }
                                     }
                                 }
                             }
-                            loadingDetails.visibility = View.GONE
+
                             setUpDetailsRv()
                         }
                     }
@@ -174,6 +174,8 @@ class ProductDetailsFrag : Fragment() {
                     Picasso.get()
                         .load(Constants.AdminProfile_Path+it.getData()!!.user!!.profilePic.toString())
                         .into(custImg)
+
+                    loadingDetails.visibility = View.GONE
                 }
             }
         }

@@ -25,13 +25,12 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="18dp"
-                android:background="@drawable/do_011318_alc_kapoleichinese_lt001_file_shrimp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/detailOrderName"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="20dp"

@@ -12,9 +12,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
 import com.example.mayas_cafe_admin.fragments.ViewModel.NewOrders_ViewModel
+import com.example.mayas_cafe_admin.fragments.ViewModel.ProductDetails_ViewModel
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
 import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_NO
 import com.example.mayas_cafe_admin.utils.Constants
+import com.squareup.picasso.Picasso
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -34,8 +36,10 @@ class NewOrders : Fragment() {
     private lateinit var orderAmt: ArrayList<String>
     private lateinit var orderQuantity: ArrayList<String>
     private lateinit var orderPickTime: ArrayList<String>
+    private lateinit var custImg : ArrayList<String>
     private lateinit var orderImg: ArrayList<String>
     private lateinit var refreshNew: SwipeRefreshLayout
+    lateinit var productdetailsViewmodel: ProductDetails_ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +58,7 @@ class NewOrders : Fragment() {
         mainActivity = (activity as MainActivity)
 
         newOrdersView = ViewModelProvider(this).get(NewOrders_ViewModel::class.java)
+        productdetailsViewmodel = ViewModelProvider(this).get(ProductDetails_ViewModel::class.java)
 
         recyclerView = view.findViewById(R.id.runOrder_rv)
         loadingNew = view.findViewById(R.id.loading_new)
@@ -91,6 +96,7 @@ class NewOrders : Fragment() {
         orderQuantity = ArrayList()
         orderPickTime = ArrayList()
         orderImg = ArrayList()
+        custImg = ArrayList()
 
         getNewOrders()
 
@@ -113,14 +119,18 @@ class NewOrders : Fragment() {
                             orderPickTime.clear()
                             orderId.clear()
                             recycleViewModels.clear()
+                            custImg.clear()
 
                             for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
                                 if (it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0") && it.getData()!!.ListOrderResponce!![i].cancelStatus == false) {
 
+                                    //custImg.add(getUserImg(it.getData()!!.ListOrderResponce!![i].userId.toString()))
                                     orderId.add("#" + it.getData()!!.ListOrderResponce!![i].id.toString())
                                     orderAmt.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
                                     orderQuantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
+
+                                    Log.d("custImg", custImg.size.toString())
 
                                     val pickTime =
                                         it.getData()!!.ListOrderResponce!![i].pickupAt.toString()
@@ -144,11 +154,11 @@ class NewOrders : Fragment() {
                                     orderPickTime.add(formatted)
 
                                     if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty()) {
-
-                                        orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                                        custImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Product!!.productPic.toString())
+                                        orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Product!!.productPic.toString())
                                     } else {
-
                                         orderImg.add("default.png")
+                                        custImg.add("default.png")
                                     }
                                 }
                             }
@@ -160,12 +170,32 @@ class NewOrders : Fragment() {
         }
     }
 
+    private fun getUserImg(userId: String): String {
+
+        var userImg = ""
+
+        productdetailsViewmodel.getUserInfo(this, token.toString(), userId).observe(viewLifecycleOwner){
+
+            if (it != null){
+
+                if (it.getSuccess()!!){
+
+                    //custImg.add(it.getData()!!.user!!.profilePic.toString())
+                    userImg =  it.getData()!!.user!!.profilePic.toString()
+                }
+            }
+        }
+
+        return userImg
+    }
+
     private fun setUpRunOrderRv() {
 
         for (i in orderId.indices) {
 
             recycleViewModels.add(
                 RecycleModel(
+                    custImg[i],
                     orderId[i],
                     orderPickTime[i],
                     orderAmt[i],

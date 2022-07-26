@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayas_cafe_admin.R;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
+import com.example.mayas_cafe_admin.utils.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -43,9 +45,13 @@ public class RecycleView_PD extends RecyclerView.Adapter<RecycleView_PD.MyViewHo
 
         holder.orderName.setText(foodModels.get(position).getOrderName());
         //holder.pickUpTime.setText(foodModels.get(position).getPickUpTime());
-        holder.orderAmt.setText(foodModels.get(position).getOrderAmt());
+        holder.orderAmt.setText("$"+foodModels.get(position).getOrderAmt());
         holder.orderQty.setText(foodModels.get(position).getOrderQty());
         holder.orderSize.setText(foodModels.get(position).getOrderSize());
+
+        Picasso.get()
+                .load(Constants.AdminProduct_Path+foodModels.get(position).getOrderImg())
+                .into(holder.orderImg);
 
     }
 

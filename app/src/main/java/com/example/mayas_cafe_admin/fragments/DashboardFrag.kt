@@ -48,6 +48,7 @@ class DashboardFrag : Fragment() {
     private lateinit var dashboardView: Dashboard_ViewModel
     private lateinit var loadingDash: ProgressBar
     private lateinit var orderId: ArrayList<String>
+    private lateinit var userId: ArrayList<String>
     private lateinit var orderName: ArrayList<String>
     private lateinit var orderPrice: ArrayList<String>
     private lateinit var orderImg: ArrayList<String>
@@ -215,6 +216,7 @@ class DashboardFrag : Fragment() {
         orderName = ArrayList<String>()
         orderPrice = ArrayList<String>()
         orderImg = ArrayList<String>()
+        userId = ArrayList()
 
         val userPic =
             mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, 0)
@@ -328,6 +330,7 @@ class DashboardFrag : Fragment() {
                             acceptedOrders = 0
                             beingPre = 0
                             ready = 0
+                            userId.clear()
 
                             for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
@@ -364,10 +367,11 @@ class DashboardFrag : Fragment() {
 
                                     if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty() && it.getData()!!.ListOrderResponce!![i].cancelStatus == false) {
 
+                                        userId.add(it.getData()!!.ListOrderResponce!![i].userId.toString())
                                         orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())
-                                        orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
+                                        //orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
                                         orderPrice.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
-                                        orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                                        orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Product!!.productPic.toString())
 
                                     }
                                 }
@@ -377,10 +381,11 @@ class DashboardFrag : Fragment() {
 
                                     if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty() && it.getData()!!.ListOrderResponce!![i].cancelStatus == false) {
 
+                                        userId.add(it.getData()!!.ListOrderResponce!![i].userId.toString())
                                         orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())
-                                        orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
+                                        //orderName.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.createdBy.toString())
                                         orderPrice.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
-                                        orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                                        orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Product!!.productPic.toString())
                                     }
                                 }
                             }
@@ -406,7 +411,7 @@ class DashboardFrag : Fragment() {
             recycleViewModels.add(
                 RecycleModel(
                     orderId[i],
-                    orderName[i],
+                    userId[i],
                     orderPrice[i],
                     orderImg[i]
                 )

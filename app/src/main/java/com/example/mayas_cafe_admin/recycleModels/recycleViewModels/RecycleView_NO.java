@@ -69,14 +69,14 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
         //Assigning values to the views we created
         final RecycleModel temp = foodModels.get(position);
 
-        holder.orderId.setText(foodModels.get(position).getOrderId());
+        holder.orderId.setText("Order Id - "+foodModels.get(position).getOrderId());
         holder.pickUpTime.setText(foodModels.get(position).getPickUpTime());
         holder.orderAmt.setText(foodModels.get(position).getOrderAmt());
         holder.orderItems.setText(foodModels.get(position).getOrderItems());
         holder.orderStatus.setText(foodModels.get(position).getOrderStatus());
 
         Picasso.get()
-                .load(Constants.AdminProduct_Path + foodModels.get(position).getOrderImg())
+                .load(Constants.AdminProduct_Path + foodModels.get(position).getCustImg())
                 .into(holder.orderImg);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +86,7 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
                 Constants.orderId = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderId();
                 Constants.orderStatus = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderStatus();
                 Constants.orderPickUp = foodModels.get(holder.getAbsoluteAdapterPosition()).getPickUpTime();
-                Constants.userPic = foodModels.get(holder.getAbsoluteAdapterPosition()).getOrderImg();
+                Constants.userPic = foodModels.get(holder.getAbsoluteAdapterPosition()).getCustImg();
 
                 MainActivity activity = (MainActivity) view.getContext();
 
