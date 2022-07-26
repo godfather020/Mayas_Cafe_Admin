@@ -43,6 +43,8 @@ class ProductDetailsFrag : Fragment() {
     lateinit var orderSize: ArrayList<String>
     lateinit var orderImg: ArrayList<String>
     lateinit var custImg : CircleImageView
+    lateinit var custName : TextView
+    lateinit var custPhone : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +70,8 @@ class ProductDetailsFrag : Fragment() {
         recyclerView = view.findViewById(R.id.productDetails_rv)
         loadingDetails = view.findViewById(R.id.loading_details)
         custImg = view.findViewById(R.id.custImg)
+        custName = view.findViewById(R.id.customerName)
+        custPhone = view.findViewById(R.id.customerPhone)
 
         loadingDetails.visibility = View.VISIBLE
 
@@ -82,9 +86,9 @@ class ProductDetailsFrag : Fragment() {
         orderStatus.text = Constants.orderStatus
         orderPickUp.text = Constants.orderPickUp
 
-        Picasso.get()
+        /*Picasso.get()
             .load(Constants.AdminProduct_Path+Constants.userPic)
-            .into(custImg)
+            .into(custImg)*/
 
         //setUpDetailsRv()
 
@@ -137,6 +141,8 @@ class ProductDetailsFrag : Fragment() {
 
                                         for (j in it.getData()!!.ListOrderResponce!![i].Orderlists!!.indices) {
 
+                                            getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString())
+
                                             orderImg.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Productprice!!.productPic.toString())
                                             orderSize.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Productprice!!.productsize.toString())
                                             orderAmt.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].totalAmount.toString())
@@ -151,6 +157,25 @@ class ProductDetailsFrag : Fragment() {
                         }
                     }
                 })
+        }
+    }
+
+    private fun getUserDetails(userId: String) {
+
+        productdetailsViewmodel.getUserInfo(this, token.toString(), userId).observe(viewLifecycleOwner){
+
+            if (it != null){
+
+                if (it.getSuccess()!!){
+
+                    custName.text = it.getData()!!.user!!.userName
+                    custPhone.text = it.getData()!!.user!!.phoneNumber
+
+                    Picasso.get()
+                        .load(Constants.AdminProfile_Path+it.getData()!!.user!!.profilePic.toString())
+                        .into(custImg)
+                }
+            }
         }
     }
 

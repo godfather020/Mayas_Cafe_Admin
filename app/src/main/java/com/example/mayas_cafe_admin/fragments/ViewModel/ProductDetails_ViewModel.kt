@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mayas_cafe_admin.Retrofite.request.RequestUserDetails
 import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance
 import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.Retrofite.response.Response_Common
@@ -19,6 +20,7 @@ class ProductDetails_ViewModel : ViewModel() {
     lateinit var activity: Fragment
 
     val commonResponse = MutableLiveData<Response_Common>()
+    val commonResponse1 = MutableLiveData<Response_Common>()
 
     lateinit var loading : ProgressBar
     var token : String = ""
@@ -35,6 +37,62 @@ class ProductDetails_ViewModel : ViewModel() {
         getOrdersFromAPI(request_branch)
 
         return commonResponse
+    }
+
+    fun getUserInfo(activity : Fragment, token : String, userId : String) : MutableLiveData<Response_Common> {
+
+        this.activity = activity
+        this.token = token
+
+        val requestUserDetails = RequestUserDetails()
+
+        requestUserDetails.userId = userId
+
+        getUserDetailsFromAPI(requestUserDetails)
+
+
+        return commonResponse1
+    }
+
+    private fun getUserDetailsFromAPI(param: RequestUserDetails) {
+
+        val retrofitInstance: RetrofitInstance = RetrofitInstance()
+        val retrofitData = retrofitInstance.retrofit.getUserDetails(token ,param)
+
+        retrofitData.enqueue(object : retrofit2.Callback<Response_Common> {
+
+            override fun onResponse(
+                call: Call<Response_Common>,
+                response: Response<Response_Common>
+            ) {
+
+
+                if(response.isSuccessful) {
+
+                    commonResponse1.value=response.body()!!
+
+                }
+                else{
+
+                    loading.visibility = View.GONE
+                    val element: JsonElement = Gson().fromJson(response.errorBody()!!.string(), JsonElement::class.java)
+                    val jsonObject = element.asJsonObject
+
+                    if(jsonObject.get("code").toString().equals("500")){
+//                       if(jsonObject.get("message").asString.equals(activity.resources.getString(R.string.please_registered_your_number_),true)){
+
+                    }
+
+                    Toast.makeText(activity.context, "Update Failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Response_Common>, t: Throwable) {
+//               TODO("Not yet implemented")
+
+                Toast.makeText(activity.context, t.toString(), Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun getOrdersFromAPI(param: Request_Branch) {

@@ -1,4 +1,4 @@
-package com.example.lottry.data.remote.retrofit.response
+package com.example.mayas_cafe_admin.Retrofite.response
 
 import com.google.gson.annotations.Expose
 

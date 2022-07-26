@@ -123,7 +123,6 @@ class MenuFrag : Fragment() {
             }
         }
 
-
         acceptOrReject.show()
     }
 

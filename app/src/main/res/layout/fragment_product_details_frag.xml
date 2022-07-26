@@ -50,18 +50,17 @@
                         android:layout_height="45dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:background="@drawable/avatar_7_1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/customerName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Ramu Kaka"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="16dp"
@@ -76,21 +75,21 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/vector__11_"
                         app:layout_constraintStart_toEndOf="@+id/custImg"
-                        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                        app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/customerPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="6dp"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="8585848785"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="@color/textColors"
                         android:textSize="12dp"
                         app:layout_constraintStart_toEndOf="@+id/imageView10"
-                        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                        app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -140,7 +139,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/detailsPickUp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView9"
+                        app:layout_constraintTop_toBottomOf="@+id/customerPhone"
                         tools:listitem="@layout/product_details_rv" />
 
                     <ImageView

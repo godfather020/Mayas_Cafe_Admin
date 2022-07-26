@@ -228,10 +228,10 @@ interface Apis {
 
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.GET_PRODUCT_DETAILS)
-    fun getProductDetail(
+    @POST(Constants.ApiConstant.GET_USER_DETAILS)
+    fun getUserDetails(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body: Request_ProductDetails
+        @Body body: RequestUserDetails
     ):Call<Response_Common>
 
 }

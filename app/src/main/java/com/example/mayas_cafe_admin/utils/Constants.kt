@@ -71,7 +71,7 @@ object Constants {
         internal const val SET_PROFILE_IMAGE = "staff/uploadstaffProfilePic"
         internal const val UPLOAD_ITEM_IMG = "staff/uploadproductpic"
         internal const val CREATE_COUPON = "staff/Createcoupon"
-        internal const val GET_PRODUCT_DETAILS = "public/Detailsproduct"
+        internal const val GET_USER_DETAILS = "staff/getcustomerprofile"
         internal const val REMOVE_NOTIFICATION = "staff/readNotification"
         internal const val REMOVE_ALL_NOTIFICATION = "staff/readAllNotification"
         internal const val CANCEL_ORDER = "staff/Cancelorder"
