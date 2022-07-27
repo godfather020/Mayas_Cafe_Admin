@@ -6,6 +6,9 @@ object Constants {
     @JvmField
     var SET_ORDER_TAB = 0
 
+    @JvmField
+    var QR_SCAN_ID = ""
+
     const val API_DEVELOPMENT_URL = "http://18.118.2.222:3000/api/"
     const val API_TESTING_URL = "testingURL"
     const val API_LIVE_URL = "liveURL"

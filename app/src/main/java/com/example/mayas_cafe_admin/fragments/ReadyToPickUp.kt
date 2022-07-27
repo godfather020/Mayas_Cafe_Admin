@@ -147,6 +147,25 @@ class ReadyToPickUp : Fragment() {
 
                                         orderImg.add("default.png")
                                     }
+
+                                    if (Constants.QR_SCAN_ID != null && Constants.QR_SCAN_ID.isNotEmpty()){
+
+                                        Log.d("working", Constants.QR_SCAN_ID)
+
+                                        if (Constants.QR_SCAN_ID == it.getData()!!.ListOrderResponce!![i].id.toString()){
+
+                                            Log.d("working", Constants.QR_SCAN_ID)
+
+                                            Constants.orderId = "#"+it.getData()!!.ListOrderResponce!![i].id.toString()
+                                            Constants.orderPickUp = formatted
+                                            Constants.orderStatus = "Ready to PickUp"
+
+                                                mainActivity.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ProductDetailsFrag()).commit()
+                                            //mainActivity.loadFragment(childFragmentManager, ProductDetailsFrag(), R.id.fragment_container, false, "QR", null)
+
+                                            Constants.QR_SCAN_ID = ""
+                                        }
+                                    }
                                 }
                             }
                             loadingReady.visibility = View.GONE

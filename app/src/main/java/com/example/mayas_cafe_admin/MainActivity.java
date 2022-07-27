@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mayas_cafe_admin.activities.Login;
+import com.example.mayas_cafe_admin.activities.QrCodeScanner;
 import com.example.mayas_cafe_admin.fragments.CurrentOrdersFrag;
 import com.example.mayas_cafe_admin.fragments.DashboardFrag;
 import com.example.mayas_cafe_admin.fragments.MenuFrag;
@@ -33,6 +34,7 @@ import com.example.mayas_cafe_admin.fragments.Notification_frag;
 import com.example.mayas_cafe_admin.fragments.Offers_frag;
 import com.example.mayas_cafe_admin.fragments.PastOrdersFrag;
 import com.example.mayas_cafe_admin.fragments.PaymentHistory_frag;
+import com.example.mayas_cafe_admin.fragments.ProductDetailsFrag;
 import com.example.mayas_cafe_admin.fragments.ProfileFrag;
 import com.example.mayas_cafe_admin.utils.Constants;
 import com.google.android.material.navigation.NavigationView;
@@ -42,6 +44,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static MainActivity instance;
     DrawerLayout drawerLayout;
     public static Boolean isBackPressed = false;
     ImageButton nav_close;
@@ -52,12 +55,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public NavigationView navigationView;
     Boolean isLogin = false;
     String userPic = "";
+    public ConstraintLayout fragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        instance = this;
         drawerLayout = findViewById(R.id.drawer);
         toolbar_const = findViewById(R.id.toolbar_const);
 
@@ -67,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         String token = getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, "");
 
-        if (token != null){
+        if (token != null) {
 
             Constants.DEVICE_TOKEN = token;
 
@@ -75,10 +80,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setUpToolbar();
 
-        ConstraintLayout fragmentContainer = findViewById(R.id.fragment_container);
+        fragmentContainer = findViewById(R.id.fragment_container);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFrag()).commit();
+
     }
+
+    public static MainActivity getInstance() {
+        return instance;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (Constants.QR_SCAN_ID != null && !Constants.QR_SCAN_ID.isEmpty()) {
+
+            Log.d("work", "works");
+
+            Constants.orderId = "#" + Constants.QR_SCAN_ID;
+            Constants.orderStatus = "Ready To Pickup";
+            Constants.orderPickUp = "27-08-2022 15:30:45";
+            loadFragment(getSupportFragmentManager(), new ProductDetailsFrag(), R.id.fragment_container, false, "QR", null);
+            Constants.QR_SCAN_ID = "";
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProductDetailsFrag()).commit();
+        }
+    }
+
 
     private void setUpToolbar() {
 
@@ -89,11 +117,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         //Functions.setArrow(navigationView);
 
-        if (isLogin){
+        if (isLogin) {
 
             navigationView.getMenu().getItem(7).setTitle("Logout");
-        }
-        else {
+        } else {
 
             navigationView.getMenu().getItem(7).setTitle("Login");
         }
@@ -104,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar_const,
                 R.string.app_name,
                 R.string.app_name
-        ){
+        ) {
 
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -128,14 +155,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         nav_userName.setText(userName);
                     }
 
-                    if (!userPic.isEmpty()){
+                    if (!userPic.isEmpty()) {
 
                         Picasso.get()
-                                .load(Constants.AdminProfile_Path+userPic)
+                                .load(Constants.AdminProfile_Path + userPic)
                                 .into(adminPic);
                     }
-                }
-                else {
+                } else {
 
                     nav_userName.setText("Stranger");
                 }
@@ -213,7 +239,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.setting) {
             Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.scanner) {
-            Toast.makeText(getApplicationContext(), "Scanner", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this, QrCodeScanner.class);
+            startActivity(intent);
+            //Toast.makeText(getApplicationContext(), "Scanner", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -227,30 +256,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
 
-            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
-            isBackPressed = true;
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    isBackPressed = false;
-                }
-            }, 2000);
-        }
+        Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+        isBackPressed = true;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressed = false;
+            }
+        }, 2000);
+    }
 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.Profile:
 
-                loadFragment(getSupportFragmentManager(), new ProfileFrag(), R.id.fragment_container, false, "Profile", null );
+                loadFragment(getSupportFragmentManager(), new ProfileFrag(), R.id.fragment_container, false, "Profile", null);
                 break;
 
             case R.id.AllOrders:
                 Constants.SET_ORDER_TAB = 0;
-                loadFragment(getSupportFragmentManager(), new CurrentOrdersFrag(), R.id.fragment_container, false, "Profile", null );
+                loadFragment(getSupportFragmentManager(), new CurrentOrdersFrag(), R.id.fragment_container, false, "Profile", null);
                 break;
 
             case R.id.pastOrders:
@@ -258,15 +287,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.Menu:
-                loadFragment(getSupportFragmentManager(), new MenuFrag(), R.id.fragment_container, false, "Profile", null );
+                loadFragment(getSupportFragmentManager(), new MenuFrag(), R.id.fragment_container, false, "Profile", null);
                 break;
 
             case R.id.PayHistory:
-                loadFragment(getSupportFragmentManager(), new PaymentHistory_frag(), R.id.fragment_container, false, "Profile", null );
+                loadFragment(getSupportFragmentManager(), new PaymentHistory_frag(), R.id.fragment_container, false, "Profile", null);
                 break;
 
             case R.id.Offers:
-                loadFragment(getSupportFragmentManager(), new Offers_frag(), R.id.fragment_container, false, "Profile", null );
+                loadFragment(getSupportFragmentManager(), new Offers_frag(), R.id.fragment_container, false, "Profile", null);
                 break;
 
             case R.id.notify:
@@ -302,8 +331,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     alertDialog.show();
 
 
-                }
-                else {
+                } else {
 
                     drawerLayout.closeDrawer(GravityCompat.START);
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -370,7 +398,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
     public void loadFragment(

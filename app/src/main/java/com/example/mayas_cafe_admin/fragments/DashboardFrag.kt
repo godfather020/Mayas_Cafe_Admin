@@ -104,6 +104,13 @@ class DashboardFrag : Fragment() {
         totalProTxt = view.findViewById(R.id.totalPro_txt)
         userImg = view.findViewById(R.id.user_img)
 
+       /* if (Constants.QR_SCAN_ID != null && Constants.QR_SCAN_ID.isNotEmpty()){
+
+            mainActivity.loadFragment(fragmentManager, CurrentOrdersFrag(), R.id.fragment_container, false, "QR", null)
+            //this.readyToDeliver.callOnClick()
+            Constants.SET_ORDER_TAB = 3
+        }*/
+
         init()
 
         refresh.setOnRefreshListener {

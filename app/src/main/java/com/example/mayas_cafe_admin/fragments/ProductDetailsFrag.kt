@@ -64,7 +64,7 @@ class ProductDetailsFrag : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        mainActivity.toolbar_const.setTitle("Product Details")
+        mainActivity.toolbar_const.setTitle("Order Details")
         mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         recyclerView = view.findViewById(R.id.productDetails_rv)
