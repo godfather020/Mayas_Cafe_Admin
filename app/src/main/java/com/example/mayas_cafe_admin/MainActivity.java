@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Constants.orderId = "#" + Constants.QR_SCAN_ID;
             Constants.orderStatus = "Ready To Pickup";
-            Constants.orderPickUp = "27-08-2022 15:30:45";
+            //Constants.orderPickUp = "27-08-2022 15:30:45";
             loadFragment(getSupportFragmentManager(), new ProductDetailsFrag(), R.id.fragment_container, false, "QR", null);
             Constants.QR_SCAN_ID = "";
             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProductDetailsFrag()).commit();

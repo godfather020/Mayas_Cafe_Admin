@@ -62,6 +62,8 @@ public class QrCodeScanner extends AppCompatActivity implements ZXingScannerView
         // Prints scan results
         Log.d("result", rawResult.getText());
         // Prints the scan format (qrcode, pdf417 etc.)
+        String[] rs = rawResult.toString().split(" ");
+
         Log.d("result", rawResult.getBarcodeFormat().toString());
         //If you would like to resume scanning, call this method below:
         //mScannerView.resumeCameraPreview(this);
@@ -70,18 +72,9 @@ public class QrCodeScanner extends AppCompatActivity implements ZXingScannerView
         setResult(RESULT_OK, intent);
 
         MainActivity.getInstance().navigationView.setCheckedItem(R.id.AllOrders);
-        /*mainActivity.loadFragment(
-                getSupportFragmentManager(),
-                new CurrentOrdersFrag(),
-                R.id.fragment_container,
-                false,
-                "QrCodeScanner",
-                null
-        );*/
-
-        Intent intent1 = new Intent(this, MainActivity.class);
-        intent.putExtra("qrScan", rawResult.getText());
-        startActivity(intent1);
+        Constants.QR_SCAN_ID = rs[0];
+        Constants.orderPickUp = rs[1];
+        MainActivity.getInstance().onResume();
 
         finish();
     }
