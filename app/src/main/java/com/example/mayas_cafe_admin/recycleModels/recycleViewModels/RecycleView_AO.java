@@ -187,6 +187,7 @@ public class RecycleView_AO extends RecyclerView.Adapter<RecycleView_AO.MyViewHo
         orderId.setText(foodModels.get(absoluteAdapterPosition).getOrderId());
         orderMsg.setText(order_msg);
         orderStatus.setText(order_status);
+        orderStatus.setTextColor(context.getResources().getColor(R.color.Orange));
 
         orderOkay.setOnClickListener(new View.OnClickListener() {
             @Override

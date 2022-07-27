@@ -308,6 +308,7 @@ public class RecycleView_NO extends RecyclerView.Adapter<RecycleView_NO.MyViewHo
         orderId.setText(foodModels.get(absoluteAdapterPosition).getOrderId());
         orderMsg.setText(order_msg);
         orderStatus.setText(order_status);
+        orderStatus.setTextColor(context.getResources().getColor(R.color.Yellow));
 
         orderOkay.setOnClickListener(new View.OnClickListener() {
             @Override

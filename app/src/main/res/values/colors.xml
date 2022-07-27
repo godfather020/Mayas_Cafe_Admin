@@ -21,6 +21,8 @@
     <color name="Button_text">#ffffff</color>
     <color name="Red">#B71C1C</color>
     <color name="Yellow">#99F517</color>
+    <color name="Orange">#C39E1B</color>
+    <color name="Green">#12971F</color>
     <color name="barCharts">#E82A36</color>
     <color name="textColors">#363853</color>
     <color name="transparent">#00000000</color>
