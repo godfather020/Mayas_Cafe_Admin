@@ -177,6 +177,12 @@ class ReadyToPickUp : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        init()
+    }
+
     private fun setPickUpRv() {
 
         for (i in orderId.indices) {
