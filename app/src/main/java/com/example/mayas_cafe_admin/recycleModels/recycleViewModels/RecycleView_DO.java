@@ -1,6 +1,7 @@
 package com.example.mayas_cafe_admin.recycleModels.recycleViewModels;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,17 @@ public class RecycleView_DO extends RecyclerView.Adapter<RecycleView_DO.MyViewHo
         Picasso.get()
                 .load(Constants.AdminProduct_Path + foodModels.get(position).getOrderImg())
                 .into(holder.orderImg);
+
+        if (foodModels.get(position).getPayStatus().equals("1")){
+
+            holder.payStatus.setText("Paid");
+            holder.payStatus.setTextColor(context.getResources().getColor(R.color.Green));
+        }
+        else {
+
+            holder.payStatus.setText("UnPaid");
+            holder.payStatus.setTextColor(context.getResources().getColor(R.color.Red));
+        }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +140,7 @@ public class RecycleView_DO extends RecyclerView.Adapter<RecycleView_DO.MyViewHo
         //grabbing the views from rv_column.xml
 
         CardView cardView;
-        TextView orderId, pickUpTime, orderStatus, orderItems, orderAmt;
+        TextView orderId, pickUpTime, orderStatus, orderItems, orderAmt, payStatus;
         CircleImageView orderImg;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -141,6 +153,7 @@ public class RecycleView_DO extends RecyclerView.Adapter<RecycleView_DO.MyViewHo
             orderItems = itemView.findViewById(R.id.deliveredOrderItems);
             orderImg = itemView.findViewById(R.id.deliveredOrderImg);
             orderAmt = itemView.findViewById(R.id.deliveredOrderAmt);
+            payStatus = itemView.findViewById(R.id.payStatus_delivered);
         }
     }
 }

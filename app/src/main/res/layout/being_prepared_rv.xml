@@ -88,17 +88,43 @@
                 app:layout_constraintTop_toBottomOf="@+id/beingPreOrderId" />
 
             <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Payment Status"
+                android:textColor="#87000087"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <TextView
+                android:id="@+id/payStatus_bp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="UnPaid"
+                android:textColor="@color/Red"
+                android:textSize="12dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/textView34"
+                app:layout_constraintTop_toBottomOf="@+id/beingPreOrderPickTime" />
+
+
+            <TextView
                 android:id="@+id/beingPreOrderAmt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_16dp"
-                android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="$5"
                 android:textColor="#363853"
                 android:textSize="16dp"
-                app:layout_constraintStart_toEndOf="@+id/beingPreOrderImg"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/beingPreOrderItems" />
 
             <TextView
                 android:id="@+id/textView12"

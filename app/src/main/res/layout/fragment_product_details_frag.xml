@@ -52,6 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#1B4C4A4A"
+                        android:paddingBottom="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -86,9 +87,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
                             android:background="@drawable/vector__11_"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/customerPhone"
                             app:layout_constraintStart_toEndOf="@+id/custImg"
                             app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
@@ -105,6 +105,60 @@
                             android:textSize="12dp"
                             app:layout_constraintStart_toEndOf="@+id/imageView10"
                             app:layout_constraintTop_toBottomOf="@+id/customerName" />
+
+                        <TextView
+                            android:id="@+id/textView35"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Payment Status"
+                            android:textColor="#87000087"
+                            android:textSize="12dp"
+                            app:layout_constraintStart_toStartOf="@+id/imageView10"
+                            app:layout_constraintTop_toBottomOf="@+id/customerPhone" />
+
+                        <TextView
+                            android:id="@+id/payStatus_details"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="12dp"
+                            android:layout_marginStart="8dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView35"
+                            app:layout_constraintStart_toEndOf="@+id/textView35"
+                            app:layout_constraintTop_toTopOf="@+id/textView35" />
+
+                        <TextView
+                            android:id="@+id/transaction_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Transaction Id"
+                            android:textColor="#87000087"
+                            android:visibility="gone"
+                            android:textSize="12dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/textView35"
+                            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+                        <TextView
+                            android:id="@+id/transaction_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text=""
+                            android:visibility="gone"
+                            android:textColor="@color/black"
+                            android:textSize="12dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginStart="8dp"
+                            app:layout_constraintStart_toEndOf="@+id/transaction_txt"
+                            app:layout_constraintTop_toBottomOf="@+id/payStatus_details" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -221,6 +275,7 @@
                 android:text="Payment Via :-"
                 android:textColor="@color/textColors"
                 android:textSize="18dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@id/payRadioGroup"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -230,6 +285,7 @@
                 android:layout_height="wrap_content"
                 android:checkedButton="@id/payCash"
                 android:gravity="start"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/completeOrder_btn"
@@ -261,6 +317,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:visibility="gone"
                 android:background="@drawable/custom_button"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Complete Order"

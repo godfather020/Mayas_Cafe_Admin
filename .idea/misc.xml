@@ -18,8 +18,8 @@
         <entry key="app/src/main/res/layout/add_category_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/being_prepared_rv.xml" value="0.36451301832208294" />
         <entry key="app/src/main/res/layout/category_items_rv.xml" value="0.14324569356300998" />
-        <entry key="app/src/main/res/layout/current_orders_rv.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/delivered_order_rv.xml" value="0.19923044035912782" />
+        <entry key="app/src/main/res/layout/current_orders_rv.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/delivered_order_rv.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_accepted_orders.xml" value="0.20008550662676358" />
         <entry key="app/src/main/res/layout/fragment_active_offers.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_add_items_frag.xml" value="0.19923044035912782" />
@@ -34,9 +34,9 @@
         <entry key="app/src/main/res/layout/fragment_expired_offers_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_inactive_offers_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_menu_frag.xml" value="0.19923044035912782" />
-        <entry key="app/src/main/res/layout/fragment_new_orders.xml" value="0.20008550662676358" />
+        <entry key="app/src/main/res/layout/fragment_new_orders.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_notification_frag.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_product_details_frag.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_product_details_frag.xml" value="0.2808921036769138" />
         <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_qr_code_scanner.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_ready_to_pick_up.xml" value="0.19923044035912782" />
@@ -46,7 +46,7 @@
         <entry key="app/src/main/res/layout/order_cancel_dialog.xml" value="0.17135086128739802" />
         <entry key="app/src/main/res/layout/previous_notify_rv.xml" value="0.19837537409149208" />
         <entry key="app/src/main/res/layout/product_details_rv.xml" value="0.19923044035912782" />
-        <entry key="app/src/main/res/layout/ready_to_pickup_rv.xml" value="0.543884892086331" />
+        <entry key="app/src/main/res/layout/ready_to_pickup_rv.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recent_orders_rv.xml" value="0.20081595648232095" />
         <entry key="app/src/main/res/layout/today_notify_rv.xml" value="0.19837537409149208" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.2864583333333333" />

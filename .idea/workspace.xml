@@ -15,20 +15,46 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2312ce34-4453-43a8-9d95-c1fa94c7e1c5" name="Default Changelist" comment="added refresh on resume on Ready to pickup class">
+    <list default="true" id="2312ce34-4453-43a8-9d95-c1fa94c7e1c5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/request/Request_updateOrderDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/response/OrderDetails.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/activities/QrCodeScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/activities/QrCodeScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/CurrentOrdersFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/CurrentOrdersFrag.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/api/Apis.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/api/Apis.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/response/Response_Data.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/Retrofite/response/Response_Data.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/AcceptedOrders.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/AcceptedOrders.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/BeingPreparedOrders.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/BeingPreparedOrders.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/CancelledOrderFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/CancelledOrderFrag.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/DashboardFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/DashboardFrag.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/DeliveredOrdersFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/DeliveredOrdersFrag.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/NewOrders.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/NewOrders.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/Notification_frag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/Notification_frag.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ProductDetailsFrag.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ProductDetailsFrag.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ReadyToPickUp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/ReadyToPickUp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleModel/RecycleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleModel/RecycleModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_AO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_AO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_BP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_BP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_DO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_DO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_NO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_NO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_RTP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/recycleModels/recycleViewModels/RecycleView_RTP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_current_orders_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_current_orders_frag.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/utils/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/utils/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/accepted_orders_rv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/accepted_orders_rv.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/being_prepared_rv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/being_prepared_rv.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/current_orders_rv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/current_orders_rv.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/delivered_order_rv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/delivered_order_rv.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_accepted_orders.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_accepted_orders.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_being_prepared_orders.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_being_prepared_orders.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cancelled_order_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cancelled_order_frag.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard_frag.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_delivered_orders_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_delivered_orders_frag.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_new_orders.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_new_orders.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_product_details_frag.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_product_details_frag.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ready_to_pick_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ready_to_pick_up.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/ready_to_pickup_rv.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/ready_to_pickup_rv.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +122,6 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-view/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.4.1/f9e48179ea0c6ac0080a277b9383f74523f56aa2/appcompat-1.4.1-sources.jar!/androidx/appcompat/widget/SearchView.java_SELECTED" value="SearchView" />
     <property name="android-custom-view/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.1/f0f93e67af3f7417bdd560d5142f6dec4fe629c3/recyclerview-1.2.1-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_RecyclerView_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-view/Users/mac/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.1/f0f93e67af3f7417bdd560d5142f6dec4fe629c3/recyclerview-1.2.1-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
@@ -501,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658928651116</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="added complete order API in product details">
+      <created>1658990331795</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1658990331795</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -541,15 +573,16 @@
     <MESSAGE value="added QR code scanner and redirect to Product details" />
     <MESSAGE value="deleted unused class" />
     <MESSAGE value="added refresh on resume on Ready to pickup class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added refresh on resume on Ready to pickup class" />
+    <MESSAGE value="added complete order API in product details" />
+    <option name="LAST_COMMIT_MESSAGE" value="added complete order API in product details" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-function">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/mayas_cafe_admin/fragments/AcceptedOrders.kt</url>
-          <line>41</line>
-          <properties class="com.example.mayas_cafe_admin.fragments.AcceptedOrders" method="onCreate">
+          <line>43</line>
+          <properties class="com.example.mayas_cafe_admin.fragments.AcceptedOrders">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="1" />

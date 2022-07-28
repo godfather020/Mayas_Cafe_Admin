@@ -163,6 +163,13 @@ interface Apis {
     ):Call<Response_Update_Status>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.UPDATE_ORDER_DETAILS)
+    fun updateOrderDetails(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_updateOrderDetails
+    ):Call<Response_Common>
+
+    @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.UPDATE_PRODUCT)
     fun updateProduct(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,

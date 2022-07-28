@@ -18,6 +18,7 @@ import com.example.mayas_cafe_admin.utils.Constants
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AcceptedOrders : Fragment() {
@@ -36,6 +37,7 @@ class AcceptedOrders : Fragment() {
     private lateinit var orderQuantity: ArrayList<String>
     private lateinit var orderPickTime: ArrayList<String>
     private lateinit var orderImg: ArrayList<String>
+    private lateinit var payStatus : ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +74,7 @@ class AcceptedOrders : Fragment() {
 
             init()
 
-            refreshAcc.isRefreshing = false
+
         }
 
         return view
@@ -93,6 +95,7 @@ class AcceptedOrders : Fragment() {
         orderQuantity = ArrayList<String>()
         orderPickTime = ArrayList<String>()
         orderImg = ArrayList<String>()
+        payStatus = ArrayList()
 
         getAcceptedOrders()
 
@@ -115,6 +118,7 @@ class AcceptedOrders : Fragment() {
                             orderPickTime.clear()
                             orderId.clear()
                             recycleViewModels.clear()
+                            payStatus.clear()
 
                             for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
@@ -123,6 +127,7 @@ class AcceptedOrders : Fragment() {
                                     orderId.add("#" + it.getData()!!.ListOrderResponce!![i].id.toString())
                                     orderAmt.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
                                     orderQuantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
+                                    payStatus.add(it.getData()!!.ListOrderResponce!![i].paymentStatus.toString())
 
                                     val pickTime =
                                         it.getData()!!.ListOrderResponce!![i].pickupAt.toString()
@@ -169,12 +174,14 @@ class AcceptedOrders : Fragment() {
 
             recycleViewModels.add(
                 RecycleModel(
+                    orderImg[i],
                     orderId[i],
                     orderPickTime[i],
                     orderAmt[i],
                     "Accepted Order",
                     orderQuantity[i],
-                    orderImg[i]
+                    orderImg[i],
+                    payStatus[i]
                 )
             )
 
@@ -182,6 +189,8 @@ class AcceptedOrders : Fragment() {
             recyclerView.adapter = recycleViewAdapterAO
             recycleViewAdapterAO.notifyItemInserted(i)
         }
+
+        refreshAcc.isRefreshing = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -1,11 +1,13 @@
 package com.example.mayas_cafe_admin.fragments
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,12 +16,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
 import com.example.mayas_cafe_admin.Retrofite.request.Request_UpdateOrder
+import com.example.mayas_cafe_admin.Retrofite.request.Request_updateOrderDetails
 import com.example.mayas_cafe_admin.Retrofite.response.Response_Update_Status
 import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance
 import com.example.mayas_cafe_admin.fragments.ViewModel.ProductDetails_ViewModel
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
 import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_PD
 import com.example.mayas_cafe_admin.utils.Constants
+import com.example.mayasfood.Retrofite.response.Response_Common
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
@@ -49,8 +53,13 @@ class ProductDetailsFrag : Fragment() {
     lateinit var custPhone : TextView
     lateinit var payTxt : TextView
     lateinit var payRadioGroup : RadioGroup
+    lateinit var payCash : RadioButton
+    lateinit var payCard : RadioButton
     lateinit var completeOrderBtn : Button
     lateinit var args : String
+    lateinit var transactionTxt : TextView
+    lateinit var transactionId : TextView
+    lateinit var payStatus : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,6 +90,11 @@ class ProductDetailsFrag : Fragment() {
         payTxt = view.findViewById(R.id.payTxt)
         payRadioGroup = view.findViewById(R.id.payRadioGroup)
         completeOrderBtn = view.findViewById(R.id.completeOrder_btn)
+        payCard = view.findViewById(R.id.payCard)
+        payCash = view.findViewById(R.id.payCash)
+        payStatus = view.findViewById(R.id.payStatus_details)
+        transactionTxt = view.findViewById(R.id.transaction_txt)
+        transactionId = view.findViewById(R.id.transaction_id)
 
         loadingDetails.visibility = View.VISIBLE
 
@@ -171,6 +185,34 @@ class ProductDetailsFrag : Fragment() {
 
                                     if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty()) {
 
+                                        val tId = it.getData()!!.ListOrderResponce!![i].transactionId.toString()
+                                        val payS = it.getData()!!.ListOrderResponce!![i].paymentStatus.toString()
+
+                                        if (tId.isNotEmpty() && tId != "null"){
+
+                                            transactionTxt.visibility = View.VISIBLE
+                                            transactionId.visibility = View.VISIBLE
+                                            transactionId.text = tId
+                                        }
+                                        else {
+
+                                            transactionTxt.visibility = View.GONE
+                                            transactionId.visibility = View.GONE
+                                        }
+
+                                        if (payS == "1"){
+
+                                            payTxt.visibility = View.GONE
+                                            payRadioGroup.visibility = View.GONE
+                                            payStatus.text = "Paid"
+                                            payStatus.setTextColor(resources.getColor(R.color.Green))
+                                        }
+                                        else {
+
+                                            payStatus.text = "UnPaid"
+                                            payStatus.setTextColor(resources.getColor(R.color.Red))
+                                        }
+
                                         for (j in it.getData()!!.ListOrderResponce!![i].Orderlists!!.indices) {
 
                                             getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString())
@@ -231,20 +273,31 @@ class ProductDetailsFrag : Fragment() {
                 .getString(
                     Constants.sharedPrefrencesConstant.DEVICE_TOKEN, ""
                 )
-        val request_updateOrder = Request_UpdateOrder()
+        val request_updateOrder = Request_updateOrderDetails()
         request_updateOrder.orderStatus = "5"
         val orderId1: String = orderId.text.toString()
         Log.d("Id", orderId1.substring(1))
         request_updateOrder.orderId = orderId1.substring(1)
         request_updateOrder.branchId = "1"
+        request_updateOrder.orderStatus = "5"
+        request_updateOrder.paymentStatus = "1"
+        var payMethod = ""
+        if (payCash.isChecked){
+            payMethod = "Cash"
+        }
+        else{
+
+            payMethod = "Card"
+        }
+        request_updateOrder.paymentMethod = payMethod
         val retrofitInstance = RetrofitInstance()
         if (token != null) {
             val retrofitInstance1 =
-                retrofitInstance.retrofit.updateOrder(token, request_updateOrder)
-            retrofitInstance1.enqueue(object : Callback<Response_Update_Status?> {
+                retrofitInstance.retrofit.updateOrderDetails(token, request_updateOrder)
+            retrofitInstance1.enqueue(object : Callback<Response_Common?> {
                 override fun onResponse(
-                    call: Call<Response_Update_Status?>,
-                    response: Response<Response_Update_Status?>
+                    call: Call<Response_Common?>,
+                    response: Response<Response_Common?>
                 ) {
                     if (response.isSuccessful) {
 
@@ -257,7 +310,7 @@ class ProductDetailsFrag : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<Response_Update_Status?>, t: Throwable) {
+                override fun onFailure(call: Call<Response_Common?>, t: Throwable) {
                     Log.d("error", t.toString())
                 }
             })

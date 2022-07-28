@@ -36,6 +36,7 @@ class NewOrders : Fragment() {
     private lateinit var orderAmt: ArrayList<String>
     private lateinit var orderQuantity: ArrayList<String>
     private lateinit var orderPickTime: ArrayList<String>
+    private lateinit var payStatus : ArrayList<String>
     private lateinit var custImg : ArrayList<String>
     private lateinit var orderImg: ArrayList<String>
     private lateinit var refreshNew: SwipeRefreshLayout
@@ -99,6 +100,7 @@ class NewOrders : Fragment() {
         orderPickTime = ArrayList()
         orderImg = ArrayList()
         custImg = ArrayList()
+        payStatus = ArrayList()
 
         getNewOrders()
 
@@ -121,6 +123,7 @@ class NewOrders : Fragment() {
                             orderPickTime.clear()
                             orderId.clear()
                             recycleViewModels.clear()
+                            payStatus.clear()
                             custImg.clear()
 
                             for (i in it.getData()!!.ListOrderResponce!!.indices) {
@@ -131,6 +134,7 @@ class NewOrders : Fragment() {
                                     orderId.add("#" + it.getData()!!.ListOrderResponce!![i].id.toString())
                                     orderAmt.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
                                     orderQuantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
+                                    payStatus.add(it.getData()!!.ListOrderResponce!![i].paymentStatus.toString())
 
                                     Log.d("custImg", custImg.size.toString())
 
@@ -204,7 +208,8 @@ class NewOrders : Fragment() {
                     orderAmt[i],
                     "New Order",
                     orderQuantity[i],
-                    orderImg[i]
+                    orderImg[i],
+                    payStatus[i]
                 )
             )
 

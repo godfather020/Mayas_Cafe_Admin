@@ -365,7 +365,7 @@ class DashboardFrag : Fragment() {
 
                                 for (i in 0..5) {
 
-                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty() && it.getData()!!.ListOrderResponce!![i].cancelStatus == false) {
+                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty() && it.getData()!!.ListOrderResponce!![i].cancelStatus == false && it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0")) {
 
                                         userId.add(it.getData()!!.ListOrderResponce!![i].userId.toString())
                                         orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())
@@ -379,7 +379,7 @@ class DashboardFrag : Fragment() {
 
                                 for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
-                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty() && it.getData()!!.ListOrderResponce!![i].cancelStatus == false) {
+                                    if (it.getData()!!.ListOrderResponce!![i].Orderlists!!.isNotEmpty() && it.getData()!!.ListOrderResponce!![i].cancelStatus == false && it.getData()!!.ListOrderResponce!![i].orderStatus.equals("0")) {
 
                                         userId.add(it.getData()!!.ListOrderResponce!![i].userId.toString())
                                         orderId.add("OrderId : #" + it.getData()!!.ListOrderResponce!![i].id.toString())

@@ -76,6 +76,17 @@ public class RecycleView_RTP extends RecyclerView.Adapter<RecycleView_RTP.MyView
                 .load(Constants.AdminProduct_Path + foodModels.get(position).getOrderImg())
                 .into(holder.orderImg);
 
+        if (foodModels.get(position).getPayStatus().equals("1")){
+
+            holder.payStatus.setText("Paid");
+            holder.payStatus.setTextColor(context.getResources().getColor(R.color.Green));
+        }
+        else {
+
+            holder.payStatus.setText("UnPaid");
+            holder.payStatus.setTextColor(context.getResources().getColor(R.color.Red));
+        }
+
         holder.completeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -254,7 +265,7 @@ public class RecycleView_RTP extends RecyclerView.Adapter<RecycleView_RTP.MyView
         //grabbing the views from rv_column.xml
 
         CardView cardView;
-        TextView orderId, pickUpTime, orderStatus, orderItems, orderAmt;
+        TextView orderId, pickUpTime, orderStatus, orderItems, orderAmt, payStatus;
         CircleImageView orderImg;
         ImageView completeOrder;
 
@@ -269,6 +280,7 @@ public class RecycleView_RTP extends RecyclerView.Adapter<RecycleView_RTP.MyView
             orderImg = itemView.findViewById(R.id.readyOrderImg);
             orderAmt = itemView.findViewById(R.id.readyOrderAmt);
             completeOrder = itemView.findViewById(R.id.readyOrderApprove);
+            payStatus = itemView.findViewById(R.id.payStatus_rtp);
         }
     }
 }

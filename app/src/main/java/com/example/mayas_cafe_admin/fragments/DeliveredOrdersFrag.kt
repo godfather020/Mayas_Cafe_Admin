@@ -18,6 +18,7 @@ import com.example.mayas_cafe_admin.utils.Constants
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DeliveredOrdersFrag : Fragment() {
@@ -36,6 +37,7 @@ class DeliveredOrdersFrag : Fragment() {
     private lateinit var orderQuantity: ArrayList<String>
     private lateinit var orderPickTime: ArrayList<String>
     private lateinit var orderImg: ArrayList<String>
+    private lateinit var payStatus : ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +96,7 @@ class DeliveredOrdersFrag : Fragment() {
         orderQuantity = ArrayList<String>()
         orderPickTime = ArrayList<String>()
         orderImg = ArrayList<String>()
+        payStatus = ArrayList()
 
         getDeliveredOrders()
     }
@@ -115,6 +118,7 @@ class DeliveredOrdersFrag : Fragment() {
                             orderPickTime.clear()
                             orderId.clear()
                             recycleViewModels.clear()
+                            payStatus.clear()
 
                             for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
@@ -123,6 +127,8 @@ class DeliveredOrdersFrag : Fragment() {
                                     orderId.add("#" + it.getData()!!.ListOrderResponce!![i].id.toString())
                                     orderAmt.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
                                     orderQuantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
+                                    Log.d("paystatus", it.getData()!!.ListOrderResponce!![i].paymentStatus.toString())
+                                    payStatus.add(it.getData()!!.ListOrderResponce!![i].paymentStatus.toString())
 
                                     val pickTime =
                                         it.getData()!!.ListOrderResponce!![i].pickupAt.toString()
@@ -168,12 +174,14 @@ class DeliveredOrdersFrag : Fragment() {
 
             recycleViewModels.add(
                 RecycleModel(
+                    orderImg[i],
                     orderId[i],
                     orderPickTime[i],
                     orderAmt[i],
                     "Delivered",
                     orderQuantity[i],
-                    orderImg[i]
+                    orderImg[i],
+                    payStatus[i]
                 )
             )
 

@@ -18,6 +18,7 @@ import com.example.mayas_cafe_admin.utils.Constants
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ReadyToPickUp : Fragment() {
 
@@ -32,6 +33,7 @@ class ReadyToPickUp : Fragment() {
     private lateinit var orderQuantity: ArrayList<String>
     private lateinit var orderPickTime: ArrayList<String>
     private lateinit var orderImg: ArrayList<String>
+    private lateinit var payStatus : ArrayList<String>
     private lateinit var loadingReady: ProgressBar
     private lateinit var refreshReady: SwipeRefreshLayout
     private var token: String? = ""
@@ -63,6 +65,13 @@ class ReadyToPickUp : Fragment() {
 
         //setPickUpRv()
 
+        orderId = ArrayList<String>()
+        orderAmt = ArrayList<String>()
+        orderQuantity = ArrayList<String>()
+        orderPickTime = ArrayList<String>()
+        orderImg = ArrayList<String>()
+        payStatus = ArrayList()
+
         setHasOptionsMenu(true)
 
         init()
@@ -87,12 +96,6 @@ class ReadyToPickUp : Fragment() {
                     Constants.sharedPrefrencesConstant.DEVICE_TOKEN, ""
                 )
 
-        orderId = ArrayList<String>()
-        orderAmt = ArrayList<String>()
-        orderQuantity = ArrayList<String>()
-        orderPickTime = ArrayList<String>()
-        orderImg = ArrayList<String>()
-
         getReadyOrders()
 
     }
@@ -114,6 +117,7 @@ class ReadyToPickUp : Fragment() {
                             orderPickTime.clear()
                             orderId.clear()
                             recycleViewModels.clear()
+                            payStatus.clear()
 
                             for (i in it.getData()!!.ListOrderResponce!!.indices) {
 
@@ -122,6 +126,7 @@ class ReadyToPickUp : Fragment() {
                                     orderId.add("#" + it.getData()!!.ListOrderResponce!![i].id.toString())
                                     orderAmt.add("$" + it.getData()!!.ListOrderResponce!![i].amount.toString())
                                     orderQuantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
+                                    payStatus.add(it.getData()!!.ListOrderResponce!![i].paymentStatus.toString())
 
                                     val pickTime =
                                         it.getData()!!.ListOrderResponce!![i].pickupAt.toString()
@@ -170,12 +175,14 @@ class ReadyToPickUp : Fragment() {
 
             recycleViewModels.add(
                 RecycleModel(
+                    orderImg[i],
                     orderId[i],
                     orderPickTime[i],
                     orderAmt[i],
                     "Ready to PickUp",
                     orderQuantity[i],
-                    orderImg[i]
+                    orderImg[i],
+                    payStatus[i]
                 )
             )
 
