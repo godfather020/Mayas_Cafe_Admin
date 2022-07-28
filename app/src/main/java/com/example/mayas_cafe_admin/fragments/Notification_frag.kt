@@ -70,8 +70,11 @@ class Notification_frag : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        mainActivity.toolbar_const.title = "Notifications"
+        mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
+
         loading = view.findViewById(R.id.loading_notify)
-        //loading.visibility = View.VISIBLE
+        loading.visibility = View.VISIBLE
         noNotify = view.findViewById(R.id.noNoty_txt)
 
         today_txt = view.findViewById(R.id.today_txt)
@@ -95,9 +98,6 @@ class Notification_frag : Fragment() {
                     Constants.sharedPrefrencesConstant.DEVICE_TOKEN, ""
                 )
 
-
-
-        //setUpNotifyView()
 
         val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
             ItemTouchHelper.SimpleCallback(

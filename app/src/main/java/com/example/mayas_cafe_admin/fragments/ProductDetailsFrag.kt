@@ -2,27 +2,29 @@ package com.example.mayas_cafe_admin.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.compose.ui.unit.Constraints
+import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayas_cafe_admin.MainActivity
 import com.example.mayas_cafe_admin.R
+import com.example.mayas_cafe_admin.Retrofite.request.Request_UpdateOrder
+import com.example.mayas_cafe_admin.Retrofite.response.Response_Update_Status
+import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance
 import com.example.mayas_cafe_admin.fragments.ViewModel.ProductDetails_ViewModel
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
 import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_PD
-import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_RTP
 import com.example.mayas_cafe_admin.utils.Constants
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import java.util.ArrayList
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ProductDetailsFrag : Fragment() {
@@ -45,6 +47,10 @@ class ProductDetailsFrag : Fragment() {
     lateinit var custImg : CircleImageView
     lateinit var custName : TextView
     lateinit var custPhone : TextView
+    lateinit var payTxt : TextView
+    lateinit var payRadioGroup : RadioGroup
+    lateinit var completeOrderBtn : Button
+    lateinit var args : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +78,9 @@ class ProductDetailsFrag : Fragment() {
         custImg = view.findViewById(R.id.custImg)
         custName = view.findViewById(R.id.customerName)
         custPhone = view.findViewById(R.id.customerPhone)
+        payTxt = view.findViewById(R.id.payTxt)
+        payRadioGroup = view.findViewById(R.id.payRadioGroup)
+        completeOrderBtn = view.findViewById(R.id.completeOrder_btn)
 
         loadingDetails.visibility = View.VISIBLE
 
@@ -86,11 +95,30 @@ class ProductDetailsFrag : Fragment() {
         orderStatus.text = Constants.orderStatus
         orderPickUp.text = Constants.orderPickUp
 
-        /*Picasso.get()
-            .load(Constants.AdminProduct_Path+Constants.userPic)
-            .into(custImg)*/
 
-        //setUpDetailsRv()
+        if (arguments != null){
+
+            args = arguments?.getString("isComplete", "").toString()
+
+            if (args == "complete"){
+
+                payRadioGroup.visibility = View.VISIBLE
+                payTxt.visibility = View.VISIBLE
+                completeOrderBtn.visibility = View.VISIBLE
+            }
+            else{
+
+                payRadioGroup.visibility = View.GONE
+                payTxt.visibility = View.GONE
+                completeOrderBtn.visibility = View.GONE
+            }
+        }
+        else{
+
+            payRadioGroup.visibility = View.GONE
+            payTxt.visibility = View.GONE
+            completeOrderBtn.visibility = View.GONE
+        }
 
         token =
             mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0)
@@ -104,6 +132,10 @@ class ProductDetailsFrag : Fragment() {
         orderSize = ArrayList<String>()
         orderImg = ArrayList<String>()
 
+        completeOrderBtn.setOnClickListener {
+
+            updateOrderStatus()
+        }
 
         getOrderDetails()
 
@@ -193,5 +225,42 @@ class ProductDetailsFrag : Fragment() {
         recycleView_adapter_PD.notifyDataSetChanged()
     }
 
+    private fun updateOrderStatus() {
+        val token =
+            mainActivity.getSharedPreferences(Constants.sharedPrefrencesConstant.DEVICE_TOKEN, 0)
+                .getString(
+                    Constants.sharedPrefrencesConstant.DEVICE_TOKEN, ""
+                )
+        val request_updateOrder = Request_UpdateOrder()
+        request_updateOrder.orderStatus = "5"
+        val orderId1: String = orderId.text.toString()
+        Log.d("Id", orderId1.substring(1))
+        request_updateOrder.orderId = orderId1.substring(1)
+        request_updateOrder.branchId = "1"
+        val retrofitInstance = RetrofitInstance()
+        if (token != null) {
+            val retrofitInstance1 =
+                retrofitInstance.retrofit.updateOrder(token, request_updateOrder)
+            retrofitInstance1.enqueue(object : Callback<Response_Update_Status?> {
+                override fun onResponse(
+                    call: Call<Response_Update_Status?>,
+                    response: Response<Response_Update_Status?>
+                ) {
+                    if (response.isSuccessful) {
 
+                        Toast.makeText(context, "Order Complete", Toast.LENGTH_SHORT).show()
+
+                        Log.d("error1", response.message())
+                        mainActivity.supportFragmentManager.popBackStackImmediate()
+                    } else {
+                        Log.d("error", response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<Response_Update_Status?>, t: Throwable) {
+                    Log.d("error", t.toString())
+                }
+            })
+        }
+    }
 }

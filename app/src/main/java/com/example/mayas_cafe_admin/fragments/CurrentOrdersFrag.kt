@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -18,6 +19,7 @@ class CurrentOrdersFrag : Fragment() {
     private lateinit var mainActivity: MainActivity
     private lateinit var viewPager: ViewPager
     private lateinit var tabLayout: TabLayout
+    private lateinit var loading : ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +35,10 @@ class CurrentOrdersFrag : Fragment() {
         mainActivity.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         viewPager = view.findViewById(R.id.viewPager)
-
+        loading = view.findViewById(R.id.loading_currentOrder)
         tabLayout = view.findViewById(R.id.orders_tab)
+
+        loading.visibility = View.VISIBLE
 
         val adapter = CustomViewAdapter(childFragmentManager)
 
@@ -51,18 +55,22 @@ class CurrentOrdersFrag : Fragment() {
             0 -> {
 
                 viewPager.currentItem = 0
+                loading.visibility = View.GONE
             }
             1 -> {
 
                 viewPager.currentItem = 1
+                loading.visibility = View.GONE
             }
             2 -> {
 
                 viewPager.currentItem = 2
+                loading.visibility = View.GONE
             }
             else -> {
 
                 viewPager.currentItem = 3
+                loading.visibility = View.GONE
             }
         }
 

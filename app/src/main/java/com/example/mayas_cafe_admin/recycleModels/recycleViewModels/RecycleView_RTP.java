@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -96,7 +97,10 @@ public class RecycleView_RTP extends RecyclerView.Adapter<RecycleView_RTP.MyView
 
                 MainActivity activity = (MainActivity) view.getContext();
 
-                activity.loadFragment(activity.getSupportFragmentManager(), new ProductDetailsFrag(), R.id.fragment_container, false, "Product Details", null);
+                Bundle bundle = new Bundle();
+                bundle.putString("isComplete", "complete");
+
+                activity.loadFragment(activity.getSupportFragmentManager(), new ProductDetailsFrag(), R.id.fragment_container, false, "Product Details", bundle);
             }
         });
     }

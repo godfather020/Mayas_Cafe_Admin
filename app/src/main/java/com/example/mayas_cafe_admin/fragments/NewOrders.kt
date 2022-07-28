@@ -64,6 +64,8 @@ class NewOrders : Fragment() {
         loadingNew = view.findViewById(R.id.loading_new)
         refreshNew = view.findViewById(R.id.refresh_new)
 
+        loadingNew.visibility = View.VISIBLE
+
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
 
@@ -75,7 +77,7 @@ class NewOrders : Fragment() {
 
             init()
 
-            refreshNew.isRefreshing = false
+
         }
 
         return view
@@ -163,6 +165,7 @@ class NewOrders : Fragment() {
                                 }
                             }
                             loadingNew.visibility = View.GONE
+
                             setUpRunOrderRv()
                         }
                     }
@@ -209,6 +212,8 @@ class NewOrders : Fragment() {
             recyclerView.adapter = recycleViewAdapterNO
             recycleViewAdapterNO.notifyItemInserted(i)
         }
+
+        refreshNew.isRefreshing = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

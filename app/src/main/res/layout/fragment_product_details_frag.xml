@@ -33,11 +33,12 @@
             android:paddingBottom="28dp">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/payTxt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -52,6 +53,7 @@
                         android:layout_height="match_parent"
                         android:background="#1B4C4A4A"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -84,8 +86,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="8dp"
-                            android:background="@drawable/vector__11_"
                             android:layout_marginBottom="8dp"
+                            android:background="@drawable/vector__11_"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/custImg"
                             app:layout_constraintTop_toBottomOf="@+id/customerName" />
@@ -148,9 +150,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:layout_marginTop="16dp"
+                        android:visibility="visible"
                         app:layout_constraintBottom_toTopOf="@+id/detailsPickUp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -208,6 +211,65 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/payTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Payment Via :-"
+                android:textColor="@color/textColors"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toTopOf="@id/payRadioGroup"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/payRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/payCash"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/completeOrder_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RadioButton
+                    android:id="@+id/payCash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Cash"
+                    android:textColor="@color/textColors" />
+
+                <RadioButton
+                    android:id="@+id/payCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Card"
+                    android:textColor="@color/textColors" />
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/completeOrder_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Complete Order"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
