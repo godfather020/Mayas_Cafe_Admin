@@ -37,7 +37,7 @@ class WeklyTransactions_frag : Fragment() {
 
         setHasOptionsMenu(true)
 
-        setUpCurrentTransRv()
+        //setUpCurrentTransRv()
 
         return view
     }

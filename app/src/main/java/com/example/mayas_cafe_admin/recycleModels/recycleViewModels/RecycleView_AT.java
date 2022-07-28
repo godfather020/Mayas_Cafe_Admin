@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayas_cafe_admin.R;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
+import com.example.mayas_cafe_admin.utils.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,7 +29,7 @@ public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHo
     ArrayList<RecycleModel> foodModels;
     List<RecycleModel> foodModelAll;
 
-    public RecycleView_AT(Context context, ArrayList<RecycleModel> foodModels){
+    public RecycleView_AT(Context context, ArrayList<RecycleModel> foodModels) {
         this.context = context;
         this.foodModels = foodModels;
         this.foodModelAll = new ArrayList<>(foodModels);
@@ -47,11 +49,15 @@ public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHo
         //Assigning values to the views we created
         final RecycleModel temp = foodModels.get(position);
 
-        holder.transName.setText(foodModels.get(position).getOrderId());
+        holder.transName.setText("Order Id - #" + foodModels.get(position).getOrderId());
         holder.transDate.setText(foodModels.get(position).getPickUpTime());
-        holder.transAmt.setText(foodModels.get(position).getOrderAmt());
-        holder.transMethod.setText(foodModels.get(position).getOrderItems());
-        holder.transStatus.setText(foodModels.get(position).getOrderStatus());
+        holder.transAmt.setText("$" + foodModels.get(position).getOrderAmt());
+        holder.transMethod.setText(foodModels.get(position).getPaymentMethod());
+        holder.transStatus.setText(foodModels.get(position).getPaymentStatus());
+
+        Picasso.get()
+                .load(Constants.AdminProfile_Path + foodModels.get(position).getCustImg())
+                .into(holder.transImg);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,11 +85,10 @@ public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHo
 
             ArrayList<RecycleModel> filteredList = new ArrayList<>();
 
-            if (charSequence.toString().isEmpty()){
+            if (charSequence.toString().isEmpty()) {
 
                 filteredList.addAll(foodModelAll);
-            }
-            else {
+            } else {
 
                 for (RecycleModel filterData : foodModelAll) {
 

@@ -7,7 +7,7 @@ public class RecycleModel {
     String notifyTitle, notifyBody, notifyDate, notifyTime, notifyId;
     String menuName, menuImg, menuId;
     String userName, userImage;
-    String itemName, itemImg, itemId;
+    String itemName, itemImg, itemId, transectionId, paymentMethod, paymentStatus;
     String offersId, offersName, offersTitle, offersCode, offersDes, offersCal, offersUpTo, offersMin, offersStartAt, offersStopAt, offersImg;
 
     public RecycleModel(String orderId, String pickUpTime, String orderAmt, String orderStatus, String orderItems, String orderImg) {
@@ -70,8 +70,42 @@ public class RecycleModel {
         this.payStatus = payStatus;
     }
 
+    public RecycleModel(String orderId, String pickUpTime, String orderAmt, String custImg, String transectionId, String paymentMethod, String paymentStatus) {
+        this.orderId = orderId;
+        this.pickUpTime = pickUpTime;
+        this.orderAmt = orderAmt;
+        this.custImg = custImg;
+        this.transectionId = transectionId;
+        this.paymentMethod = paymentMethod;
+        this.paymentStatus = paymentStatus;
+    }
+
     public String getPayStatus() {
         return payStatus;
+    }
+
+    public String getTransectionId() {
+        return transectionId;
+    }
+
+    public void setTransectionId(String transectionId) {
+        this.transectionId = transectionId;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     public void setPayStatus(String payStatus) {

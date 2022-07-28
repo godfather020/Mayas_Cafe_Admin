@@ -39,7 +39,7 @@ class AllTransactions_frag : Fragment() {
 
         setHasOptionsMenu(true)
 
-        setUpAllTransRv()
+        //setUpAllTransRv()
 
         return view
     }

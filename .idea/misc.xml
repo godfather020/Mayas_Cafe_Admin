@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/add_category_dialog.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/all_transactions_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout/being_prepared_rv.xml" value="0.36451301832208294" />
         <entry key="app/src/main/res/layout/category_items_rv.xml" value="0.14324569356300998" />
         <entry key="app/src/main/res/layout/current_orders_rv.xml" value="0.5" />
@@ -28,6 +29,7 @@
         <entry key="app/src/main/res/layout/fragment_cancelled_order_frag.xml" value="0.17135086128739802" />
         <entry key="app/src/main/res/layout/fragment_category__items_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_current_orders_frag.xml" value="0.19923044035912782" />
+        <entry key="app/src/main/res/layout/fragment_current_transactions_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_delivered_orders_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_edit__profile_frag.xml" value="0.20081595648232095" />
