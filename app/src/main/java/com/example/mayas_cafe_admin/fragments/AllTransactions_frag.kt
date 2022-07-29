@@ -43,6 +43,7 @@ class AllTransactions_frag : Fragment() {
     lateinit var userImg: ArrayList<String>
     lateinit var userName: ArrayList<String>
     lateinit var userPhone: ArrayList<String>
+    var one = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -165,16 +166,31 @@ class AllTransactions_frag : Fragment() {
 
                                     Log.d("DATE", "" + formattedDate)
 
-                                    orderId.add(it.getData()!!.ListOrderResponce!![i].id.toString())
-                                    orderAmt.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
-                                    paymentMethod.add("By " + it.getData()!!.ListOrderResponce!![i].paymentMethod.toString())
-                                    transactionId.add(it.getData()!!.ListOrderResponce!![i].transactionId.toString())
+                                    allTransactionViewModel.getUserInfo(
+                                        this,
+                                        token.toString(),
+                                        it.getData()!!.ListOrderResponce!![i].userId.toString()
+                                    )
+                                        .observe(viewLifecycleOwner) { it1 ->
 
-                                    orderPickAt.add(formatted)
+                                            if (it1 != null) {
 
-                                    userImg.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString(), "img"))
-                                    userName.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString(), "name"))
-                                    userPhone.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString(), "phone"))
+                                                if (it1.getSuccess()!!) {
+
+                                                    orderId.add(it.getData()!!.ListOrderResponce!![i].id.toString())
+                                                    orderAmt.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
+                                                    paymentMethod.add("By " + it.getData()!!.ListOrderResponce!![i].paymentMethod.toString())
+                                                    transactionId.add(it.getData()!!.ListOrderResponce!![i].transactionId.toString())
+
+                                                    orderPickAt.add(formatted)
+
+                                                    userImg.add(it1.getData()!!.user!!.profilePic)
+                                                    userName.add(it1.getData()!!.user!!.userName)
+                                                    userPhone.add(it1.getData()!!.user!!.phoneNumber)
+
+                                                }
+                                            }
+                                        }
                                 }
                             }
 
@@ -197,7 +213,7 @@ class AllTransactions_frag : Fragment() {
         }
     }
 
-    private fun getUserDetails(userId: String, value : String): String {
+    private fun getUserDetails(userId: String, value: String): String {
 
         var userImage = ""
         var userName = ""
@@ -213,6 +229,8 @@ class AllTransactions_frag : Fragment() {
                         userImage = it.getData()!!.user!!.profilePic
                         userName = it.getData()!!.user!!.userName
                         userPhone = it.getData()!!.user!!.phoneNumber
+
+                        one = 1
                     }
                 }
             }
@@ -234,6 +252,11 @@ class AllTransactions_frag : Fragment() {
 
     private fun setUpAllTransRv() {
 
+        Log.d("sizeI", userImg.size.toString())
+        Log.d("sizeN", userName.size.toString())
+        Log.d("sizeP", userPhone.size.toString())
+        Log.d("sizeI", orderId.size.toString())
+
         for (i in orderId.indices) {
 
             recycleView_models.add(
@@ -251,6 +274,7 @@ class AllTransactions_frag : Fragment() {
             )
 
         }
+
         recycleView_adapter_AT = RecycleView_AT(activity, recycleView_models)
         recyclerView.adapter = recycleView_adapter_AT
         recycleView_adapter_AT.notifyDataSetChanged()

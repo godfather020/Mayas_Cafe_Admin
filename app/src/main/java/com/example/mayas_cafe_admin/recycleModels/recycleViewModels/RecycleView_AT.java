@@ -1,6 +1,7 @@
 package com.example.mayas_cafe_admin.recycleModels.recycleViewModels;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayas_cafe_admin.R;
+import com.example.mayas_cafe_admin.Retrofite.request.RequestUserDetails;
+import com.example.mayas_cafe_admin.Retrofite.response.Response_Update_Status;
+import com.example.mayas_cafe_admin.development.retrofit.RetrofitInstance;
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel;
 import com.example.mayas_cafe_admin.utils.Constants;
+import com.example.mayasfood.Retrofite.response.Response_Common;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -22,12 +27,16 @@ import java.util.Collection;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHolder> implements Filterable {
 
     Context context;
     ArrayList<RecycleModel> foodModels;
     List<RecycleModel> foodModelAll;
+    String userName, userPhone, userImg;
 
     public RecycleView_AT(Context context, ArrayList<RecycleModel> foodModels) {
         this.context = context;
@@ -57,8 +66,10 @@ public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHo
         holder.custName.setText(foodModels.get(position).getUserName());
         holder.userPhone.setText(foodModels.get(position).getUserPhone());
 
+        Log.d("img", foodModels.get(position).getCustImg());
+
         Picasso.get()
-                .load(Constants.AdminProfile_Path + foodModels.get(position).getCustImg())
+                .load(Constants.AdminProfile_Path+foodModels.get(position).getCustImg())
                 .into(holder.transImg);
 
         if (!foodModels.get(position).getTransectionId().isEmpty() && foodModels.get(position).getTransectionId() != null
@@ -80,6 +91,11 @@ public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHo
 
             }
         });
+
+    }
+
+    private void getUserDetails(MyViewHolder holder, int position) {
+
 
     }
 
@@ -108,6 +124,10 @@ public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHo
                 for (RecycleModel filterData : foodModelAll) {
 
                     if (filterData.getOrderId().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+
+                        filteredList.add(filterData);
+                    }
+                    else if (filterData.getUserName().toLowerCase().contains(charSequence.toString().toLowerCase())){
 
                         filteredList.add(filterData);
                     }

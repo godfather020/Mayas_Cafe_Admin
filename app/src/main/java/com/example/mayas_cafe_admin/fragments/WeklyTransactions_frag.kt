@@ -201,9 +201,12 @@ class WeklyTransactions_frag : Fragment() {
 
                                             orderPickAt.add(formatted)
 
-                                            userImg.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString(), "img"))
-                                            userName.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString(), "name"))
-                                            userPhone.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString(), "phone"))
+                                            Log.d("userId33333", it.getData()!!.ListOrderResponce!![i].userId.toString())
+
+                                            userImg.add( "img")
+                                            userName.add(it.getData()!!.ListOrderResponce!![i].userId.toString())
+                                            userPhone.add("phone")
+
                                         }
                                     } catch (e: ParseException) {
                                         e.printStackTrace()
@@ -246,6 +249,8 @@ class WeklyTransactions_frag : Fragment() {
                         userImage = it.getData()!!.user!!.profilePic
                         userName = it.getData()!!.user!!.userName
                         userPhone = it.getData()!!.user!!.phoneNumber
+
+                        Log.d("userName33333", userName)
                     }
                 }
             }
