@@ -7,7 +7,7 @@ public class RecycleModel {
     String notifyTitle, notifyBody, notifyDate, notifyTime, notifyId;
     String menuName, menuImg, menuId;
     String userName, userImage;
-    String itemName, itemImg, itemId, transectionId, paymentMethod, paymentStatus;
+    String itemName, itemImg, itemId, transectionId, paymentMethod, paymentStatus, userPhone;
     String offersId, offersName, offersTitle, offersCode, offersDes, offersCal, offersUpTo, offersMin, offersStartAt, offersStopAt, offersImg;
 
     public RecycleModel(String orderId, String pickUpTime, String orderAmt, String orderStatus, String orderItems, String orderImg) {
@@ -70,7 +70,8 @@ public class RecycleModel {
         this.payStatus = payStatus;
     }
 
-    public RecycleModel(String orderId, String pickUpTime, String orderAmt, String custImg, String transectionId, String paymentMethod, String paymentStatus) {
+    public RecycleModel(String orderId, String pickUpTime, String orderAmt, String custImg, String transectionId, String paymentMethod, String paymentStatus, String userName, String
+                        userPhone) {
         this.orderId = orderId;
         this.pickUpTime = pickUpTime;
         this.orderAmt = orderAmt;
@@ -78,6 +79,24 @@ public class RecycleModel {
         this.transectionId = transectionId;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
+        this.userName = userName;
+        this.userPhone = userPhone;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
     public String getPayStatus() {

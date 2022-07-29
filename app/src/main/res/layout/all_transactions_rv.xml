@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/trans_card"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         android:layout_margin="@dimen/space_8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,7 +17,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="8dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/transImg"
@@ -28,16 +29,51 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/transName"
+                android:id="@+id/custName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_16dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Ramu kaka"
                 android:textColor="#363853"
                 android:textSize="15dp"
+                android:layout_marginStart="16dp"
                 app:layout_constraintStart_toEndOf="@+id/transImg"
                 app:layout_constraintTop_toTopOf="@+id/transImg" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/vector__11_"
+                app:layout_constraintStart_toStartOf="@+id/custName"
+                app:layout_constraintTop_toBottomOf="@+id/custName" />
+
+            <TextView
+                android:id="@+id/userPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="7000107876"
+                android:textAlignment="center"
+                android:textColor="@color/textColors"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+                app:layout_constraintStart_toEndOf="@+id/imageView10"
+                app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+            <TextView
+                android:id="@+id/transName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Order id"
+                android:textColor="#363853"
+                android:textSize="12dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView10"
+                app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
             <TextView
                 android:id="@+id/transDate"
@@ -60,10 +96,43 @@
                 android:layout_marginTop="@dimen/space_5dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="By Cash"
+                android:visibility="visible"
                 android:textColor="#82838B"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/transDate"
                 app:layout_constraintTop_toBottomOf="@+id/transName" />
+
+            <TextView
+                android:id="@+id/transId_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Transaction Id"
+                android:textColor="#82838B"
+                android:textSize="12dp"
+                android:visibility="gone"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/transDate"
+                app:layout_constraintTop_toBottomOf="@+id/transDate" />
+
+            <TextView
+                android:id="@+id/transId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="243234"
+                android:visibility="gone"
+                android:textAlignment="center"
+                android:textColor="@color/textColors"
+                android:textSize="12dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/transId_txt"
+                app:layout_constraintTop_toBottomOf="@+id/transPayMethod" />
 
             <TextView
                 android:id="@+id/transAmt"

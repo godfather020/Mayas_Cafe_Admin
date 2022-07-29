@@ -54,10 +54,25 @@ public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHo
         holder.transAmt.setText("$" + foodModels.get(position).getOrderAmt());
         holder.transMethod.setText(foodModels.get(position).getPaymentMethod());
         holder.transStatus.setText(foodModels.get(position).getPaymentStatus());
+        holder.custName.setText(foodModels.get(position).getUserName());
+        holder.userPhone.setText(foodModels.get(position).getUserPhone());
 
         Picasso.get()
                 .load(Constants.AdminProfile_Path + foodModels.get(position).getCustImg())
                 .into(holder.transImg);
+
+        if (!foodModels.get(position).getTransectionId().isEmpty() && foodModels.get(position).getTransectionId() != null
+        && !foodModels.get(position).getTransectionId().equals("null")){
+
+            holder.transId.setText(foodModels.get(position).getTransectionId());
+            holder.transTxt.setVisibility(View.VISIBLE);
+            holder.transId.setVisibility(View.VISIBLE);
+        }
+        else {
+
+            holder.transTxt.setVisibility(View.GONE);
+            holder.transId.setVisibility(View.GONE);
+        }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +134,7 @@ public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHo
         //grabbing the views from rv_column.xml
 
         CardView cardView;
-        TextView transName, transDate, transMethod, transStatus, transAmt;
+        TextView transName, transDate, transMethod, transStatus, transAmt, transTxt, transId, custName, userPhone;
         CircleImageView transImg;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -132,6 +147,10 @@ public class RecycleView_AT extends RecyclerView.Adapter<RecycleView_AT.MyViewHo
             transImg = itemView.findViewById(R.id.transImg);
             transMethod = itemView.findViewById(R.id.transPayMethod);
             transStatus = itemView.findViewById(R.id.transStatus);
+            transTxt = itemView.findViewById(R.id.transId_txt);
+            transId = itemView.findViewById(R.id.transId);
+            custName = itemView.findViewById(R.id.custName);
+            userPhone = itemView.findViewById(R.id.userPhone);
         }
     }
 }

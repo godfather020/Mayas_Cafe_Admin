@@ -38,6 +38,8 @@ class CurrentTransactions_frag : Fragment() {
     lateinit var userImg: ArrayList<String>
     lateinit var refresh : SwipeRefreshLayout
     lateinit var noTransCurr : TextView
+    lateinit var userName: ArrayList<String>
+    lateinit var userPhone: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +80,8 @@ class CurrentTransactions_frag : Fragment() {
         transactionId = ArrayList()
         paymentMethod = ArrayList()
         userImg = ArrayList()
+        userName = ArrayList()
+        userPhone = ArrayList()
 
         init()
 
@@ -119,6 +123,8 @@ class CurrentTransactions_frag : Fragment() {
                             transactionId.clear()
                             paymentMethod.clear()
                             userImg.clear()
+                            userPhone.clear()
+                            userName.clear()
                             recycleView_models.clear()
 
                             for (i in it.getData()!!.ListOrderResponce!!.indices) {
@@ -167,7 +173,9 @@ class CurrentTransactions_frag : Fragment() {
 
                                         orderPickAt.add(formatted)
 
-                                        userImg.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString()))
+                                        userImg.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString(), "img"))
+                                        userName.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString(), "name"))
+                                        userPhone.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString(), "phone"))
                                     }
                                 }
                             }
@@ -192,21 +200,39 @@ class CurrentTransactions_frag : Fragment() {
         }
     }
 
-    private fun getUserDetails(userId: String) : String {
+    private fun getUserDetails(userId: String, value : String): String {
 
         var userImage = ""
+        var userName = ""
+        var userPhone = ""
 
-        allTransactionViewModel.getUserInfo(this, token.toString(), userId).observe(viewLifecycleOwner){
+        allTransactionViewModel.getUserInfo(this, token.toString(), userId)
+            .observe(viewLifecycleOwner) {
 
-            if (it != null){
+                if (it != null) {
 
-                if (it.getSuccess()!!){
+                    if (it.getSuccess()!!) {
 
-                    userImage = it.getData()!!.user!!.profilePic
+                        userImage = it.getData()!!.user!!.profilePic
+                        userName = it.getData()!!.user!!.userName
+                        userPhone = it.getData()!!.user!!.phoneNumber
+                    }
                 }
             }
+
+        return when (value) {
+            "name" -> {
+
+                userName
+            }
+            "phone" -> {
+
+                userPhone
+            }
+            else -> {
+                userImage
+            }
         }
-        return userImage
     }
 
     private fun setUpCurrentTransRv() {
@@ -222,6 +248,8 @@ class CurrentTransactions_frag : Fragment() {
                     transactionId[i],
                     paymentMethod[i],
                     "Received",
+                    userName[i],
+                    userPhone[i]
                 )
             )
 
