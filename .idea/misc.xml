@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/layout/fragment_active_offers.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_add_items_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_add_new_offer.xml" value="0.19923044035912782" />
+        <entry key="app/src/main/res/layout/fragment_all_transactions_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_being_prepared_orders.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/fragment_cancelled_order_frag.xml" value="0.17135086128739802" />
         <entry key="app/src/main/res/layout/fragment_category__items_frag.xml" value="0.19923044035912782" />
@@ -42,6 +43,7 @@
         <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_qr_code_scanner.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_ready_to_pick_up.xml" value="0.19923044035912782" />
+        <entry key="app/src/main/res/layout/fragment_wekly_transactions_frag.xml" value="0.19923044035912782" />
         <entry key="app/src/main/res/layout/header.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/offers_details_dialog.xml" value="0.17135086128739802" />
         <entry key="app/src/main/res/layout/order_accept_reject_dialog.xml" value="0.19923044035912782" />

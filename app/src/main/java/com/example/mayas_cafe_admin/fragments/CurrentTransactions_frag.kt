@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -16,11 +16,9 @@ import com.example.mayas_cafe_admin.fragments.ViewModel.AllTransaction_ViewModel
 import com.example.mayas_cafe_admin.recycleModels.recycleModel.RecycleModel
 import com.example.mayas_cafe_admin.recycleModels.recycleViewModels.RecycleView_AT
 import com.example.mayas_cafe_admin.utils.Constants
-import com.squareup.picasso.Picasso
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class CurrentTransactions_frag : Fragment() {
 
@@ -39,7 +37,7 @@ class CurrentTransactions_frag : Fragment() {
     lateinit var transactionId: ArrayList<String>
     lateinit var userImg: ArrayList<String>
     lateinit var refresh : SwipeRefreshLayout
-
+    lateinit var noTransCurr : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +61,7 @@ class CurrentTransactions_frag : Fragment() {
         recyclerView = view.findViewById(R.id.currentTrans_rv)
         loadingCurr = view.findViewById(R.id.loading_curr)
         refresh = view.findViewById(R.id.refresh_curr)
+        noTransCurr = view.findViewById(R.id.noTrans_curr)
 
         loadingCurr.visibility = View.VISIBLE
 
@@ -129,11 +128,6 @@ class CurrentTransactions_frag : Fragment() {
                                     )
                                 ) {
 
-                                    orderId.add(it.getData()!!.ListOrderResponce!![i].id.toString())
-                                    orderAmt.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
-                                    paymentMethod.add("By "+it.getData()!!.ListOrderResponce!![i].paymentMethod.toString())
-                                    transactionId.add(it.getData()!!.ListOrderResponce!![i].transactionId.toString())
-
                                     val pickTime =
                                         it.getData()!!.ListOrderResponce!![i].pickupAt.toString()
 
@@ -153,12 +147,42 @@ class CurrentTransactions_frag : Fragment() {
                                     val formatted: String = output.format(d!!)
                                     Log.d("DATE", "" + formatted)
 
+                                    val time = formatted.substring(0,8)
+                                    Log.d("DatePickTime", "" + time)
 
-                                    orderPickAt.add(formatted)
+                                    val c = Calendar.getInstance().time
+                                    println("Current time => $c")
 
-                                    userImg.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString()))
+                                    val df = SimpleDateFormat("dd-MM-yy", Locale.getDefault())
+                                    val currentDate = df.format(c)
+
+                                    Log.d("DateCurrentTime", "" + currentDate)
+
+                                    if (time == currentDate) {
+
+                                        orderId.add(it.getData()!!.ListOrderResponce!![i].id.toString())
+                                        orderAmt.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
+                                        paymentMethod.add("By " + it.getData()!!.ListOrderResponce!![i].paymentMethod.toString())
+                                        transactionId.add(it.getData()!!.ListOrderResponce!![i].transactionId.toString())
+
+                                        orderPickAt.add(formatted)
+
+                                        userImg.add(getUserDetails(it.getData()!!.ListOrderResponce!![i].userId.toString()))
+                                    }
                                 }
                             }
+
+                            if (orderId.size <= 0){
+
+                                noTransCurr.visibility = View.VISIBLE
+                                recyclerView.visibility = View.GONE
+                            }
+                            else {
+
+                                noTransCurr.visibility = View.GONE
+                                recyclerView.visibility = View.VISIBLE
+                            }
+
                             loadingCurr.visibility = View.GONE
                             refresh.isRefreshing = false
                             setUpCurrentTransRv()
